@@ -28,6 +28,93 @@
     
     
     
+    <article>
+      <header>
+        <h2><a href="/example/2014/09/10/example-2.html">ML 2hhhhhh</a></h2>
+        <p><time datetime="2014-09-10T17:37:00-05:00">Sep 10, 2014</time> • example</p>
+      </header>
+      <div>
+<p><strong>Basic</strong></p>
+
+<p>Neque porro <em>quisquam</em> est, qui <strong>dolorem</strong> ipsum, quia <strong><em>dolor</em></strong> sit, amet, <a href="http://cjdns.info/">consectetur</a>, adipisci velit.</p>
+
+<ul>
+  <li>lorem</li>
+  <li>ipsum</li>
+</ul>
+
+<ol>
+  <li>dolor fffffffffffffffffffffffffff</li>
+  <li>sit</li>
+</ol>
+
+
+      </div>
+      <footer>
+        <p><a href="/example/2014/09/10/example-2.html">read more &raquo;</a></p>
+      </footer>
+    </article>
+    
+    <article>
+      <header>
+        <h2><a href="/example/2014/09/10/example.html">Example</a></h2>
+        <p><time datetime="2014-09-10T17:37:00-05:00">Sep 10, 2014</time> • example</p>
+      </header>
+      <div>
+<p><strong>Basic</strong></p>
+
+<p>Neque porro <em>quisquam</em> est, qui <strong>dolorem</strong> ipsum, quia <strong><em>dolor</em></strong> sit, amet, <a href="http://cjdns.info/">consectetur</a>, adipisci velit.</p>
+
+<ul>
+  <li>lorem</li>
+  <li>ipsum</li>
+</ul>
+
+<ol>
+  <li>dolor</li>
+  <li>sit</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>First Header</th>
+      <th>Second Header</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Table Cell</td>
+      <td>Table Cell</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Blockquote</strong></p>
+
+<blockquote>
+  <p>They who can give up essential liberty to obtain a little temporary safety, deserve neither liberty nor safety.</p>
+
+  <p><em>Benjamin Franklin</em></p>
+</blockquote>
+
+<p><strong>Code</strong></p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="nf">asyncEnabled</span><span class="p">(</span><span class="n">Dict</span><span class="o">*</span> <span class="n">args</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">vAdmin</span><span class="p">,</span> <span class="n">String</span><span class="o">*</span> <span class="n">txid</span><span class="p">,</span> <span class="k">struct</span> <span class="n">Allocator</span><span class="o">*</span> <span class="n">requestAlloc</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">Admin</span><span class="o">*</span> <span class="n">admin</span> <span class="o">=</span> <span class="n">Identity_check</span><span class="p">((</span><span class="k">struct</span> <span class="n">Admin</span><span class="o">*</span><span class="p">)</span> <span class="n">vAdmin</span><span class="p">);</span>
+    <span class="kt">int64_t</span> <span class="n">enabled</span> <span class="o">=</span> <span class="n">admin</span><span class="o">-&gt;</span><span class="n">asyncEnabled</span><span class="p">;</span>
+    <span class="n">Dict</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Dict_CONST</span><span class="p">(</span><span class="n">String_CONST</span><span class="p">(</span><span class="s">"asyncEnabled"</span><span class="p">),</span> <span class="n">Int_OBJ</span><span class="p">(</span><span class="n">enabled</span><span class="p">),</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">Admin_sendMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d</span><span class="p">,</span> <span class="n">txid</span><span class="p">,</span> <span class="n">admin</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+
+      </div>
+      <footer>
+        <p><a href="/example/2014/09/10/example.html">read more &raquo;</a></p>
+      </footer>
+    </article>
+    
     
 
     <footer>
