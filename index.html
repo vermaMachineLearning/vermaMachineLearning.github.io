@@ -1,23 +1,24 @@
 ---
-layout: default
+layout: blank
 ---
-
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
+    {% for page in paginator.posts %}
+    <article>
+      <header>
+        <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
+        <p>{% if page.author %}{{ page.author }} • {% endif %}{% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>{% endif %}{% if page.categories %} • {{ page.categories | array_to_sentence_string }}{% endif %}</p>
+      </header>
+      <div>
+{{ page.excerpt }}
+      </div>
+      <footer>
+        <p><a href="{{ page.url | prepend: site.baseurl }}">{{ site.more }} &raquo;</a></p>
+      </footer>
+    </article>
     {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
-</div>
+    {% if paginator.total_pages > 1 %}
+    <footer id="paginate">
+        {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">« newer posts</a>{% else %}<span>« newer posts</span>{% endif %}
+        <span>page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+        {% if paginator.next_page %}<a href="{{ paginator.next_page_path | prepend: site.baseurl }}">older posts »</a>{% else %}<span>older posts »</span>{% endif %}
+    </footer>
+    {% endif %}
