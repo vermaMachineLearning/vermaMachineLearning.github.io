@@ -1323,21 +1323,22 @@ div.vis-color-picker input.vis-saturation-range {
   width: 289px !important;
 }*/
 
-section {
-  width: 80%;
-  height: 200px;
-  background: aqua;
-  margin: auto;
-  padding: 10px;
+wrapper {
+    width:700px;
+    clear:both;
 }
-div#one {
-  width: 15%;
-  height: 200px;
-  background: red;
-  float: left;
+first {
+    background-color:red;
+    width:200px;
+    float:left;
 }
-div#two {
-  margin-left: 15%;
-  height: 200px;
-  background: black;
+second {
+    background-color:blue;
+    width:300px;
+    float:left;
+}
+third {
+    background-color:#bada55;
+    width:200px;
+    float:left;
 }
