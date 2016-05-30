@@ -5,154 +5,41 @@
     <description>ah!</description>
     <link>http://www-users.cs.umn.edu/~verma//</link>
     <atom:link href="http://www-users.cs.umn.edu/~verma//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 29 May 2016 19:36:29 -0500</pubDate>
-    <lastBuildDate>Sun, 29 May 2016 19:36:29 -0500</lastBuildDate>
+    <pubDate>Sun, 29 May 2016 20:53:20 -0500</pubDate>
+    <lastBuildDate>Sun, 29 May 2016 20:53:20 -0500</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
-        <title>ML 2hhhhhh</title>
-        <description>&lt;p&gt;&lt;strong&gt;Basic&lt;/strong&gt;&lt;/p&gt;
+        <title>Reading List: ICML Papers 2016 </title>
+        <description>&lt;p&gt;I’ll be providing my comments, may be some quick or sometime detail, on  the papers which I find interesting and related to my research area. Hopefully, this will come handy in solving my own research problems.&lt;/p&gt;
 
-&lt;p&gt;Neque porro &lt;em&gt;quisquam&lt;/em&gt; est, qui &lt;strong&gt;dolorem&lt;/strong&gt; ipsum, quia &lt;strong&gt;&lt;em&gt;dolor&lt;/em&gt;&lt;/strong&gt; sit, amet, &lt;a href=&quot;http://cjdns.info/&quot;&gt;consectetur&lt;/a&gt;, adipisci velit.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;lorem&lt;/li&gt;
-  &lt;li&gt;ipsum&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;dolor fffffffffffffffffffffffffff&lt;/li&gt;
-  &lt;li&gt;sit&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;First Header&lt;/th&gt;
-      &lt;th&gt;Second Header&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Table Cell&lt;/td&gt;
-      &lt;td&gt;Table Cell&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;strong&gt;Blockquote&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;They who can give up essential liberty to obtain a little temporary safety, deserve neither liberty nor safety.&lt;/p&gt;
-
-  &lt;p&gt;&lt;em&gt;Benjamin Franklin&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Code&lt;/strong&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;asyncEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vAdmin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;txid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Allocator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestAlloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Identity_check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vAdmin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int64_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asyncEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Dict&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dict_CONST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String_CONST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;asyncEnabled&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int_OBJ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Admin_sendMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;txid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-</description>
-        <pubDate>Wed, 10 Sep 2014 17:37:00 -0500</pubDate>
-        <link>http://www-users.cs.umn.edu/~verma//example/2014/09/10/example-2.html</link>
-        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//example/2014/09/10/example-2.html</guid>
-        
-        
-        <category>example</category>
-        
-      </item>
-    
-      <item>
-        <title>ML 1</title>
-        <description>&lt;p&gt;&lt;strong&gt;Basic&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Neque porro &lt;em&gt;quisquam&lt;/em&gt; est, qui &lt;strong&gt;dolorem&lt;/strong&gt; ipsum, quia &lt;strong&gt;&lt;em&gt;dolor&lt;/em&gt;&lt;/strong&gt; sit, amet, &lt;a href=&quot;http://cjdns.info/&quot;&gt;consectetur&lt;/a&gt;, adipisci velit.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Starting with ICML 2016 Papers:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;lorem&lt;/li&gt;
-  &lt;li&gt;ipsum
- &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-\begin{align*}
-&amp; \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
-= \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
-&amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}
-    \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \\
-    \vdots &amp; \ddots &amp; \vdots \\
-    \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)
-  \end{array} \right)
-\left( \begin{array}{c}
-    y_1 \\
-    \vdots \\
-    y_n
-  \end{array} \right)
- \end{align*} %]]&gt;&lt;/script&gt;
-    &lt;ol&gt;
-      &lt;li&gt;dolordddddddd fffefefdwedwede&lt;/li&gt;
-      &lt;li&gt;sit&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
+  &lt;li&gt;Revisiting Semi-Supervised Learning with Graph Embeddings ICML 2016&lt;/li&gt;
+  &lt;li&gt;Why Regularized Auto-Encoders learn  Sparse Representation? ICML 2016&lt;/li&gt;
+  &lt;li&gt;On the Consistency of Feature Selection With Lasso for Non-linear Targets. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Additive Approximations in High Dimensional Nonparametric Regression via the SALSA. ICML 2016&lt;/li&gt;
+  &lt;li&gt;The Variational Nystrom method for large-scale spectral problems. ICML 2016&lt;/li&gt;
+  &lt;li&gt;A Kernelized Stein Discrepancy for Goodness-of-fit Tests and Model Evaluation. ICML 2016 (Possibly a new way to measure difference in probability distribution other than most common – KL divergence )&lt;/li&gt;
+  &lt;li&gt;Low-Rank Matrix Approximation with Stability. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Unsupervised Deep Embedding for Clustering Analysis. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Online Low-Rank Subspace Clustering by Explicit Basis Modeling. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Community Recovery in Graphs with Locality. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Analysis of Deep Neural Networks with Extended Data Jacobian Matrix. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Stochastic Variance Reduced Optimization for Nonconvex Sparse Learning. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Compressive Spectral Clustering ICML. 2016&lt;/li&gt;
+  &lt;li&gt;Variance-Reduced and Projection-Free Stochastic Optimization. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Learning Convolutional Neural Networks for Graphs. ICML 2016&lt;/li&gt;
+  &lt;li&gt;Discrete Deep Feature Extraction: A Theory and New Architectures.  ICML 2016&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;First Header&lt;/th&gt;
-      &lt;th&gt;Second Header&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Table Cell&lt;/td&gt;
-      &lt;td&gt;Table Cell&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;strong&gt;Blockquote&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;They who can give up essential liberty to obtain a little temporary safety, deserve neither liberty nor safety.&lt;/p&gt;
-
-  &lt;p&gt;&lt;em&gt;Benjamin Franklin&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Code&lt;/strong&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;asyncEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vAdmin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;txid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Allocator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestAlloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Identity_check&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vAdmin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int64_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;asyncEnabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Dict&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dict_CONST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String_CONST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;asyncEnabled&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int_OBJ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Admin_sendMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;txid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;admin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = &#39;saurabhML&#39;; // required: replace example with your forum shortname
-    /* * * DON&#39;T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement(&#39;script&#39;); dsq.type = &#39;text/javascript&#39;; dsq.async = true;
-        dsq.src = &#39;//&#39; + disqus_shortname + &#39;.disqus.com/embed.js&#39;;
-        (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(dsq);
-    })();
-&lt;/script&gt;
-
-&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;http://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
-
 </description>
-        <pubDate>Wed, 10 Sep 2014 17:37:00 -0500</pubDate>
-        <link>http://www-users.cs.umn.edu/~verma//example/2014/09/10/example.html</link>
-        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//example/2014/09/10/example.html</guid>
+        <pubDate>Sun, 29 May 2016 17:37:00 -0500</pubDate>
+        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/ReadingListICML16.html</link>
+        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/ReadingListICML16.html</guid>
         
         
-        <category>example</category>
+        <category>PaperList</category>
         
       </item>
     

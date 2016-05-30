@@ -2,7 +2,7 @@ body {
   display: flex;
   min-height: 100%;
   font-family: "Source Sans Pro", "Calibri", "Helvetica", sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1.4em;
   font-size: calc(.6vw + .8em);
   flex-direction: column;
@@ -25,7 +25,7 @@ a {
     color: #46e; }
 
 strong, b, th {
-  font-weight: 400; }
+  font-weight: 1000; }
 
 iframe, img, embed, object, video {
   max-width: 100%;
