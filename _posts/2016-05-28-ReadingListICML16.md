@@ -1,6 +1,6 @@
 ---
 title:  "Reading List: ICML Papers 2016 "
-date:   2016-05-29 22:37:00
+date:   2016-05-28 22:37:00
 categories: PaperList
 ---
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Niklas Buschmann 2015 MIT <http://github.com/niklasbuschmann> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="ah!">
+    <title> Learning Convolutional Networks for Graphs › Machine Learning Equations</title>
+    <link rel="canonical" href="http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/convgraph.html">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link type="application/atom+xml" rel="alternate" href="http://www-users.cs.umn.edu/~verma//feed.xml" title="Machine Learning Equations" />
+    <script src="//saurabhML.disqus.com/embed.js" async></script>
+    
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Machine Learning Equations</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li><li><a href="/about.html">About</a></li><li><a href="/archive.html">Archive</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    
+    <article>
+      <header>
+        <h2><a href="/paperlist/2016/05/29/convgraph.html">Learning Convolutional Networks for Graphs</a></h2>
+        <p><time datetime="2016-05-29T17:37:00-05:00">May 29, 2016</time> • PaperList</p>
+      </header>
+      <div>
+<p>For past couple of months, I have been wondering about how convolutional networks can be applied to  graphs. As we know, convolutional networks have became the state of the art in image classification and also in natural language processing. It is easy to see how convolutional networks  exploits the locality and translation invariance properties in an image. People have now also realized on how to exploit those properties in NLP using convolutional networks efficiently. It is time to look at other, more general, domains such as  <em>graphs</em> where notion of locality or receptive field needs to be defined. At this point, we can start thinking about graph neighborhood concepts as it is going to play a major role in connecting with receptive fields of convolutional networks.</p>
+
+<p>There are two problem formulation exist in literature:</p>
+
+<blockquote>
+  <ol>
+    <li>Given a set of graphs <script type="math/tex">S_G=\{G_1,G_2,...,G_n\}</script> and labels <script type="math/tex">Y=\{y_1,y_2,...,y_n\}\in \mathbf{R}</script>, learn a function <script type="math/tex">f:G\rightarrow\mathbf{R}</script> such that it maps graphs to appropriate labels using convolutional networks.</li>
+    <li>Generalisation of convolutional network to a single graph <script type="math/tex">G</script> where each input example is a vertex.</li>
+  </ol>
+</blockquote>
+
+<p>The first problem is somewhat becomes usual machine learning problem, if we know how to construct/extract features from a graph and then we can simply train any machine learning algorithm. Second problem, is different in the sense that each node itself is a data point in a given graph, so it is not apparent what could be a potential feature vector here. Personally, I am more interested in second the one.</p>
+
+<p>Without diving into previous works (there are many), I’ll layout the findings of:  <em>Learning Convolutional Neural Networks for Graphs</em> ICML2016 paper which deal with the first problem formulation. The idea is to bring an order among nodes in a graph. So authors introduce the notion of graph labeling which decide the rank of nodes. Following steps are involved in their overall approach:</p>
+
+<blockquote>
+  <ol>
+    <li>First compute a graph labeling to define rank on the nodes. For example, if <script type="math/tex">l(u) > l(v)</script>, then <script type="math/tex">r(u)>r(v)</script> where <script type="math/tex">l(u)</script> and <script type="math/tex">r(u)</script> is the label &amp; rank of node <script type="math/tex">u</script> respectively. This labeling can be done based on degree of node, page-rank etc.</li>
+    <li>Next sort the vertices/nodes of the input graph with respect to a given graph labeling. Then the resulting node sequence, say <script type="math/tex">NS</script> which is 1-dimensional, is traversed using a given stride <script type="math/tex">s</script>.</li>
+    <li>For each visited node (through stride <script type="math/tex">s</script>) in <script type="math/tex">NS</script>, construct a receptive field, until exactly <script type="math/tex">w</script> receptive fields have been created. (Wait. What is receptive field here ?)</li>
+    <li>Receptive field is constructed based on the neighborhood of a node. This neighborhood can be defined based on adjacent nodes or shortest distance between nodes. Given   a node <script type="math/tex">v</script> and the size of the receptive field <script type="math/tex">k</script>, the procedure performs a breadth-first search to find exactly <script type="math/tex">k</script> neighbor nodes. Special care is taken when there are less  or more than <script type="math/tex">k</script> (in case of tie) neighbor nodes. We can call this neighborhood of a node as sub-graph neighborhood.</li>
+    <li>On each sub-graph neighborhood, final and crucial step is performed called graph normalization and canonicalization.</li>
+  </ol>
+</blockquote>
+
+<p>To understand what graph canonicalization is, you need to understand what is graph isomorphism. Loosely speaking, if two graphs say <script type="math/tex">G_1</script> &amp; <script type="math/tex">G_2</script> have different vertex labels and edge labels but graph <script type="math/tex">G_1</script> can be re-labeled such that adjacency matrix becomes equal to graph <script type="math/tex">G_2</script>, then <script type="math/tex">G_1</script> is isomorphic to <script type="math/tex">G_2</script>. In other words they are the same (in structure), its just their labellings are different. So, how do we know if two graphs are isomorphic or not. If somehow, we can represent each graph in some form, say a string of binary numbers, then we can just check if the binary representation of two graphs is same or not. This will tell us whether graphs are isomorphic or not. Of-course, this representation needs to hold some properties for such type of checking. This representation through which we can determine isomorphism is called canonical representation of a graph or <script type="math/tex">canon(G)</script>.  Basically, in canonical representation you can compare the two graphs just as you can compare the two images of cat. Canonicalization is a NP-hard problem, so necessary optimization is required.
+Finally:</p>
+
+<blockquote>
+  <p>Each canonical representation of sub-graph neighborhood  becomes the receptive field  and   combined with the normal convolutional networks. The vertex (and edge) attributes becomes the channel (like three RGB channels in an image).</p>
+</blockquote>
+
+<p>So, magic lies in canonicalization of a graph for which author resorts to something called <em><code class="highlighter-rouge">Nauty</code></em> software, which performs canonicalization. I don’t know the details of the canonicalization algorithm but it does take degree of a node into account.</p>
+
+<p>This is the high-level approach authors adopt and experimentally it outperform the classification accuracy obtained by graph kernel algorithms for many datasets (eg. protein structure and chemical compounds related).</p>
+
+<p><strong>References:</strong></p>
+
+<ol>
+  <li>Niepert, Mathias, Mohamed Ahmed, and Konstantin Kutzkov. “Learning Convolutional Neural Networks for Graphs.” ICML 2016. <a href="https://arxiv.org/pdf/1605.05273v2.pdf">[PDF]</a></li>
+  <li>Henaff, Mikael, Joan Bruna, and Yann LeCun. “Deep convolutional networks on graph-structured data.” arXiv preprint arXiv:1506.05163 (2015).<a href="http://arxiv.org/pdf/1506.05163v1.pdf">[PDF]</a></li>
+  <li>Bruna, Joan, et al. “Spectral networks and locally connected networks on graphs.” arXiv preprint arXiv:1312.6203 (2013). <a href="https://arxiv.org/pdf/1312.6203.pdf">[PDF]</a></li>
+  <li>Coates, Adam, and Andrew Y. Ng. “Selecting receptive fields in deep networks.” Advances in Neural Information Processing Systems. 2011. <a href="http://robotics.stanford.edu/~ang/papers/nips11-SelectingReceptiveFields.pdf">[PDF]</a></li>
+  <li>Yanardag, Pinar, and S. V. N. Vishwanathan. “Deep graph kernels.” Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. ACM, 2015.<a href="http://web.ics.purdue.edu/~ypinar/kdd/deep_graph_kernels.pdf">[PDF]</a></li>
+</ol>
+
+      </div>
+      
+      
+      <div id="disqus_thread"></div>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    </article>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <footer>
+      <span><a href="http://www-users.cs.umn.edu/~verma/">Saurabh Verma</a></span>
+      <span><a href="https://github.com/me/"><i class="fa fa-github-square"></i></a><a href="https://twitter.com/me/"><i class="fa fa-twitter-square"></i></a><a href="https://plus.google.com/+me"><i class="fa fa-google-plus-square"></i></a><a href="https://www.reddit.com/user/me/"><i class="fa fa-reddit-square"></i></a><a href="https://www.youtube.com/user/me"><i class="fa fa-youtube-square"></i></a><a href="http://steamcommunity.com/id/me/"><i class="fa fa-steam-square"></i></a></span>
+      <span>&copy; 2016</span>
+    </footer>
+  </body>
+</html>

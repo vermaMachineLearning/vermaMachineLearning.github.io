@@ -5,9 +5,66 @@
     <description>ah!</description>
     <link>http://www-users.cs.umn.edu/~verma//</link>
     <atom:link href="http://www-users.cs.umn.edu/~verma//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 29 May 2016 20:53:20 -0500</pubDate>
-    <lastBuildDate>Sun, 29 May 2016 20:53:20 -0500</lastBuildDate>
+    <pubDate>Tue, 31 May 2016 13:46:30 -0500</pubDate>
+    <lastBuildDate>Tue, 31 May 2016 13:46:30 -0500</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Learning Convolutional Networks for Graphs</title>
+        <description>&lt;p&gt;For past couple of months, I have been wondering about how convolutional networks can be applied to  graphs. As we know, convolutional networks have became the state of the art in image classification and also in natural language processing. It is easy to see how convolutional networks  exploits the locality and translation invariance properties in an image. People have now also realized on how to exploit those properties in NLP using convolutional networks efficiently. It is time to look at other, more general, domains such as  &lt;em&gt;graphs&lt;/em&gt; where notion of locality or receptive field needs to be defined. At this point, we can start thinking about graph neighborhood concepts as it is going to play a major role in connecting with receptive fields of convolutional networks.&lt;/p&gt;
+
+&lt;p&gt;There are two problem formulation exist in literature:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Given a set of graphs &lt;script type=&quot;math/tex&quot;&gt;S_G=\{G_1,G_2,...,G_n\}&lt;/script&gt; and labels &lt;script type=&quot;math/tex&quot;&gt;Y=\{y_1,y_2,...,y_n\}\in \mathbf{R}&lt;/script&gt;, learn a function &lt;script type=&quot;math/tex&quot;&gt;f:G\rightarrow\mathbf{R}&lt;/script&gt; such that it maps graphs to appropriate labels using convolutional networks.&lt;/li&gt;
+    &lt;li&gt;Generalisation of convolutional network to a single graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; where each input example is a vertex.&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The first problem is somewhat becomes usual machine learning problem, if we know how to construct/extract features from a graph and then we can simply train any machine learning algorithm. Second problem, is different in the sense that each node itself is a data point in a given graph, so it is not apparent what could be a potential feature vector here. Personally, I am more interested in second the one.&lt;/p&gt;
+
+&lt;p&gt;Without diving into previous works (there are many), I’ll layout the findings of:  &lt;em&gt;Learning Convolutional Neural Networks for Graphs&lt;/em&gt; ICML2016 paper which deal with the first problem formulation. The idea is to bring an order among nodes in a graph. So authors introduce the notion of graph labeling which decide the rank of nodes. Following steps are involved in their overall approach:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;First compute a graph labeling to define rank on the nodes. For example, if &lt;script type=&quot;math/tex&quot;&gt;l(u) &gt; l(v)&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;r(u)&gt;r(v)&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;l(u)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;r(u)&lt;/script&gt; is the label &amp;amp; rank of node &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; respectively. This labeling can be done based on degree of node, page-rank etc.&lt;/li&gt;
+    &lt;li&gt;Next sort the vertices/nodes of the input graph with respect to a given graph labeling. Then the resulting node sequence, say &lt;script type=&quot;math/tex&quot;&gt;NS&lt;/script&gt; which is 1-dimensional, is traversed using a given stride &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;.&lt;/li&gt;
+    &lt;li&gt;For each visited node (through stride &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;) in &lt;script type=&quot;math/tex&quot;&gt;NS&lt;/script&gt;, construct a receptive field, until exactly &lt;script type=&quot;math/tex&quot;&gt;w&lt;/script&gt; receptive fields have been created. (Wait. What is receptive field here ?)&lt;/li&gt;
+    &lt;li&gt;Receptive field is constructed based on the neighborhood of a node. This neighborhood can be defined based on adjacent nodes or shortest distance between nodes. Given   a node &lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; and the size of the receptive field &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;, the procedure performs a breadth-first search to find exactly &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; neighbor nodes. Special care is taken when there are less  or more than &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; (in case of tie) neighbor nodes. We can call this neighborhood of a node as sub-graph neighborhood.&lt;/li&gt;
+    &lt;li&gt;On each sub-graph neighborhood, final and crucial step is performed called graph normalization and canonicalization.&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To understand what graph canonicalization is, you need to understand what is graph isomorphism. Loosely speaking, if two graphs say &lt;script type=&quot;math/tex&quot;&gt;G_1&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;G_2&lt;/script&gt; have different vertex labels and edge labels but graph &lt;script type=&quot;math/tex&quot;&gt;G_1&lt;/script&gt; can be re-labeled such that adjacency matrix becomes equal to graph &lt;script type=&quot;math/tex&quot;&gt;G_2&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;G_1&lt;/script&gt; is isomorphic to &lt;script type=&quot;math/tex&quot;&gt;G_2&lt;/script&gt;. In other words they are the same (in structure), its just their labellings are different. So, how do we know if two graphs are isomorphic or not. If somehow, we can represent each graph in some form, say a string of binary numbers, then we can just check if the binary representation of two graphs is same or not. This will tell us whether graphs are isomorphic or not. Of-course, this representation needs to hold some properties for such type of checking. This representation through which we can determine isomorphism is called canonical representation of a graph or &lt;script type=&quot;math/tex&quot;&gt;canon(G)&lt;/script&gt;.  Basically, in canonical representation you can compare the two graphs just as you can compare the two images of cat. Canonicalization is a NP-hard problem, so necessary optimization is required.
+Finally:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Each canonical representation of sub-graph neighborhood  becomes the receptive field  and   combined with the normal convolutional networks. The vertex (and edge) attributes becomes the channel (like three RGB channels in an image).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, magic lies in canonicalization of a graph for which author resorts to something called &lt;em&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Nauty&lt;/code&gt;&lt;/em&gt; software, which performs canonicalization. I don’t know the details of the canonicalization algorithm but it does take degree of a node into account.&lt;/p&gt;
+
+&lt;p&gt;This is the high-level approach authors adopt and experimentally it outperform the classification accuracy obtained by graph kernel algorithms for many datasets (eg. protein structure and chemical compounds related).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Niepert, Mathias, Mohamed Ahmed, and Konstantin Kutzkov. “Learning Convolutional Neural Networks for Graphs.” ICML 2016. &lt;a href=&quot;https://arxiv.org/pdf/1605.05273v2.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Henaff, Mikael, Joan Bruna, and Yann LeCun. “Deep convolutional networks on graph-structured data.” arXiv preprint arXiv:1506.05163 (2015).&lt;a href=&quot;http://arxiv.org/pdf/1506.05163v1.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Bruna, Joan, et al. “Spectral networks and locally connected networks on graphs.” arXiv preprint arXiv:1312.6203 (2013). &lt;a href=&quot;https://arxiv.org/pdf/1312.6203.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Coates, Adam, and Andrew Y. Ng. “Selecting receptive fields in deep networks.” Advances in Neural Information Processing Systems. 2011. &lt;a href=&quot;http://robotics.stanford.edu/~ang/papers/nips11-SelectingReceptiveFields.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Yanardag, Pinar, and S. V. N. Vishwanathan. “Deep graph kernels.” Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. ACM, 2015.&lt;a href=&quot;http://web.ics.purdue.edu/~ypinar/kdd/deep_graph_kernels.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sun, 29 May 2016 17:37:00 -0500</pubDate>
+        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/convgraph.html</link>
+        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/convgraph.html</guid>
+        
+        
+        <category>PaperList</category>
+        
+      </item>
     
       <item>
         <title>Reading List: ICML Papers 2016 </title>
@@ -34,9 +91,9 @@
   &lt;li&gt;Discrete Deep Feature Extraction: A Theory and New Architectures.  ICML 2016&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Sun, 29 May 2016 17:37:00 -0500</pubDate>
-        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/ReadingListICML16.html</link>
-        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/ReadingListICML16.html</guid>
+        <pubDate>Sat, 28 May 2016 17:37:00 -0500</pubDate>
+        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/28/ReadingListICML16.html</link>
+        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/28/ReadingListICML16.html</guid>
         
         
         <category>PaperList</category>
