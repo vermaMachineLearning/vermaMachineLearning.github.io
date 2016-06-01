@@ -5,9 +5,56 @@
     <description>ah!</description>
     <link>http://www-users.cs.umn.edu/~verma//</link>
     <atom:link href="http://www-users.cs.umn.edu/~verma//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 31 May 2016 13:46:30 -0500</pubDate>
-    <lastBuildDate>Tue, 31 May 2016 13:46:30 -0500</lastBuildDate>
+    <pubDate>Tue, 31 May 2016 19:43:31 -0500</pubDate>
+    <lastBuildDate>Tue, 31 May 2016 19:43:31 -0500</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Why Regularized Auto-Encoders learn Sparse Representation?</title>
+        <description>&lt;p&gt;This paper has some great insights to offer in design of autoencoders specially “does regularized helps in learning sparse representation of the data?”&lt;/p&gt;
+
+&lt;p&gt;Here is the setup: we have an input &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x} \in \mathbf{R}^{d}&lt;/script&gt; which is mapped to latent space &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h=s(Wx+b)}&lt;/script&gt; via autoencoder where &lt;script type=&quot;math/tex&quot;&gt;\mathbf{s}&lt;/script&gt; is encoder activation function, &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W} \in \mathbf{R}^{m\times n}&lt;/script&gt; is the weight matrix, and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{b} \in \mathbf{R^m}&lt;/script&gt; is the encoder bias and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h} \in \mathbf{R^m}&lt;/script&gt; is hidden representation or outputs of hidden units.&lt;/p&gt;
+
+&lt;p&gt;For analysis, paper assumes that decoder is linear i.e. &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W^{T}h}&lt;/script&gt; decodes back the encoded hidden representation and loss is squared loss function. Therefore, for learning &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W,b}&lt;/script&gt; parameters of autoencoder objective function is:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+J_{AE} &amp;=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
+&amp;= \mathbb{E_x}[(\mathbf{x-W^Ts(Wx+b)})^2]\\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We are interested in sparsity of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h}&lt;/script&gt;, hidden representation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Besides above, paper makes two more assumptions.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Assumption 1&lt;/strong&gt;: Data is drawn from a distribution &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x} \sim  X&lt;/script&gt; for which &lt;script type=&quot;math/tex&quot;&gt;\mathbb{E_x}[\mathbf{x}]=0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathbb{E_x}[\mathbf{xx^T]=I}&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;\mathbf{I}&lt;/script&gt; is identity matrix.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Basically, it assumes that data is whitened which is reasonable for some cases. There is one more assumption from analysis point of view which is needed for derivation of theorems, we will see that later.&lt;/p&gt;
+
+&lt;p&gt;Finally, for a give data sample &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}&lt;/script&gt;, each hidden unit &lt;script type=&quot;math/tex&quot;&gt;h_j&lt;/script&gt; gets activated if pre-activation unit &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt; is greater than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; threshold:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;a_j=W_j\mathbf{x}+b_j&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;h_j=s(a_j)&lt;/script&gt;
+
+&lt;p&gt;Let’s further&lt;/p&gt;
+
+&lt;p&gt;The idea is to somehow show that pre-activation units &lt;script type=&quot;math/tex&quot;&gt;a_j, \forall j&lt;/script&gt; for majority of samples is less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; threshold. Why we want that? It would mean that&lt;/p&gt;
+</description>
+        <pubDate>Sun, 29 May 2016 17:37:00 -0500</pubDate>
+        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/why-autoencoder-sparse.html</link>
+        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/why-autoencoder-sparse.html</guid>
+        
+        
+        <category>PaperList</category>
+        
+      </item>
     
       <item>
         <title>Learning Convolutional Networks for Graphs</title>
@@ -68,7 +115,7 @@ Finally:&lt;/p&gt;
     
       <item>
         <title>Reading List: ICML Papers 2016 </title>
-        <description>&lt;p&gt;I’ll be providing my comments, may be some quick or sometime detail, on  the papers which I find interesting and related to my research area. Hopefully, this will come handy in solving my own research problems.&lt;/p&gt;
+        <description>&lt;p&gt;To make a habit of reading more papers, I have decided to write comments, may be some quick or sometime detail, on  the papers which I find interesting and related to my research area. Hopefully, this will come handy in solving my own research problems.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Starting with ICML 2016 Papers:&lt;/strong&gt;&lt;/p&gt;
 
