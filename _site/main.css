@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   line-height: 1em; }
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    font-size: 1.2em; }
+    font-size: 0.7em; }
 
 a {
   color: inherit;
@@ -99,8 +99,6 @@ body > header h1 {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Gentium Basic", serif;
   letter-spacing: 2px; }
-  header h1, header h2, header h3, header h4, header h5, header h6 {
-    text-transform: uppercase; }
 
 article:nth-of-type(even) {
   background: #222222;

@@ -1,5 +1,5 @@
 ---
-title:  "Why Regularized Auto-Encoders learn Sparse Representation?"
+title:  " Blog: Why Regularized Auto-Encoders learn Sparse Representation?"
 date:   2016-05-31 22:37:00
 categories: PaperList
 ---

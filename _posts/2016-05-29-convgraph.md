@@ -1,5 +1,5 @@
 ---
-title:  "Learning Convolutional Networks for Graphs"
+title:  "Blog: Learning Convolutional Networks for Graphs"
 date:   2016-05-29 22:37:00
 categories: PaperList
 ---
