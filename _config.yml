@@ -23,12 +23,9 @@ style:
         even: "#222222"
 
 links:
-  - github: "https://github.com/me/"
-  - twitter: "https://twitter.com/me/"
-  - google-plus: "https://plus.google.com/+me"
-  - reddit: "https://www.reddit.com/user/me/"
-  - youtube: "https://www.youtube.com/user/me"
-  - steam: "http://steamcommunity.com/id/me/"
+  - github: "https://github.com/vermaMachineLearning/"
+  - linkedin: "https://www.linkedin.com/in/saurabh-verma-10076544"
+  - facebook: "https://www.facebook.com/saurabh.verma.355"
 
 paginate: 10
 excerpt_separator: "\n\n\n" # excerpt ends after two blank lines

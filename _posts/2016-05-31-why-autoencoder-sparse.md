@@ -81,3 +81,7 @@ that it enforces hard zeros in the learned representations.
 4. Sparse Auto-Encoder (SAE) has regularization of first form.
 
 > Thus, all above autoencoders encourages sparsity theoretically, if chosen with appropriate activation function.
+
+**References**:
+
+1. Arpit, D., Zhou, Y., Ngo, H., & Govindaraju, V. (2015). Why Regularized Auto-Encoders learn Sparse Representation? ICML2016. [[PDF]](http://arxiv.org/pdf/1505.05561.pdf)
