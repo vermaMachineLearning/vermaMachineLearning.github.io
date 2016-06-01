@@ -45,11 +45,11 @@
         <p><time datetime="2016-05-29T17:37:00-05:00">May 29, 2016</time> • PaperList</p>
       </header>
       <div>
-<p>This paper has some great insights to offer in design of autoencoders specially “does regularized helps in learning sparse representation of the data?”</p>
+<p>This paper has some great insights to offer in design of autoencoders. As title suggests, it addresses “whether regularized helps in learning sparse representation of the data theoretically?”</p>
 
 <p>Here is the setup: we have an input <script type="math/tex">\mathbf{x} \in \mathbf{R}^{d}</script> which is mapped to latent space <script type="math/tex">\mathbf{h=s(Wx+b)}</script> via autoencoder where <script type="math/tex">\mathbf{s}</script> is encoder activation function, <script type="math/tex">\mathbf{W} \in \mathbf{R}^{m\times n}</script> is the weight matrix, and <script type="math/tex">\mathbf{b} \in \mathbf{R^m}</script> is the encoder bias and <script type="math/tex">\mathbf{h} \in \mathbf{R^m}</script> is hidden representation or outputs of hidden units.</p>
 
-<p>For analysis, paper assumes that decoder is linear i.e. <script type="math/tex">\mathbf{W^{T}h}</script> decodes back the encoded hidden representation and loss is squared loss function. Therefore, for learning <script type="math/tex">\mathbf{W,b}</script> parameters of autoencoder objective function is:</p>
+<p>For analysis, paper assumes that decoder is linear i.e. <script type="math/tex">\mathbf{W^{T}h}</script> decodes back the encoded hidden representation and loss is squared loss function. Therefore, for learning <script type="math/tex">\mathbf{W,b}</script> parameters of autoencoder; objective function is:</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{equation}
@@ -60,7 +60,7 @@ J_{AE} &=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
 \end{equation} %]]></script>
 
 <blockquote>
-  <p>We are interested in sparsity of <script type="math/tex">\mathbf{h}</script>, hidden representation.</p>
+  <p>Now we are interested in sparsity of <script type="math/tex">\mathbf{h}</script>, hidden representation.</p>
 </blockquote>
 
 <p>Besides above, paper makes two more assumptions.</p>
@@ -69,7 +69,7 @@ J_{AE} &=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
   <p><strong>Assumption 1</strong>: Data is drawn from a distribution <script type="math/tex">\mathbf{x} \sim  X</script> for which <script type="math/tex">\mathbb{E_x}[\mathbf{x}]=0</script> and <script type="math/tex">\mathbb{E_x}[\mathbf{xx^T]=I}</script>, where <script type="math/tex">\mathbf{I}</script> is identity matrix.</p>
 </blockquote>
 
-<p>Basically, it assumes that data is whitened which is reasonable for some cases. There is one more assumption from analysis point of view which is needed for derivation of theorems, we will see that later.</p>
+<p>Basically, it assumes that data is whitened which is reasonable for some cases. There is one more assumption from analysis point of view which is needed for the derivation of theorems, we will see that later.</p>
 
 <p>Finally, for a give data sample <script type="math/tex">\mathbf{x}</script>, each hidden unit <script type="math/tex">h_j</script> gets activated if pre-activation unit <script type="math/tex">a_j</script> is greater than <script type="math/tex">\delta</script> threshold:</p>
 
@@ -77,9 +77,11 @@ J_{AE} &=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
 
 <script type="math/tex; mode=display">h_j=s(a_j)</script>
 
-<p>Let’s further</p>
+<p>So, the sparsity of <script type="math/tex">\mathbf{h}</script> depends upon the value of pre-activation units (whose value further depend upon the input data samples). If the expected value of pre-activation unit is less than threshold over data distribution then the corresponding hidden unit expected output is  zero.</p>
 
-<p>The idea is to somehow show that pre-activation units <script type="math/tex">a_j, \forall j</script> for majority of samples is less than <script type="math/tex">\delta</script> threshold. Why we want that? It would mean that</p>
+<blockquote>
+  <p>The idea is to somehow show that regularization encourages the expected value of pre-activation unit <script type="math/tex">a_j, \forall j</script>  to reduce on average in autoencoders. This indirectly induces sparsity in <script type="math/tex">\mathbf{h}</script>, hidden representation.</p>
+</blockquote>
 
       </div>
       

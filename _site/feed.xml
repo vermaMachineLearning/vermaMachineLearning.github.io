@@ -5,17 +5,17 @@
     <description>ah!</description>
     <link>http://www-users.cs.umn.edu/~verma//</link>
     <atom:link href="http://www-users.cs.umn.edu/~verma//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 31 May 2016 19:43:31 -0500</pubDate>
-    <lastBuildDate>Tue, 31 May 2016 19:43:31 -0500</lastBuildDate>
+    <pubDate>Tue, 31 May 2016 23:01:12 -0500</pubDate>
+    <lastBuildDate>Tue, 31 May 2016 23:01:12 -0500</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>Why Regularized Auto-Encoders learn Sparse Representation?</title>
-        <description>&lt;p&gt;This paper has some great insights to offer in design of autoencoders specially “does regularized helps in learning sparse representation of the data?”&lt;/p&gt;
+        <description>&lt;p&gt;This paper has some great insights to offer in design of autoencoders. As title suggests, it addresses “whether regularized helps in learning sparse representation of the data theoretically?”&lt;/p&gt;
 
-&lt;p&gt;Here is the setup: we have an input &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x} \in \mathbf{R}^{d}&lt;/script&gt; which is mapped to latent space &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h=s(Wx+b)}&lt;/script&gt; via autoencoder where &lt;script type=&quot;math/tex&quot;&gt;\mathbf{s}&lt;/script&gt; is encoder activation function, &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W} \in \mathbf{R}^{m\times n}&lt;/script&gt; is the weight matrix, and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{b} \in \mathbf{R^m}&lt;/script&gt; is the encoder bias and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h} \in \mathbf{R^m}&lt;/script&gt; is hidden representation or outputs of hidden units.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Here is the setup:&lt;/strong&gt; we have an input &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x} \in \mathbf{R}^{d}&lt;/script&gt; which is mapped to latent space &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h=s(Wx+b)}&lt;/script&gt; via autoencoder where &lt;script type=&quot;math/tex&quot;&gt;\mathbf{s}&lt;/script&gt; is encoder activation function, &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W} \in \mathbf{R}^{m\times n}&lt;/script&gt; is the weight matrix, and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{b} \in \mathbf{R^m}&lt;/script&gt; is the encoder bias and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h} \in \mathbf{R^m}&lt;/script&gt; is hidden representation or outputs of hidden units.&lt;/p&gt;
 
-&lt;p&gt;For analysis, paper assumes that decoder is linear i.e. &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W^{T}h}&lt;/script&gt; decodes back the encoded hidden representation and loss is squared loss function. Therefore, for learning &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W,b}&lt;/script&gt; parameters of autoencoder objective function is:&lt;/p&gt;
+&lt;p&gt;For analysis, paper assumes that decoder is linear i.e. &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W^{T}h}&lt;/script&gt; decodes back the encoded hidden representation and loss is squared loss function. Therefore, for learning &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W,b}&lt;/script&gt; parameters of autoencoder; objective function is:&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
 \begin{equation}
@@ -26,7 +26,7 @@ J_{AE} &amp;=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
 \end{equation} %]]&gt;&lt;/script&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;We are interested in sparsity of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h}&lt;/script&gt;, hidden representation.&lt;/p&gt;
+  &lt;p&gt;Now we are interested in sparsity of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h}&lt;/script&gt;, hidden representation.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Besides above, paper makes two more assumptions.&lt;/p&gt;
@@ -35,7 +35,7 @@ J_{AE} &amp;=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
   &lt;p&gt;&lt;strong&gt;Assumption 1&lt;/strong&gt;: Data is drawn from a distribution &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x} \sim  X&lt;/script&gt; for which &lt;script type=&quot;math/tex&quot;&gt;\mathbb{E_x}[\mathbf{x}]=0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathbb{E_x}[\mathbf{xx^T]=I}&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;\mathbf{I}&lt;/script&gt; is identity matrix.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Basically, it assumes that data is whitened which is reasonable for some cases. There is one more assumption from analysis point of view which is needed for derivation of theorems, we will see that later.&lt;/p&gt;
+&lt;p&gt;Basically, it assumes that data is whitened which is reasonable for some cases. There is one more assumption from analysis point of view which is needed for the derivation of theorems, we will see that later.&lt;/p&gt;
 
 &lt;p&gt;Finally, for a give data sample &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}&lt;/script&gt;, each hidden unit &lt;script type=&quot;math/tex&quot;&gt;h_j&lt;/script&gt; gets activated if pre-activation unit &lt;script type=&quot;math/tex&quot;&gt;a_j&lt;/script&gt; is greater than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; threshold:&lt;/p&gt;
 
@@ -43,13 +43,75 @@ J_{AE} &amp;=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;h_j=s(a_j)&lt;/script&gt;
 
-&lt;p&gt;Let’s further&lt;/p&gt;
+&lt;p&gt;So, the sparsity of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h}&lt;/script&gt; depends upon the value of pre-activation units (whose value further depend upon the input data samples). If the expected value of pre-activation unit is less than threshold over data distribution then the corresponding hidden unit expected output is  zero.&lt;/p&gt;
 
-&lt;p&gt;The idea is to somehow show that pre-activation units &lt;script type=&quot;math/tex&quot;&gt;a_j, \forall j&lt;/script&gt; for majority of samples is less than &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; threshold. Why we want that? It would mean that&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;The idea is to somehow show that regularization encourages the expected value of pre-activation unit &lt;script type=&quot;math/tex&quot;&gt;a_j, \forall j&lt;/script&gt;  to reduce on average in autoencoders. This indirectly induces sparsity in &lt;script type=&quot;math/tex&quot;&gt;\mathbf{h}&lt;/script&gt;, hidden representation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;This should hint us that:&lt;/strong&gt; monotonically increasing activation functions would be preferable because we want to decrease hidden unit value as the value of pre-activation unit decreases. On the top of that, if we consider monotonically increasing activation functions with negative saturation at &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;, i.e. &lt;script type=&quot;math/tex&quot;&gt;\lim_{a\to-\infty} s(a)=0&lt;/script&gt;  then we can make sure that lower average pre-activation value implies higher sparsity. For example, consider &lt;script type=&quot;math/tex&quot;&gt;tanh&lt;/script&gt; function whose range is &lt;script type=&quot;math/tex&quot;&gt;(-1,1)&lt;/script&gt;. If we reduce &lt;script type=&quot;math/tex&quot;&gt;a&lt;/script&gt; below zero, hidden unit output will move away from &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s focus on analysis now. Assume we want to compute &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W,b}&lt;/script&gt; using gradient descent. Then at &lt;script type=&quot;math/tex&quot;&gt;t^{th}&lt;/script&gt; iteration of updating, we will have:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;a_j^{t}=W_j^{t}\mathbf{x}+b_j^{t}&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;a_j^{t}, W_j^{t}, b_j^{t}&lt;/script&gt; are values in &lt;script type=&quot;math/tex&quot;&gt;t^{th}&lt;/script&gt; iteration.&lt;/p&gt;
+
+&lt;p&gt;Let regularized objective function of autoencoder is expressed as:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J_{RAE}=J_{AE}+\lambda R(\mathbf{W,b})&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;R(\mathbf{W,b})&lt;/script&gt; is the regularization term and &lt;script type=&quot;math/tex&quot;&gt;\lambda&gt;0&lt;/script&gt;. Simplifying the main theorem of the paper over here:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Theorem 1&lt;/strong&gt;: For each iteration: &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\mathbb{E_x}[a_j^{t+1}]&lt;\mathbb{E_x}[a_j^{t}] %]]&gt;&lt;/script&gt;  holds for &lt;script type=&quot;math/tex&quot;&gt;\forall j&lt;/script&gt; with probability &lt;script type=&quot;math/tex&quot;&gt;(1-\frac{\sigma^2}{\epsilon^2})&lt;/script&gt;, if following conditions are met: &lt;script type=&quot;math/tex&quot;&gt;\hspace{5em}\lambda \frac{\partial R}{\partial b_j} &gt; 2\epsilon \sqrt{n}  \|W_j\|&lt;/script&gt; and encoding activation function, &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt;, first derivative is bounded in &lt;script type=&quot;math/tex&quot;&gt;[0,1]&lt;/script&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The above theorem shows that  updating &lt;script type=&quot;math/tex&quot;&gt;\mathbf{W,b}&lt;/script&gt; along the negative gradient of &lt;script type=&quot;math/tex&quot;&gt;J_{RAE}&lt;/script&gt; results in &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\mathbb{E_x}[a_j^{t+1}]&lt;\mathbb{E_x}[a_j^{t}] %]]&gt;&lt;/script&gt; with high probability if particular regularization condition is met (plus activation function condition). This means certain regularization terms explicitly encourages sparsity in hidden representation.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Corollary 1&lt;/strong&gt;: Theorem 1 holds for two special cases: &lt;br /&gt;
+1)  activation function &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is non-decreasing and regularization term has form &lt;script type=&quot;math/tex&quot;&gt;R=\sum\limits_{j=1}^{m}f(\mathbb{E_x}[h_j])&lt;/script&gt; for some monotonically increasing function &lt;script type=&quot;math/tex&quot;&gt;f.&lt;/script&gt;&lt;br /&gt;
+2)  activation function &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is convex plus non-decreasing and regularization term has form &lt;script type=&quot;math/tex&quot;&gt;R=\mathbb{E_x}[\sum\limits_{j=1}^{m}(\frac{\partial h_j}{\partial a_j})^q \|W_j\|^{p}_2]&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt; is natural and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt; whole number.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;We are ready to make some remarks about in practice activation functions!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;ReLu&lt;/strong&gt;: It satisfies both corollaries. Hence can be used with any regularized of first form but not the second form (because second derivative does not exist). The advantage of ReLU is
+that it enforces hard zeros in the learned representations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Softplus&lt;/strong&gt;: It satisfies both corollaries and encourages sparsity for both suggested regularization form. But does not produce hard zeros.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Sigmoid&lt;/strong&gt;: Satisfies only first corollary.  Hence sigmoid is not guaranteed to lead to sparsity when used with second regularizations form.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Maxout and Tanh&lt;/strong&gt;: Do not satisfies negative saturation property at &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt; and hence may or may not lead to sparsity.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Final remarks about about in practice regularized autoencoders!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Denoising Autoencoder (DAE) has regularization of second form.&lt;/li&gt;
+  &lt;li&gt;Contractive Auto-Encoder (CAE) including higher order has  regularization of second form.&lt;/li&gt;
+  &lt;li&gt;Marginalized De-noising Auto-Encoder (mDAE) has  regularization of second form.&lt;/li&gt;
+  &lt;li&gt;Sparse Auto-Encoder (SAE) has regularization of first form.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Thus, all above autoencoders encourages sparsity theoretically, if chosen with appropriate activation function.&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
-        <pubDate>Sun, 29 May 2016 17:37:00 -0500</pubDate>
-        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/why-autoencoder-sparse.html</link>
-        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/why-autoencoder-sparse.html</guid>
+        <pubDate>Tue, 31 May 2016 17:37:00 -0500</pubDate>
+        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/31/why-autoencoder-sparse.html</link>
+        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/31/why-autoencoder-sparse.html</guid>
         
         
         <category>PaperList</category>
