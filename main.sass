@@ -11,7 +11,7 @@ $nav: {% if site.style.nav %}{{ site.style.nav }}{% else %}#181818{% endif %}
 $headline: {% if site.style.headline %}{{ site.style.headline }}{% else %}#06f{% endif %}
 $description: {% if site.style.description %}{{ site.style.description }}{% else %}white{% endif %}
 $odd: {% if site.style.article.odd %}{{ site.style.article.odd }}{% else %}white{% endif %}
-$even: {% if site.style.article.even %}{{ site.style.article.even }}{% else %}#222{% endif %}
+$even: {% if site.style.article.even %}{{ site.style.article.odd }}{% else %}#222{% endif %}
 
 body
     +body_background($body, $padding)

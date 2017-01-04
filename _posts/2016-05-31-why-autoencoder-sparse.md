@@ -75,7 +75,7 @@ that it enforces hard zeros in the learned representations.
 
 **Final remarks about about in practice regularized autoencoders!**
 
-1. Denoising Autoencoder (DAE) has regularization of second form.
+1. De-noising Autoencoder (DAE) has regularization of second form.
 2. Contractive Auto-Encoder (CAE) including higher order has  regularization of second form.
 3. Marginalized De-noising Auto-Encoder (mDAE) has  regularization of second form.
 4. Sparse Auto-Encoder (SAE) has regularization of first form.
@@ -85,3 +85,4 @@ that it enforces hard zeros in the learned representations.
 **References**:
 
 1. Arpit, D., Zhou, Y., Ngo, H., & Govindaraju, V. (2015). Why Regularized Auto-Encoders learn Sparse Representation? ICML2016. [[PDF]](http://arxiv.org/pdf/1505.05561.pdf)
+

@@ -2,12 +2,171 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog: Machine Learning Equations by Saurabh Verma</title>
-    <description>ah!</description>
-    <link>http://www-users.cs.umn.edu/~verma//</link>
-    <atom:link href="http://www-users.cs.umn.edu/~verma//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 01 Jun 2016 00:31:22 -0500</pubDate>
-    <lastBuildDate>Wed, 01 Jun 2016 00:31:22 -0500</lastBuildDate>
-    <generator>Jekyll v3.1.6</generator>
+    <description>Blog: Machine Learning Equations by Saurabh Verma</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 03 Jan 2017 18:18:10 -0600</pubDate>
+    <lastBuildDate>Tue, 03 Jan 2017 18:18:10 -0600</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title> Blog: Dirichlet Distributions.</title>
+        <description>&lt;p&gt;Dirichlet Distribution is &lt;em&gt;a distribution over distributions&lt;/em&gt;. More specifically, it is a distribution over &lt;em&gt;pmfs (probability mass functions)&lt;/em&gt;. You can imagine, as if there is a bag of &lt;script type=&quot;math/tex&quot;&gt;L&lt;/script&gt; dices, and each dice has a corresponding pmf (related to six possible outcomes). Now picking a dice is like sampling a particular pmf from a distribution. The probability of picking a dice, which results in a pmf, comes from the Dirichlet distribution &lt;script type=&quot;math/tex&quot;&gt;Dir(\boldsymbol\alpha)&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{q}=[q_1,q_2,...,q_k]&lt;/script&gt; be a pmf (or a point in simplex &lt;script type=&quot;math/tex&quot;&gt;\in&lt;/script&gt; &lt;script type=&quot;math/tex&quot;&gt;\mathbf{R}^{k}&lt;/script&gt;), where &lt;script type=&quot;math/tex&quot;&gt;\sum\limits_{j=1}^{k}q_j=1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{q} \sim Dir(\boldsymbol\alpha)&lt;/script&gt;. Here &lt;script type=&quot;math/tex&quot;&gt;\boldsymbol\alpha&lt;/script&gt; is dirichlet parameter &lt;script type=&quot;math/tex&quot;&gt;\boldsymbol\alpha=[\alpha_1,\alpha_2,...,\alpha_k]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\alpha_0=\sum\limits_{j=1}^{k}\alpha_j&lt;/script&gt;. Then, the probability density of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{q}&lt;/script&gt; is given by:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(q,\boldsymbol\alpha)=p(q|\boldsymbol\alpha)=\frac{\Gamma(\alpha_0)}{\prod\limits_{j=1}^{k}\Gamma(\alpha_j)}\prod\limits_{j=1}^{k}q_j^{\alpha_j-1}&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Graphical Model:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Suppose &lt;script type=&quot;math/tex&quot;&gt;\{x_i\}&lt;/script&gt; is a set of samples drawn from &lt;script type=&quot;math/tex&quot;&gt;i^{th}&lt;/script&gt; pmf where &lt;script type=&quot;math/tex&quot;&gt;i\in[1,L]&lt;/script&gt;. For eg. &lt;script type=&quot;math/tex&quot;&gt;\{x_i\}&lt;/script&gt; could be a sequence of outputs of a dice &lt;script type=&quot;math/tex&quot;&gt;\{1,2,1,3,4,3,6,..\}&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{q}_1,\mathbf{q}_2,...,\mathbf{q}_L&lt;/script&gt; are &lt;script type=&quot;math/tex&quot;&gt;L&lt;/script&gt; pmfs. Then:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+p(\{x_i\}|\boldsymbol\alpha)&amp;=\int p(\{x_i\},\mathbf{q}_i|\boldsymbol\alpha)d\mathbf{q}_i\\
+&amp;=\int p(\{x_i\}|\mathbf{q}_i,\boldsymbol\alpha) p(\mathbf{q}_i|\boldsymbol\alpha)  d\mathbf{q}_i\\
+&amp;=\int p(\{x_i\}|\mathbf{q}_i) p(\mathbf{q}_i|\boldsymbol\alpha)  d\mathbf{q}_i\\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;n_{ij}&lt;/script&gt; be the number of outcomes in &lt;script type=&quot;math/tex&quot;&gt;\{x_i\}&lt;/script&gt; sequence of samples that is equal to &lt;script type=&quot;math/tex&quot;&gt;j^{th}&lt;/script&gt; event where &lt;script type=&quot;math/tex&quot;&gt;j\in[1,k]&lt;/script&gt;, and let &lt;script type=&quot;math/tex&quot;&gt;n_i = \sum\limits_{j=1}^{k} n_{ij}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\{x_i\}|\mathbf{q}_i)=\frac{n_i!}{\prod\limits_{j=1}^{k}n_{ij}!} \prod\limits_{j=1}^{k} q_{ij}^{n_{ij}}&lt;/script&gt;
+
+&lt;p&gt;Therefore,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+p(\{x_i\}|\boldsymbol\alpha)&amp;=\int \frac{n_i!}{\prod\limits_{j=1}^{k}n_{ij}!} \prod\limits_{j=1}^{k} q_{ij}^{n_{ij}} \times \frac{\Gamma(\alpha_0)}{\prod\limits_{j=1}^{k}\Gamma(\alpha_j)}\prod\limits_{j=1}^{k}q_{ij}^{\alpha_j-1}  d\mathbf{q}_i\\
+&amp;=  \frac{ \Gamma(\alpha_0) n_i! }{\prod\limits_{j=1}^{k}   \Gamma(\alpha_j) n_{ij}!}   \int \prod\limits_{j=1}^{k} q_{ij}^{n_{ij}+\alpha_j-1} d\mathbf{q}_i\\
+&amp;=\frac{ \Gamma(\alpha_0) n_i! }{\Gamma (\sum\limits_{j=1}^{k} (n_{ij}+ \alpha_j))}  \prod\limits_{j=1}^{k} \frac{ \Gamma(n_{ij}+\alpha_j) }{\Gamma(\alpha_j) n_{ij}!}\\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;blockquote&gt;
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\{x_i\}|\boldsymbol\alpha)=\frac{ \Gamma(\alpha_0) n_i! }{\Gamma (\sum\limits_{j=1}^{k} (n_{ij}+ \alpha_j))}  \prod\limits_{j=1}^{k} \frac{ \Gamma(n_{ij}+\alpha_j) }{\Gamma(\alpha_j) n_{ij}!}&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Bela A. Frigyik, Amol Kapila, and Maya R. Gupta. “Introduction to the Dirichlet Distribution and Related
+Processes”. &lt;a href=&quot;http://mayagupta.org/publications/FrigyikKapilaGuptaIntroToDirichlet.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Fri, 03 Jun 2016 19:01:00 -0500</pubDate>
+        <link>http://localhost:4000/tutorials/2016/06/03/dirichlet-distribution.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorials/2016/06/03/dirichlet-distribution.html</guid>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
+    
+      <item>
+        <title> Blog: Bayesian Sets.</title>
+        <description>&lt;p&gt;&lt;strong&gt;Bayesian Sets Graphical Model:&lt;/strong&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/bayesian-sets.svg&quot; style=&quot;width: 35%; height: 35%&quot; /&gt;&lt;/div&gt;
+
+&lt;p&gt;Bayesian sets are simple graphical models used to expand a set. For instance, suppose you are given a set of few words (or items) &lt;script type=&quot;math/tex&quot;&gt;S=\{cat, dog, lion, ...\}&lt;/script&gt; which we refer as “seeds” and we wish to expand this set to include all similiar words from the given text corpus. Then, we can employ Bayesian sets which rank each item based on its importance of belonging to seed set.&lt;/p&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; be a data set of items, and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x} \in D&lt;/script&gt; be an item from this set. Assume the user provides a query set &lt;script type=&quot;math/tex&quot;&gt;D_c&lt;/script&gt; which is a small subset of &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt;, bayesian sets rank each item   by &lt;script type=&quot;math/tex&quot;&gt;score(\mathbf{x})&lt;/script&gt;. This probability ratio  can be interpreted as the ratio of the joint probability of observing &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;D_c&lt;/script&gt; to the probability of independently observing &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;D_c&lt;/script&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;score(\mathbf{x})=\frac{p(\mathbf{x}\vert D_c)}{p(\mathbf{x})}= \frac{p(\mathbf{x}, D_c)}{p(\mathbf{x})p(D_c)}=\frac{\int p(\mathbf{x},\theta \vert D_c ) d\theta}{\int p(\mathbf{x},\theta) d\theta}=\frac{\int p(\mathbf{x} \vert \theta, D_c ) p(\theta \vert D_c) d\theta}{\int p(\mathbf{x} \vert \theta) p(\theta )d\theta}&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Assume that the parameterized model is &lt;script type=&quot;math/tex&quot;&gt;p(\mathbf{x} \vert \theta)&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt; are the parameters as shown in figure above. Here, we assume that &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}&lt;/script&gt; is represented by a binary feature vector and &lt;script type=&quot;math/tex&quot;&gt;\theta_j&lt;/script&gt; is the weight associated with feature &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt;. Then,&lt;/p&gt;
+
+&lt;p&gt;For each &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}_i&lt;/script&gt; (Note: &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}&lt;/script&gt; vector &lt;script type=&quot;math/tex&quot;&gt;j^{th}&lt;/script&gt; component is &lt;script type=&quot;math/tex&quot;&gt;x_{.j}&lt;/script&gt; and bold letters are vectors):&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\mathbf{x}_i\vert \boldsymbol\theta)=\prod\limits_{j=1}^{J} \theta_{j}^{x_{ij}} (1-\theta_j)^{1-x_{ij}}&lt;/script&gt;
+
+&lt;p&gt;The conjugate prior for the parameters of a Bernoulli distribution is the Beta distribution:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+p(\boldsymbol\theta\vert \boldsymbol\alpha, \boldsymbol\beta) &amp;=\prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)}	 \theta_{j}^{\alpha_j-1} (1-\theta_j)^{\beta_j-1} \\
+p(\mathbf{x} \vert \boldsymbol\alpha, \boldsymbol\beta) &amp;=\int p(\mathbf{x} \vert \theta, \boldsymbol\alpha, \boldsymbol\beta) p(\theta )d\theta=\int p(\mathbf{x} \vert \theta) p(\theta \vert \boldsymbol\alpha, \boldsymbol\beta )d\theta \\
+&amp;=\int \prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)}	 \theta_{j}^{\alpha_j-1+x_{.j}} (1-\theta_j)^{\beta_j -x_{.j} } d\theta\\
+&amp;= \prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)}	 \int_{0}^{1}  \theta_{j}^{\alpha_j-1+x_{.j}} (1-\theta_j)^{\beta_j -x_{.j} } d\theta_j \\
+&amp;=\prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)} \frac{\Gamma(\alpha_j+x_{.j})\Gamma(\beta_j+1-x_{.j})}{\Gamma(\alpha_j+\beta_j+1)}	\\
+p(D_c \vert \boldsymbol\alpha, \boldsymbol\beta)&amp;=\int p(D_c, \theta) d\theta=\int p(D_c \vert \theta)p(\theta \vert \boldsymbol\alpha, \boldsymbol\beta) d\theta \\
+&amp;=\int \Big(\prod\limits_{i=1}^{N} p(\mathbf{x}_i\vert \theta)\Big)p(\theta \vert \boldsymbol\alpha, \boldsymbol\beta) d\theta \\
+&amp;=\int \Big(\prod\limits_{i=1}^{N}\Big(\prod\limits_{j=1}^{J} \theta_{j}^{x_{ij}} (1-\theta_j)^{1-x_{ij}}\Big)\Big)\prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)}	 \theta_{j}^{\alpha_j-1} (1-\theta_j)^{\beta_j-1}d\theta \\
+&amp;=\prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)}	 \int_{0}^{1}\theta_{j}^{\alpha_j-1+\sum_{i=1}^{N}x_{ij}} (1-\theta_j)^{\beta_j -\sum_{i=1}^{N}x_{.j}+N+1 } d\theta_j \\
+&amp;= \prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)}   \frac{\Gamma(\widetilde\alpha_j)\Gamma(\widetilde\beta_j)}{\Gamma(\widetilde\alpha_j+\widetilde\beta_j)} \\
+&amp;\text{where},  \widetilde\alpha_j= \alpha_j+\sum_{i=1}^{N}x_{ij} , \hspace{1em} \widetilde\beta_j=\beta_j+N-\sum_{i=1}^{N}x_{ij}\\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+p(\mathbf{x}\vert D_c,\mathbf{\alpha,\beta})&amp;= \int p(\mathbf{x} \vert \theta) p(\theta\vert D_c,\alpha,\beta)d\theta \\
+&amp;=\int p(\mathbf{x} \vert \theta)\frac{p(D_c \vert \theta, \alpha,\beta)p(\theta \vert \alpha,\beta)}{p(D_c\vert \alpha,\beta)} d\theta  \\
+&amp;= \frac{1}{p(D_c\vert \alpha,\beta)} \int \Big(\prod\limits_{j=1}^{J} \theta_{j}^{x_{.j}} (1-\theta_j)^{1-x_{.j}}\Big) \times \Big(\prod\limits_{i=1}^{N}p(x_i\vert \theta)\Big) \times \\
+&amp;\Big(\prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)}	 \theta_{j}^{\alpha_j-1} (1-\theta_j)^{\beta_j-1}\Big) d\theta\\
+&amp;=\prod\limits_{j=1}^{J} \frac{\Gamma(\widetilde\alpha_j+\widetilde\beta_j)}{\Gamma(\widetilde\alpha_j)\Gamma(\widetilde\beta_j)} \int \theta_j^{x_{.j}+\sum_{i=1}^{N}x_{ij}+\alpha_j-1}(1-\theta_j)^{x.j+N-\sum_{i=1}^{N}x_{ij}+\beta_j}d\theta \\
+&amp;=\prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j+N)}{\Gamma(\widetilde\alpha_j)\Gamma(\widetilde\beta_j)}\frac{\Gamma(\widetilde\alpha_j+x.j)\Gamma(\widetilde\beta_j+1-x_{.j})}{\Gamma(\alpha_j+\beta_j+N+1)} \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+score(\mathbf{x})&amp;=\frac{p(\mathbf{x}\vert D_c,\mathbf{\alpha,\beta})}{p(\mathbf{x}\vert \mathbf{\alpha,\beta})}= \\
+&amp;=\prod\limits_{j=1}^{J} \frac{\Gamma(\alpha_j+\beta_j+N)}{\Gamma(\widetilde\alpha_j)\Gamma(\widetilde\beta_j)}\frac{\Gamma(\widetilde\alpha_j+x.j)\Gamma(\widetilde\beta_j+1-x_{.j})}{\Gamma(\alpha_j+\beta_j+N+1)} \times \\
+&amp; \frac{\Gamma(\alpha_j)\Gamma(\beta_j)}{\Gamma(\alpha_j+\beta_j)} \frac{\Gamma(\alpha_j+\beta_j+1)}{\Gamma(\alpha_j+x_{.j})\Gamma(\beta_j+1-x_{.j})} \\
+&amp;=\prod\limits_{j=1}^{J} \frac{\alpha_j+\beta_j}{\alpha_j+\beta_j+N} \Big(\frac{\widetilde\alpha_j}{\alpha_j}\Big)^{x_{.j}} \Big(\frac{\widetilde\beta_j}{\beta_j}\Big)^{1-x_{.j}}
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;The log of the score is linear in features of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}&lt;/script&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\log score(\mathbf{x})=c+\sum_j q_j x{.j}&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Thus, bayesian sets essentially performs &lt;strong&gt;feature selection&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;For models where &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}&lt;/script&gt; is parametrized using exponential families, we have a similar expression but may or may not be linear in features of &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Exponential Families:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+p(\mathbf{x}\vert \theta)&amp;=f(\mathbf{x})g(\theta)e^{\theta^{T} u(\mathbf{x})} \\
+p(\theta \vert \eta,\nu)&amp;= h(\eta,\nu)g(\theta)^{\eta}e^{\theta^{T}\nu} \\
+h(\eta,\nu)&amp;=\frac{1}{\int g(\theta)^{\eta}e^{\theta^T\nu}d\theta}\\
+p(\mathbf{x} \vert \eta,\nu)&amp;=\int f(\mathbf{x})g(\theta)e^{\theta^T u(\mathbf{x})}h(\eta,\nu)g(\theta)^{\eta}e^{\theta^T\nu}d\theta\\
+&amp;=\frac{f(\mathbf{x}) h(\eta,\nu)}{h(\eta+1,u(\mathbf{x})+\nu)} \\
+p(D_c \vert \eta,\nu)&amp;=\int \Big(\prod\limits_{i=1}^{N} f(\mathbf{x_i})g(\theta)e^{\theta^{T} u(\mathbf{x_i})}\Big) h(\eta,\nu)g(\theta)^{\eta}e^{\theta^T\nu}d\theta\\
+&amp;=\frac{h(\eta,\nu)\Big(\prod\limits_{i=1}^{N} f(\mathbf{x_i})\Big)}{h(\eta+N,\sum\limits_{i=1}^{N}u(\mathbf{x})+\nu)}\\
+p(\mathbf{x} \vert D_c, \eta, \nu)&amp;= \int f(\mathbf{x})g(\theta)e^{\theta^T u(\mathbf{x})}\Big(\prod\limits_{i=1}^{N} f(\mathbf{x_i})g(\theta)e^{\theta^{T} u(\mathbf{x_i})}\Big)  \times \\
+&amp; h(\eta,\nu)g(\theta)^{\eta}e^{\theta^T\nu}d\theta\\
+&amp;=\frac{h(\eta,\nu)f(x)\Big(\prod\limits_{i=1}^{N} f(\mathbf{x_i})\Big)}{p(D_c \vert \eta,\nu) h{(\eta+N+1,\nu+\sum_{i=1}^{N}u(\mathbf{x_i})+u(\mathbf{x})})}\\
+score(\mathbf{x})&amp;=\frac{ h(\eta+1,\nu+u(\mathbf{x}))  h(\eta+N,\nu+\sum\limits_{i=1}^{N}u(\mathbf{x}_i))}{h(\eta,\nu) h{(\eta+N+1,\nu+\sum_{i=1}^{N}u(\mathbf{x_i})+u(\mathbf{x})})}
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Ghahramani, Zoubin, and Katherine A. Heller. “Bayesian sets.” NIPS. Vol. 2. 2005. &lt;a href=&quot;https://papers.nips.cc/paper/2817-bayesian-sets.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Verma, Saurabh, and Estevam R. Hruschka Jr. “Coupled bayesian sets algorithm for semi-supervised learning and information extraction.” Joint European Conference on Machine Learning and Knowledge Discovery in Databases. Springer Berlin Heidelberg, 2012. &lt;a href=&quot;http://rtw.ml.cmu.edu/papers/ecml12-verma.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 01 Jun 2016 19:01:00 -0500</pubDate>
+        <link>http://localhost:4000/tutorials/2016/06/01/bayesians-sets.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorials/2016/06/01/bayesians-sets.html</guid>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
     
       <item>
         <title> Blog: Why Regularized Auto-Encoders learn Sparse Representation?</title>
@@ -99,7 +258,7 @@ that it enforces hard zeros in the learned representations.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Final remarks about about in practice regularized autoencoders!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Denoising Autoencoder (DAE) has regularization of second form.&lt;/li&gt;
+  &lt;li&gt;De-noising Autoencoder (DAE) has regularization of second form.&lt;/li&gt;
   &lt;li&gt;Contractive Auto-Encoder (CAE) including higher order has  regularization of second form.&lt;/li&gt;
   &lt;li&gt;Marginalized De-noising Auto-Encoder (mDAE) has  regularization of second form.&lt;/li&gt;
   &lt;li&gt;Sparse Auto-Encoder (SAE) has regularization of first form.&lt;/li&gt;
@@ -114,10 +273,11 @@ that it enforces hard zeros in the learned representations.&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;Arpit, D., Zhou, Y., Ngo, H., &amp;amp; Govindaraju, V. (2015). Why Regularized Auto-Encoders learn Sparse Representation? ICML2016. &lt;a href=&quot;http://arxiv.org/pdf/1505.05561.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
+
 </description>
         <pubDate>Tue, 31 May 2016 17:37:00 -0500</pubDate>
-        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/31/why-autoencoder-sparse.html</link>
-        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/31/why-autoencoder-sparse.html</guid>
+        <link>http://localhost:4000/paperlist/2016/05/31/why-autoencoder-sparse.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paperlist/2016/05/31/why-autoencoder-sparse.html</guid>
         
         
         <category>PaperList</category>
@@ -133,7 +293,7 @@ that it enforces hard zeros in the learned representations.&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;ol&gt;
     &lt;li&gt;Given a set of graphs &lt;script type=&quot;math/tex&quot;&gt;S_G=\{G_1,G_2,...,G_n\}&lt;/script&gt; and labels &lt;script type=&quot;math/tex&quot;&gt;Y=\{y_1,y_2,...,y_n\}\in \mathbf{R}&lt;/script&gt;, learn a function &lt;script type=&quot;math/tex&quot;&gt;f:G\rightarrow\mathbf{R}&lt;/script&gt; such that it maps graphs to appropriate labels using convolutional networks.&lt;/li&gt;
-    &lt;li&gt;Generalisation of convolutional network to a single graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; where each input example is a vertex.&lt;/li&gt;
+    &lt;li&gt;Generalization of convolutional network to a single graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; where each input example is a vertex.&lt;/li&gt;
   &lt;/ol&gt;
 &lt;/blockquote&gt;
 
@@ -173,8 +333,8 @@ Finally:&lt;/p&gt;
 &lt;/ol&gt;
 </description>
         <pubDate>Sun, 29 May 2016 17:37:00 -0500</pubDate>
-        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/convgraph.html</link>
-        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/29/convgraph.html</guid>
+        <link>http://localhost:4000/paperlist/2016/05/29/convgraph.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paperlist/2016/05/29/convgraph.html</guid>
         
         
         <category>PaperList</category>
@@ -207,8 +367,8 @@ Finally:&lt;/p&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Sat, 28 May 2016 17:37:00 -0500</pubDate>
-        <link>http://www-users.cs.umn.edu/~verma//paperlist/2016/05/28/ReadingListICML16.html</link>
-        <guid isPermaLink="true">http://www-users.cs.umn.edu/~verma//paperlist/2016/05/28/ReadingListICML16.html</guid>
+        <link>http://localhost:4000/paperlist/2016/05/28/ReadingListICML16.html</link>
+        <guid isPermaLink="true">http://localhost:4000/paperlist/2016/05/28/ReadingListICML16.html</guid>
         
         
         <category>PaperList</category>

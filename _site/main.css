@@ -101,28 +101,28 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 2px; }
 
 article:nth-of-type(even) {
-  background: #222222;
-  color: white;
-  border-top-color: #414141; }
+  background: #ffffff;
+  color: black;
+  border-top-color: #e0e0e0; }
   article:nth-of-type(even) tr:hover {
-    background-color: #343434; }
+    background-color: #ededed; }
   article:nth-of-type(even) th {
     border-bottom-width: 2px; }
   article:nth-of-type(even) th, article:nth-of-type(even) td {
-    border-color: #464646; }
+    border-color: #dbdbdb; }
   article:nth-of-type(even) header p {
-    color: #bbbbbb; }
+    color: #666666; }
   article:nth-of-type(even) div a {
     font-weight: inherit;
     color: #2b51ff; }
     article:nth-of-type(even) div a:hover {
       color: gray; }
   article:nth-of-type(even) footer a {
-    border-color: white;
+    border-color: black;
     border-width: 2px; }
     article:nth-of-type(even) footer a:hover {
-      background-color: white;
-      color: #222222; }
+      background-color: black;
+      color: #ffffff; }
 
 article:nth-of-type(odd) {
   background: #ffffff;
@@ -149,8 +149,8 @@ article:nth-of-type(odd) {
       color: #ffffff; }
 
 #paginate:nth-child(even) {
-  background: #222222;
-  color: white; }
+  background: #ffffff;
+  color: black; }
 
 #paginate:nth-child(odd) {
   background: #ffffff;

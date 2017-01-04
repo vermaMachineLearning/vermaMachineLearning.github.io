@@ -12,7 +12,7 @@ There are two problem formulation exist in literature:
 
 
 >1. Given a set of graphs $$S_G=\{G_1,G_2,...,G_n\}$$ and labels $$Y=\{y_1,y_2,...,y_n\}\in \mathbf{R}$$, learn a function $$f:G\rightarrow\mathbf{R}$$ such that it maps graphs to appropriate labels using convolutional networks.
-2. Generalisation of convolutional network to a single graph $$G$$ where each input example is a vertex.
+2. Generalization of convolutional network to a single graph $$G$$ where each input example is a vertex.
 
 The first problem is somewhat becomes usual machine learning problem, if we know how to construct/extract features from a graph and then we can simply train any machine learning algorithm. Second problem, is different in the sense that each node itself is a data point in a given graph, so it is not apparent what could be a potential feature vector here. Personally, I am more interested in second the one.
 
