@@ -5,9 +5,170 @@
     <description>Blog: Machine Learning Equations by Saurabh Verma</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 03 Jan 2017 18:18:10 -0600</pubDate>
-    <lastBuildDate>Tue, 03 Jan 2017 18:18:10 -0600</lastBuildDate>
+    <pubDate>Thu, 19 Jan 2017 15:33:43 -0600</pubDate>
+    <lastBuildDate>Thu, 19 Jan 2017 15:33:43 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title> Blog: Stability of Learning Algorithms.</title>
+        <description>&lt;p&gt;This is walk-through on how  to derive generalization bounds based on the stability of algorithms. Understanding the proof helps  to extend or modify the results according to your needs. For instance, I had a loss function which was unbounded, and since to apply generalization results your loss function must be bounded, I was stuck. So, this my effort  to state the proof as clear as possible along with the assumptions needed.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup&lt;/strong&gt;: Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X} \in \mathbb{R}^d, \mathbf{Y} \in \mathbb{R}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; be a training set &lt;script type=&quot;math/tex&quot;&gt;S=\{\mathbf{z}_1=(\mathbf{x}_1,y_1),\mathbf{z}_2=(\mathbf{x}_2,y_2),...,\mathbf{z}_m=(\mathbf{x}_m,y_m)\}&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;A_S&lt;/script&gt; be a symmetric learning algorithm i.e.  does not depend on the order of the data points in the training set. We define the following two more notations as follows:&lt;/p&gt;
+
+&lt;p&gt;Removing &lt;script type=&quot;math/tex&quot;&gt;i^{th}&lt;/script&gt; data point in the set &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S^{\backslash i}=\{\mathbf{z}_1,....,\mathbf{z}_{i-1},\mathbf{z}_{i+1},.....,\mathbf{z}_m \}&lt;/script&gt;
+
+&lt;p&gt;Replacing &lt;script type=&quot;math/tex&quot;&gt;i^{th}&lt;/script&gt; data point in the set &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; by &lt;script type=&quot;math/tex&quot;&gt;\mathbf{z}_{i}^{'}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S^{i}=\{\mathbf{z}_1,....,\mathbf{z}_{i-1},\mathbf{z}_{i}^{'},\mathbf{z}_{i+1},.....,\mathbf{z}_m \}&lt;/script&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; be an unknown distribution from which &lt;script type=&quot;math/tex&quot;&gt;\mathbf{z}_1,....,\mathbf{z}_m&lt;/script&gt; data points are sampled to form a training set &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Here, we assume all samples (including the replacement sample) are i.i.d. unless mentioned otherwise. Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{E}_S[f]&lt;/script&gt; denotes the expectation of the function &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; when  &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt;  samples are drawn from the distribution &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; to form &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Similarly, let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{E}_z[f]&lt;/script&gt; denotes the expectation of the function &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; when  &lt;script type=&quot;math/tex&quot;&gt;\mathbf{z}&lt;/script&gt; is sampled  according to the distribution &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;We define the generalization error or risk &lt;script type=&quot;math/tex&quot;&gt;R(A_S)&lt;/script&gt; as follows:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;R(A_S)=\mathbf{E}_z[\ell(A_S,\mathbf{z})]=\int \ell(A_S,\mathbf{z}) p(\mathbf{z}) d\mathbf{z}&lt;/script&gt;
+
+&lt;p&gt;Empirical error &lt;script type=&quot;math/tex&quot;&gt;R_{emp}(A_S)&lt;/script&gt; is defined as follows:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;R_{emp}(A_S):=\frac{1}{m}\sum\limits_{j=1}^{m}\ell(A_S,\mathbf{z}_j)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies R_{emp}(A_{S^{  i}})=\frac{1}{m}\sum\limits_{j=1, j \neq i}^{m}\ell(A_{S^{ i}},\mathbf{z}_j)+\frac{1}{m}\ell(A_{S^{ i}},\mathbf{z}_i^{'})&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;R_{emp}(A_{S^{\backslash i}}):=\frac{1}{m}\sum\limits_{j=1, j \neq i}^{m}\ell(A_{S^{\backslash i}},\mathbf{z}_j)&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Generalization Bounds based on Stability of Learning Algorithms&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Let’s assume that our algorithm &lt;script type=&quot;math/tex&quot;&gt;A_S&lt;/script&gt; has uniform stability &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;, if   it satisfies &lt;script type=&quot;math/tex&quot;&gt;\forall i\in\{1,m\}&lt;/script&gt;,&lt;/p&gt;
+
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,z}{\sup}|\ell(A_S,\mathbf{z}) -\ell(A_{S^{\backslash i}},\mathbf{z})| \leq \beta&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To derive generalization bounds for uniform stable algorithms, we are going to mainly use McDiarmid’s inequality. Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; be some set and &lt;script type=&quot;math/tex&quot;&gt;f:\mathbf{X}^{m} \rightarrow R&lt;/script&gt;, then inequality is given as (more detail &lt;a href=&quot;http://web.eecs.umich.edu/~cscott/past_courses/eecs598w14/notes/09_bounded_difference.pdf&quot;&gt;here&lt;/a&gt;),&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;if \underset{x_1,..,x_i,..,x_m,x_i^{'}}{\sup}|f(x_1,..,x_i,..,x_m)-f(x_1,..,x_i^{'},..,x_m)| \leq c_i&lt;/script&gt;
+
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;=\underset{x_1,..,x_i,..,x_m,x_i^{'}}{\sup}|f_S-f_{S^{i}}| \leq c_i \hspace{1em},\forall i&lt;/script&gt;
+
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies P\Big( f(S)-\mathbf{E}_S[f(S^{i})] \geq \epsilon \Big) \leq e^{-\frac{2 \epsilon^2}{\sum_{i=1}^{m}c_i^2}}&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Strategy is to bound &lt;script type=&quot;math/tex&quot;&gt;\vert f_S-f_{S^{i}} \vert&lt;/script&gt; using &lt;script type=&quot;math/tex&quot;&gt;\vert f_S-f_{S^{\backslash i}} \vert&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\vert f_{S^{i}}-f_{S^{\backslash i}} \vert&lt;/script&gt;.  We will derive some lemmas that would be helpful to compute variables needed for applying McDiarmid’s inequality.&lt;/p&gt;
+
+&lt;p&gt;Since, samples are i.i.d., we have,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_{S}[\ell(A_S,\mathbf{z})] &amp;=\int \ell\big(A(\mathbf{z}_1,...,\mathbf{z}_m),\mathbf{z}\big)p(\mathbf{z}_1,...,\mathbf{z}_m) d\mathbf{z}_1...d\mathbf{z}_m \\
+&amp;=\int \ell\big(A(\mathbf{z}_1,...,\mathbf{z}_m),\mathbf{z}\big)p(\mathbf{z}_1)...p(\mathbf{z}_m)  d\mathbf{z}_1...d\mathbf{z}_m \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_{S}[\ell(A_S,\mathbf{z}_j)] &amp;=\int \ell\big(A(\mathbf{z}_1,..,\mathbf{z}_j,..,\mathbf{z}_m),\mathbf{z}_j\big)p(\mathbf{z}_1,..,\mathbf{z}_j,..,\mathbf{z}_m) d\mathbf{z}_1...d\mathbf{z}_m \\
+&amp; = \int \ell\big(A(\mathbf{z}_1,..,\mathbf{z}_j,..,\mathbf{z}_m),\mathbf{z}_j\big)p(\mathbf{z}_1)..p(\mathbf{z}_j)..p(\mathbf{z}_m) d\mathbf{z}_1...d\mathbf{z}_m \\
+&amp; = \int \ell\big(A(\mathbf{z}_1,..,\mathbf{z}_i^{'},..,\mathbf{z}_m),\mathbf{z}_i^{'}\big)p(\mathbf{z}_1)..p(\mathbf{z}_i^{'})..p(\mathbf{z}_m) d\mathbf{z}_1..d\mathbf{z}_i^{'}..d\mathbf{z}_m \\
+&amp; = \int \ell\big(A(\mathbf{z}_1,..,\mathbf{z}_i^{'},..,\mathbf{z}_m),\mathbf{z}_i^{'}\big)p(\mathbf{z}_1,..,\mathbf{z}_i^{'},..,\mathbf{z}_m) d\mathbf{z}_1..d\mathbf{z}_i^{'}..d\mathbf{z}_m  \int p(\mathbf{z}_i) d\mathbf{z}_i\\
+&amp; = \int \ell\big(A(\mathbf{z}_1,..,\mathbf{z}_i^{'},..,\mathbf{z}_m),\mathbf{z}_i^{'}\big)p(\mathbf{z}_1,..,\mathbf{z}_i,\mathbf{z}_i^{'},..,\mathbf{z}_m) d\mathbf{z}_1...d\mathbf{z}_m d\mathbf{z}_i^{'}\\
+&amp;=\mathbf{E}_{S,z_{i}^{'}}[\ell(A_{S^{i}},\mathbf{z}_i^{'})]
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_S[R(A_S)-R_{emp}(A_S)] &amp;= \mathbf{E}_{S}[\mathbf{E}_z[\ell(A_S,\mathbf{z})]]-\frac{1}{m}\sum\limits_{j=1}^{m}\mathbf{E}_{S}[\ell(A_S,\mathbf{z}_j)] \\
+&amp;= \mathbf{E}_{S}[\mathbf{E}_z[\ell(A_S,\mathbf{z})]]-\mathbf{E}_{S}[\ell(A_S,\mathbf{z}_j)] \\
+%&amp; =\mathbf{E}_{S}[\mathbf{E}_{z_{i}^{'}}[\ell(A_S,\mathbf{z}_{i}^{'})]] -    \mathbf{E}_{z_{i}^{'}}[\mathbf{E}_{S}[\ell(A_{S^{i}},\mathbf{z}_i^{'})]] \\
+&amp; =\mathbf{E}_{S,z_{i}^{'}}[\ell(A_S,\mathbf{z}_{i}^{'})]]- \mathbf{E}_{S,z_{i}^{'}}[\ell(A_{S^{i}},\mathbf{z}_i^{'})]\\
+&amp; =\mathbf{E}_{S,z_{i}^{'}}[\ell(A_S,\mathbf{z}_{i}^{'})-\ell(A_{S^{i}},\mathbf{z}_{i}^{'})] \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|R(A_S)-R(A_{S^{\backslash i}})|&amp;=  |\mathbf{E}_z[\ell(A_S,\mathbf{z})]-\mathbf{E}_z[\ell(A_{S^{\backslash i}},\mathbf{z})]| \\
+&amp; =	|\mathbf{E}_z[\ell(A_S,\mathbf{z}) - \ell(A_{S^{\backslash i}},\mathbf{z})] |\\
+&amp; \leq \mathbf{E}_z[|\ell(A_S,\mathbf{z})-\ell(A_{S^{\backslash i}},\mathbf{z})|] \\
+&amp; \leq \mathbf{E}_z[\beta]=\beta \\
+|R(A_{S^{i}})-R(A_{S^{\backslash i}})|&amp; \leq  \mathbf{E}_z[|\ell(A_{S^{i}},\mathbf{z})-\ell(A_{S^{\backslash i}},\mathbf{z})|] \\
+&amp; \leq \mathbf{E}_z[\beta]=\beta \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;!---
+$$\begin{equation}
+\begin{split}
+|R_{emp}(A_S)-R_{emp}(A_{S^{\backslash i}})|&amp;= \Big|\frac{1}{m}\sum\limits_{j=1}^{m}\ell(A_S,\mathbf{z}_j)-\frac{1}{m}\sum\limits_{j=1,j \neq i}^{m}\ell(A_{S^{\backslash i}},\mathbf{z}_j) \Big|  \\
+&amp; \leq \Big| \frac{1}{m}\sum\limits_{j=1,j \neq i}^{m} (\ell(A_S,\mathbf{z}_j)-\ell(A_{S^{\backslash i}},\mathbf{z}_j)) \Big|+\Big| \frac{1}{m}\ell(A_S,\mathbf{z}_i) \Big| \\
+&amp; \leq \frac{(m-1)}{m}\beta  +\frac{M}{m} \\
+&amp; \leq \beta  +\frac{M}{m} \\
+\end{split}
+\end{equation}$$
+--&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|R(A_S)-R(A_{S^{i}})|&amp; \leq|R(A_S)-R(A_{S^{\backslash i}})|+|R(A_{S^{\backslash i}}) - R(A_{S^{i}}) |\\
+&amp; \leq 2\beta \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|R_{emp}(A_S)-R_{emp}(A_{S^{i}})| &amp; \leq |\frac{1}{m}\sum\limits_{j=1,j \neq i}^{m} (\ell(A_S,\mathbf{z}_j)-\ell(A_{S^{i}},\mathbf{z}_j))|+|\frac{1}{m} (\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'})) |\\
+&amp; \leq  |\frac{1}{m}\sum\limits_{j=1,j \neq i}^{m} (\ell(A_S,\mathbf{z}_j)-\ell(A_{S^{\backslash i}},\mathbf{z}_j))|+ |\frac{1}{m}\sum\limits_{j=1,j \neq i}^{m} (\ell(A_{S^{i}},\mathbf{z}_j)-\ell(A_{S^{\backslash i}},\mathbf{z}_j))|  + \\
+&amp; |\frac{1}{m} (\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'})) |\\
+&amp; \leq  2\frac{(m-1)}{m}\beta +\frac{M}{m} \\
+&amp; \leq   2\beta +\frac{M}{m} \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: &lt;script type=&quot;math/tex&quot;&gt;(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))&lt;/script&gt; introduces &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; (bound on loss) in the equation. If your loss is &lt;strong&gt;unbounded&lt;/strong&gt; then you may be able to bound &lt;script type=&quot;math/tex&quot;&gt;(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))&lt;/script&gt; and replace &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; by it, in the generalization bound.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|\big(R(A_S)-R_{emp}(A_{S})\big) -\big(R(A_{S^{i}})-R_{emp}(A_{S^{i}})\big)|&amp; \leq |R(A_S)-R(A_{S^{i}})| + |R_{emp}(A_S)-R_{emp}(A_{S^{i}})|\\
+&amp;\leq 2\beta+2\beta+\frac{M}{m} \\
+&amp; =4\beta+\frac{M}{m} \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_{S}[R(A_S)-R_{emp}(A_S)] &amp;= \mathbf{E}_{S,z_{i}^{'}}[\ell(A_S,\mathbf{z}_{i}^{'})-\ell(A_{S^{i}},\mathbf{z}_{i}^{'})] \\
+&amp; \leq \mathbf{E}_{S,z_{i}^{'}}[|\ell(A_S,\mathbf{z}_{i}^{'})-\ell(A_{S^{i}},\mathbf{z}_{i}^{'})|]\\
+&amp; \leq \mathbf{E}_{S,z_{i}^{'}}[|\ell(A_S,\mathbf{z}_{i}^{'})-\ell(A_{S^{\backslash i}},\mathbf{z}_{i}^{'})| + |\ell(A_{S^{i}},\mathbf{z}_{i}^{'})-\ell(A_{S^{\backslash i}},\mathbf{z}_{i}^{'})|]\\
+&amp; \leq 2\beta \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Applying McDiarmid’s inequality to derive generalization bounds for uniform stable algorithms:&lt;/p&gt;
+
+  &lt;center&gt;$$ \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big)  - 2\beta \geq   \epsilon \Bigg)  \leq \underbrace{e^{-\frac{2\epsilon^2}{m(4\beta+\frac{M}{m})^2}}}_{\delta} $$
+$$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (4m\beta+M)\sqrt{\frac{\log \frac{1}{\delta}}{m}} \Bigg) \geq 1-\delta $$&lt;/center&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Tue, 17 Jan 2017 18:01:00 -0600</pubDate>
+        <link>http://localhost:4000/tutorials/2017/01/17/Stability-Machine-Learning.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorials/2017/01/17/Stability-Machine-Learning.html</guid>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
     
       <item>
         <title> Blog: Dirichlet Distributions.</title>
