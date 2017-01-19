@@ -39,7 +39,9 @@ $$R_{emp}(A_{S^{\backslash i}}):=\frac{1}{m}\sum\limits_{j=1, j \neq i}^{m}\ell(
 >
 >$$ \underset{S,z}{\sup}|\ell(A_S,\mathbf{z}) -\ell(A_{S^{\backslash i}},\mathbf{z})| \leq \beta $$
 
-To derive generalization bounds for uniform stable algorithms, we are going to mainly use McDiarmid's inequality. Let $$\mathbf{X}$$ be some set and $$f:\mathbf{X}^{m} \rightarrow R$$, then inequality is given as (more detail [here](http://web.eecs.umich.edu/~cscott/past_courses/eecs598w14/notes/09_bounded_difference.pdf)),
+To derive generalization bounds for uniform stable algorithms, we are going to mainly use McDiarmid's inequality. Let $$\mathbf{X}$$ be some set and $$f:\mathbf{X}^{m} \rightarrow R$$, then inequality is given as (more detail),
+
+
 
 >$$ if \underset{x_1,..,x_i,..,x_m,x_i^{'}}{\sup}|f(x_1,..,x_i,..,x_m)-f(x_1,..,x_i^{'},..,x_m)| \leq c_i $$
 >

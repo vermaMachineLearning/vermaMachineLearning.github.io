@@ -5,8 +5,8 @@
     <description>Blog: Machine Learning Equations by Saurabh Verma</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Jan 2017 15:38:34 -0600</pubDate>
-    <lastBuildDate>Thu, 19 Jan 2017 15:38:34 -0600</lastBuildDate>
+    <pubDate>Thu, 19 Jan 2017 15:40:54 -0600</pubDate>
+    <lastBuildDate>Thu, 19 Jan 2017 15:40:54 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -45,7 +45,7 @@
   &lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,z}{\sup}|\ell(A_S,\mathbf{z}) -\ell(A_{S^{\backslash i}},\mathbf{z})| \leq \beta&lt;/script&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;To derive generalization bounds for uniform stable algorithms, we are going to mainly use McDiarmid’s inequality. Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; be some set and &lt;script type=&quot;math/tex&quot;&gt;f:\mathbf{X}^{m} \rightarrow R&lt;/script&gt;, then inequality is given as (more detail &lt;a href=&quot;http://web.eecs.umich.edu/~cscott/past_courses/eecs598w14/notes/09_bounded_difference.pdf&quot;&gt;here&lt;/a&gt;),&lt;/p&gt;
+&lt;p&gt;To derive generalization bounds for uniform stable algorithms, we are going to mainly use McDiarmid’s inequality. Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; be some set and &lt;script type=&quot;math/tex&quot;&gt;f:\mathbf{X}^{m} \rightarrow R&lt;/script&gt;, then inequality is given as (more detail),&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;script type=&quot;math/tex; mode=display&quot;&gt;if \underset{x_1,..,x_i,..,x_m,x_i^{'}}{\sup}|f(x_1,..,x_i,..,x_m)-f(x_1,..,x_i^{'},..,x_m)| \leq c_i&lt;/script&gt;
