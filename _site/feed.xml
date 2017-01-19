@@ -5,8 +5,8 @@
     <description>Blog: Machine Learning Equations by Saurabh Verma</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Jan 2017 15:41:44 -0600</pubDate>
-    <lastBuildDate>Thu, 19 Jan 2017 15:41:44 -0600</lastBuildDate>
+    <pubDate>Thu, 19 Jan 2017 15:43:15 -0600</pubDate>
+    <lastBuildDate>Thu, 19 Jan 2017 15:43:15 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -133,7 +133,7 @@ $$\begin{equation}
 \end{equation} %]]&gt;&lt;/script&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Note: &lt;script type=&quot;math/tex&quot;&gt;(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))&lt;/script&gt; introduces &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; (bound on loss) in the equation. If your loss is &lt;strong&gt;unbounded&lt;/strong&gt; then you may be able to bound &lt;script type=&quot;math/tex&quot;&gt;(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))&lt;/script&gt; and replace &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; by it, in the generalization bound.&lt;/p&gt;
+  &lt;p&gt;Note: &lt;script type=&quot;math/tex&quot;&gt;(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))&lt;/script&gt; introduces &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; (bound on loss) in the equation. If your loss is &lt;strong&gt;unbounded&lt;/strong&gt; then you may be able to bound &lt;script type=&quot;math/tex&quot;&gt;(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))&lt;/script&gt; and just replace &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; by it, in the generalization bound.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[

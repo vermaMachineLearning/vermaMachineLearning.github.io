@@ -121,7 +121,7 @@ $$\begin{equation}
 \end{split}
 \end{equation}$$
 
->Note: $$(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))$$ introduces $$M$$ (bound on loss) in the equation. If your loss is **unbounded** then you may be able to bound $$(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))$$ and replace $$M$$ by it, in the generalization bound.
+>Note: $$(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))$$ introduces $$M$$ (bound on loss) in the equation. If your loss is **unbounded** then you may be able to bound $$(\ell(A_S,\mathbf{z}_i)-\ell(A_{S^{i}},\mathbf{z}_i^{'}))$$ and just replace $$M$$ by it, in the generalization bound.
 
 $$\begin{equation}
 \begin{split}
