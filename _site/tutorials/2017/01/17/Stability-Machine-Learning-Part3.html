@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Saurabh Verma 2016 UMN <https://github.com/vermaMachineLearning> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Blog: Machine Learning Equations by Saurabh Verma">
+    <title>  Blog: Stability of Learning Algorithms Part 3. › Blog: Machine Learning Equations by Saurabh Verma</title>
+    <link rel="canonical" href="http://localhost:4000/tutorials/2017/01/17/Stability-Machine-Learning-Part3.html">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Blog: Machine Learning Equations by Saurabh Verma" />
+    <script src="//saurabhML.disqus.com/embed.js" async></script>
+    
+	
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78615814-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Blog: Machine Learning Equations by Saurabh Verma</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li><li><a href="/about.html">About</a></li><li><a href="/archive.html">Archive</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    
+    <article>
+      <header>
+        <h2><a href="/tutorials/2017/01/17/Stability-Machine-Learning-Part3.html"> Blog: Stability of Learning Algorithms Part 3.</a></h2>
+        <p><time datetime="2017-01-17T18:02:00-06:00">Jan 17, 2017</time> • Tutorials</p>
+      </header>
+      <div>
+<p><strong>Extending to Ranking Algorithms</strong></p>
+
+<p>Let <script type="math/tex">\mathbf{z}=(\mathbf{x},y)</script> be a sample such that <script type="math/tex">y\in \mathbb{R}</script> represents the ranking score. If <script type="math/tex">y_1>y_2</script>, then <script type="math/tex">\mathrm{rank}(\mathbf{x}_1)>\mathrm{rank}(\mathbf{x}_2)</script>. Let <script type="math/tex">A_{S}</script> be such a ranking score learning function.</p>
+
+<p>We define loss function on a pairwise sample <script type="math/tex">(\mathbf{z},\mathbf{z}^{'})</script> and compute a real-valued loss i.e., <script type="math/tex">\ell:\mathbf{Z}^{m} \times \mathbf{Z}\times \mathbf{Z} \rightarrow \mathbb{R}</script>. We also require our loss function to be symmetric on pairwise sample i.e, <script type="math/tex">\ell(A_S,\mathbf{z},\mathbf{z}^{'})=\ell(A_S,\mathbf{z}^{'},\mathbf{z})</script> and bounded as follows, <script type="math/tex">0\leq \ell(A_S,\mathbf{z},\mathbf{z}^{'}) \leq M</script> for ranking problem.</p>
+
+<p>We define the generalization error or risk <script type="math/tex">R(A_S)</script> as follows:</p>
+
+<script type="math/tex; mode=display">R(A_S):=\mathbf{E}_{z,z^{'}}[\ell(A_S,\mathbf{z},\mathbf{z}^{'})]=\int \ell(A_S,\mathbf{z},\mathbf{z}^{'}) p(\mathbf{z},\mathbf{z}^{'}) d\mathbf{z}d\mathbf{z}^{'}</script>
+
+<p>Empirical error <script type="math/tex">R_{emp}(A_S)</script> is defined as follows:</p>
+
+<script type="math/tex; mode=display">R_{emp}(A_S):=\frac{1}{\binom{m}{2}}\sum\limits_{i=1}^{m-1}\sum\limits_{j=i+1}^{m}\ell(A_S,\mathbf{z}_i,\mathbf{z}_j)</script>
+
+<blockquote>
+  <p>Let’s assume that our algorithm <script type="math/tex">A_S</script> has uniform stability <script type="math/tex">\beta</script>, i.e.  it satisfies <script type="math/tex">\forall i\in\{1,m\}</script>,</p>
+
+  <script type="math/tex; mode=display">\underset{S,z,z^{'}}{\sup}|\ell(A_S,\mathbf{z},\mathbf{z}^{'}) -\ell(A_{S^{i}},\mathbf{z},\mathbf{z}^{'})| \leq \beta</script>
+</blockquote>
+
+<p><strong>Note</strong>: The definition here, involves <script type="math/tex">S^{i}</script> rather than <script type="math/tex">S^{\backslash i}</script> which is slightly different than uniform stability definitions.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{equation}
+\begin{split}
+|R(A_S)-R(A_{S^{i}})| & = \Big|\mathbf{E}_{z,z^{'}}[\ell(A_S,\mathbf{z},\mathbf{z}^{'})] - \mathbf{E}_{z,z^{'}}[\ell(A_{S^{i}},\mathbf{z},\mathbf{z}^{'})] \Big|  \\
+&=\Big| \mathbf{E}_{z,z^{'}}[\ell(A_S,\mathbf{z},\mathbf{z}^{'})-\ell(A_{S^{i}},\mathbf{z},\mathbf{z}^{'})] \Big| \\
+& \leq \beta \\
+\end{split}
+\end{equation} %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{equation}
+\begin{split}
+|R_{emp}(A_S)-R_{emp}(A_{S^{k}})| & =  \frac{1}{\binom{m}{2}}\sum\limits_{i=1,i\neq k}^{m-1}\sum\limits_{j=i+1,j\neq k}^{m}\Bigg|\Big(\ell(A_S,\mathbf{z}_i,\mathbf{z}_j) - \ell(A_{S^{k}},\mathbf{z}_i,\mathbf{z}_j) \Big) \Bigg| + \\
+& \hspace{1.5em} \frac{1}{\binom{m}{2}}\sum\limits_{i=1,i \neq k}^{m}\Bigg|\Big(\ell(A_S,\mathbf{z}_i,\mathbf{z}_k) - \ell(A_{S^{k}},\mathbf{z}_i,\mathbf{z}_k) \Big) \Bigg|  \\
+& \leq  \frac{1}{\binom{m}{2}}\Big(\binom{m}{2}-(m-1)\Big)\beta + (m-1) M \\
+& < \beta+\frac{2M}{m}
+\end{split}
+\end{equation} %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{equation}
+\begin{split}
+|\Big(R(A_S)- R_{emp}(A_S)\Big)-\Big(R(A_{S^{i}})-R_{emp}(A_{S^{i}})\Big)| & \leq |R(A_S)-R(A_{S^{i}})|+|R_{emp}(A_S)-R_{emp}(A_{S^{i}})| \\
+& \leq 2\beta+\frac{2M}{m} \\
+\end{split}
+\end{equation} %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_{S}[R(A_S)] &= \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[\ell(A_{S},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'}) \\
+\mathbf{E}_{S}[R_{emp}(A_S)] &= \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[\ell(A_{S^{i,j}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})] \\
+\end{split}
+\end{equation} %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_{S}[R(A_S)-R_{emp}(A_S)] &= \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[\ell(A_S,\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})-\ell(A_{S^{i,j}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})] \\
+& \leq \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[|\ell(A_S,\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})-\ell(A_{S^{i}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'}) + \\
+& \hspace{1.5em} \ell(A_{S^{i}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})   -\ell(A_{S^{i,j}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'}) |] \\
+& \leq \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[|\ell(A_S,\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})-\ell(A_{S^{i}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})|] +\\
+& \hspace{1.5em} \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[|\ell(A_{S^{i}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})   -\ell(A_{S^{i,j}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'}) |] \\
+& \leq 2\beta \\
+\end{split}
+\end{equation} %]]></script>
+
+<blockquote>
+  <p>Applying McDiarmid’s inequality to derive generalization bounds for uniform stable algorithms:</p>
+
+  <center>$$ \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big)  - 2\beta \geq   \epsilon \Bigg)  \leq \underbrace{e^{-\frac{2\epsilon^2}{m(2\beta+\frac{2M}{m})^2}}}_{\delta} $$
+$$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (m\beta+M)\sqrt{\frac{2\log \frac{1}{\delta}}{m}} \Bigg) \geq 1-\delta $$</center>
+</blockquote>
+
+      </div>
+      
+      
+      <div id="disqus_thread"></div>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    </article>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <footer>
+      <span><a href="http://localhost:4000">Saurabh Verma</a></span>
+      <span><a href="https://github.com/vermaMachineLearning/"><i class="fa fa-github-square"></i></a><a href="https://www.linkedin.com/in/saurabh-verma-10076544"><i class="fa fa-linkedin-square"></i></a><a href="https://www.facebook.com/saurabh.verma.355"><i class="fa fa-facebook-square"></i></a></span>
+      <span>&copy; 2017</span>
+    </footer>
+  </body>
+</html>

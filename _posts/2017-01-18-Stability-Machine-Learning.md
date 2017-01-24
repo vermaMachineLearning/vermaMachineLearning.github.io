@@ -35,17 +35,17 @@ $$R_{emp}(A_{S^{\backslash i}}):=\frac{1}{m}\sum\limits_{j=1, j \neq i}^{m}\ell(
 
 **Generalization Bounds based on Stability of Learning Algorithms**:
 
->Let's assume that our algorithm $$A_S$$ has uniform stability $$\beta$$, if   it satisfies $$\forall i\in\{1,m\}$$,
+>Let's assume that our algorithm $$A_S$$ has uniform stability $$\beta$$, i.e.  it satisfies $$\forall i\in\{1,m\}$$,
 >
 >$$ \underset{S,z}{\sup}|\ell(A_S,\mathbf{z}) -\ell(A_{S^{\backslash i}},\mathbf{z})| \leq \beta $$
 
-To derive generalization bounds for uniform stable algorithms, we are going to mainly use McDiarmid's inequality. Let $$\mathbf{X}$$ be some set and $$f:\mathbf{X}^{m} \rightarrow R$$, then inequality is given as (more detail [here](http://web.eecs.umich.edu/~cscott/past_courses/eecs598w14/notes/09_bounded_difference.pdf)),
+To derive generalization bounds for uniform stable algorithms, we are going to only use McDiarmid's inequality. Let $$\mathbf{X}$$ be some set and $$f:\mathbf{X}^{m} \rightarrow R$$, then inequality is given as (more detail [here](http://web.eecs.umich.edu/~cscott/past_courses/eecs598w14/notes/09_bounded_difference.pdf)),
 
 >$$ if \underset{x_1,..,x_i,..,x_m,x_i^{'}}{\sup}|f(x_1,..,x_i,..,x_m)-f(x_1,..,x_i^{'},..,x_m)| \leq c_i $$
 >
 >$$ =\underset{x_1,..,x_i,..,x_m,x_i^{'}}{\sup}|f_S-f_{S^{i}}| \leq c_i \hspace{1em},\forall i $$
 >
->$$ \implies P\Big( f(S)-\mathbf{E}_S[f(S^{i})] \geq \epsilon \Big) \leq e^{-\frac{2 \epsilon^2}{\sum_{i=1}^{m}c_i^2}}$$
+>$$ \implies P\Big( f(S)-\mathbf{E}_S[f(S)] \geq \epsilon \Big) \leq e^{-\frac{2 \epsilon^2}{\sum_{i=1}^{m}c_i^2}}$$
 
 
 Strategy is to bound $$\vert f_S-f_{S^{i}} \vert$$ using $$ \vert f_S-f_{S^{\backslash i}} \vert$$, $$ \vert f_{S^{i}}-f_{S^{\backslash i}} \vert$$.  We will derive some lemmas that would be helpful to compute variables needed for applying McDiarmid's inequality.
@@ -144,4 +144,7 @@ $$\begin{equation}
 >Applying McDiarmid's inequality to derive generalization bounds for uniform stable algorithms:
 >
 ><center>$$ \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big)  - 2\beta \geq   \epsilon \Bigg)  \leq \underbrace{e^{-\frac{2\epsilon^2}{m(4\beta+\frac{M}{m})^2}}}_{\delta} $$
->$$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (4m\beta+M)\sqrt{\frac{\log \frac{1}{\delta}}{m}} \Bigg) \geq 1-\delta $$</center>
+>$$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (4m\beta+M)\sqrt{\frac{\log \frac{1}{\delta}}{2m}} \Bigg) \geq 1-\delta $$</center>
+
+
+

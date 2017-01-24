@@ -5,9 +5,203 @@
     <description>Blog: Machine Learning Equations by Saurabh Verma</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 19 Jan 2017 15:43:15 -0600</pubDate>
-    <lastBuildDate>Thu, 19 Jan 2017 15:43:15 -0600</lastBuildDate>
+    <pubDate>Tue, 24 Jan 2017 11:04:16 -0600</pubDate>
+    <lastBuildDate>Tue, 24 Jan 2017 11:04:16 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title> Blog: Stability of Learning Algorithms Part 3.</title>
+        <description>&lt;p&gt;&lt;strong&gt;Extending to Ranking Algorithms&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{z}=(\mathbf{x},y)&lt;/script&gt; be a sample such that &lt;script type=&quot;math/tex&quot;&gt;y\in \mathbb{R}&lt;/script&gt; represents the ranking score. If &lt;script type=&quot;math/tex&quot;&gt;y_1&gt;y_2&lt;/script&gt;, then &lt;script type=&quot;math/tex&quot;&gt;\mathrm{rank}(\mathbf{x}_1)&gt;\mathrm{rank}(\mathbf{x}_2)&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;A_{S}&lt;/script&gt; be such a ranking score learning function.&lt;/p&gt;
+
+&lt;p&gt;We define loss function on a pairwise sample &lt;script type=&quot;math/tex&quot;&gt;(\mathbf{z},\mathbf{z}^{'})&lt;/script&gt; and compute a real-valued loss i.e., &lt;script type=&quot;math/tex&quot;&gt;\ell:\mathbf{Z}^{m} \times \mathbf{Z}\times \mathbf{Z} \rightarrow \mathbb{R}&lt;/script&gt;. We also require our loss function to be symmetric on pairwise sample i.e, &lt;script type=&quot;math/tex&quot;&gt;\ell(A_S,\mathbf{z},\mathbf{z}^{'})=\ell(A_S,\mathbf{z}^{'},\mathbf{z})&lt;/script&gt; and bounded as follows, &lt;script type=&quot;math/tex&quot;&gt;0\leq \ell(A_S,\mathbf{z},\mathbf{z}^{'}) \leq M&lt;/script&gt; for ranking problem.&lt;/p&gt;
+
+&lt;p&gt;We define the generalization error or risk &lt;script type=&quot;math/tex&quot;&gt;R(A_S)&lt;/script&gt; as follows:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;R(A_S):=\mathbf{E}_{z,z^{'}}[\ell(A_S,\mathbf{z},\mathbf{z}^{'})]=\int \ell(A_S,\mathbf{z},\mathbf{z}^{'}) p(\mathbf{z},\mathbf{z}^{'}) d\mathbf{z}d\mathbf{z}^{'}&lt;/script&gt;
+
+&lt;p&gt;Empirical error &lt;script type=&quot;math/tex&quot;&gt;R_{emp}(A_S)&lt;/script&gt; is defined as follows:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;R_{emp}(A_S):=\frac{1}{\binom{m}{2}}\sum\limits_{i=1}^{m-1}\sum\limits_{j=i+1}^{m}\ell(A_S,\mathbf{z}_i,\mathbf{z}_j)&lt;/script&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Let’s assume that our algorithm &lt;script type=&quot;math/tex&quot;&gt;A_S&lt;/script&gt; has uniform stability &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;, i.e.  it satisfies &lt;script type=&quot;math/tex&quot;&gt;\forall i\in\{1,m\}&lt;/script&gt;,&lt;/p&gt;
+
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,z,z^{'}}{\sup}|\ell(A_S,\mathbf{z},\mathbf{z}^{'}) -\ell(A_{S^{i}},\mathbf{z},\mathbf{z}^{'})| \leq \beta&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The definition here, involves &lt;script type=&quot;math/tex&quot;&gt;S^{i}&lt;/script&gt; rather than &lt;script type=&quot;math/tex&quot;&gt;S^{\backslash i}&lt;/script&gt; which is slightly different than uniform stability definitions.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|R(A_S)-R(A_{S^{i}})| &amp; = \Big|\mathbf{E}_{z,z^{'}}[\ell(A_S,\mathbf{z},\mathbf{z}^{'})] - \mathbf{E}_{z,z^{'}}[\ell(A_{S^{i}},\mathbf{z},\mathbf{z}^{'})] \Big|  \\
+&amp;=\Big| \mathbf{E}_{z,z^{'}}[\ell(A_S,\mathbf{z},\mathbf{z}^{'})-\ell(A_{S^{i}},\mathbf{z},\mathbf{z}^{'})] \Big| \\
+&amp; \leq \beta \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|R_{emp}(A_S)-R_{emp}(A_{S^{k}})| &amp; =  \frac{1}{\binom{m}{2}}\sum\limits_{i=1,i\neq k}^{m-1}\sum\limits_{j=i+1,j\neq k}^{m}\Bigg|\Big(\ell(A_S,\mathbf{z}_i,\mathbf{z}_j) - \ell(A_{S^{k}},\mathbf{z}_i,\mathbf{z}_j) \Big) \Bigg| + \\
+&amp; \hspace{1.5em} \frac{1}{\binom{m}{2}}\sum\limits_{i=1,i \neq k}^{m}\Bigg|\Big(\ell(A_S,\mathbf{z}_i,\mathbf{z}_k) - \ell(A_{S^{k}},\mathbf{z}_i,\mathbf{z}_k) \Big) \Bigg|  \\
+&amp; \leq  \frac{1}{\binom{m}{2}}\Big(\binom{m}{2}-(m-1)\Big)\beta + (m-1) M \\
+&amp; &lt; \beta+\frac{2M}{m}
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|\Big(R(A_S)- R_{emp}(A_S)\Big)-\Big(R(A_{S^{i}})-R_{emp}(A_{S^{i}})\Big)| &amp; \leq |R(A_S)-R(A_{S^{i}})|+|R_{emp}(A_S)-R_{emp}(A_{S^{i}})| \\
+&amp; \leq 2\beta+\frac{2M}{m} \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_{S}[R(A_S)] &amp;= \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[\ell(A_{S},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'}) \\
+\mathbf{E}_{S}[R_{emp}(A_S)] &amp;= \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[\ell(A_{S^{i,j}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})] \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_{S}[R(A_S)-R_{emp}(A_S)] &amp;= \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[\ell(A_S,\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})-\ell(A_{S^{i,j}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})] \\
+&amp; \leq \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[|\ell(A_S,\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})-\ell(A_{S^{i}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'}) + \\
+&amp; \hspace{1.5em} \ell(A_{S^{i}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})   -\ell(A_{S^{i,j}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'}) |] \\
+&amp; \leq \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[|\ell(A_S,\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})-\ell(A_{S^{i}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})|] +\\
+&amp; \hspace{1.5em} \mathbf{E}_{S,z_{i}^{'},z_{j}^{'}}[|\ell(A_{S^{i}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'})   -\ell(A_{S^{i,j}},\mathbf{z}_{i}^{'},\mathbf{z}_{j}^{'}) |] \\
+&amp; \leq 2\beta \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Applying McDiarmid’s inequality to derive generalization bounds for uniform stable algorithms:&lt;/p&gt;
+
+  &lt;center&gt;$$ \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big)  - 2\beta \geq   \epsilon \Bigg)  \leq \underbrace{e^{-\frac{2\epsilon^2}{m(2\beta+\frac{2M}{m})^2}}}_{\delta} $$
+$$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (m\beta+M)\sqrt{\frac{2\log \frac{1}{\delta}}{m}} \Bigg) \geq 1-\delta $$&lt;/center&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Tue, 17 Jan 2017 18:02:00 -0600</pubDate>
+        <link>http://localhost:4000/tutorials/2017/01/17/Stability-Machine-Learning-Part3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorials/2017/01/17/Stability-Machine-Learning-Part3.html</guid>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
+    
+      <item>
+        <title> Blog: Stability of Learning Algorithms Part 2.</title>
+        <description>&lt;p&gt;&lt;strong&gt;Extending to Randomized Algorithms&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; be  a set of random parameters.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Let’s assume that our algorithm &lt;script type=&quot;math/tex&quot;&gt;A_{(S,R)}&lt;/script&gt; has uniform stability &lt;script type=&quot;math/tex&quot;&gt;(\beta,\rho)&lt;/script&gt;, if  it satisfies,&lt;/p&gt;
+
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,z}{\sup}|\mathbf{E}_{R}[\ell(A_{(S,R)},\mathbf{z})] -\mathbf{E}_{R}[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]| \leq \beta \hspace{3em} \forall i\in\{1,m\}&lt;/script&gt;
+
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,R,r_i^{'},z}{\sup}| \ell(A_{(S,R)},\mathbf{z}) -\ell(A_{(S,R^{i})},\mathbf{z})| \leq \rho \hspace{3em} \forall i\in\{1,T\}&lt;/script&gt;
+&lt;/blockquote&gt;
+
+&lt;!---
+&gt;$$\underset{r_1,...,r_T,r_i^{'},z}{\sup}| \ell(A_{S,(r_1,...,r_T)},\mathbf{z}) -\ell(A_{S,(r_1,..,r_{i-1},r_i^{'},r_{i+1},..,r_T)},\mathbf{z})| \leq \rho $$
+---&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;K_{(S,R)}=R(A_{(S,R)})-R_{emp}(A_{(S,R)})&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|K_{(S,R)}-K_{(S,R^{i})}|&amp;=\Big| \big(R(A_{(S,R)})-R_{emp}(A_{(S,R)}) \big) - \big( R(A_{(S,R^{i})}) - R_{emp}(A_{(S,R^{i})})\big) \Big|\\
+&amp;=  \Big| \mathbf{E}_z [\ell(A_{(S,R)},\mathbf{z})- \ell(A_{(S,R^{i})},\mathbf{z})]-\frac{1}{m}\sum\limits_{i=1}^{m} (\ell(A_{(S,R)},\mathbf{z}_i)- \ell(A_{(S,R^{i})},\mathbf{z}_i))     \Big|\\
+&amp;\leq \mathbf{E}_z [|\ell(A_{(S,R)},\mathbf{z})- \ell(A_{(S,R^{i})},\mathbf{z})|]+\frac{1}{m} \sum\limits_{i=1}^{m}|(\ell(A_{(S,R)},\mathbf{z}_i)- \ell(A_{(S,R^{i})},\mathbf{z}_i))| \\
+&amp; \leq 2\rho \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Applying McDiarmid’s inequality assuming &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; is fixed, we get (Event 1),&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P\Bigg(  K_{(S,R)}-\mathbf{E}_R[K_{(S,R)}] \geq \epsilon \Big|  S  \Bigg) \leq \underbrace{e^{-\frac{\epsilon^2}{2T\rho^2}}}_{\delta}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P\Bigg(  K_{(S,R)}-\mathbf{E}_R[K_{(S,R)}] \leq  \rho\sqrt{2T} \sqrt{\log \big(\frac{1}{\delta} \big)}  \Big|   S  \Bigg) \geq 1-\delta&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+\mathbf{E}_{S,R}[K_{(S,R)}] &amp;= \mathbf{E}_{S,R}[R(A_{(S,R)})] - \mathbf{E}_{S,R}[R_{emp}(A_{(S,R)})]  \\
+&amp;= \mathbf{E}_{S,R}[\mathbf{E}_z[\ell(A_{(S,R)},\mathbf{z})]] - \mathbf{E}_{S,R}[\frac{1}{m}\sum\limits_{j=1}^{m}\ell(A_{(S,R)},\mathbf{z}_j)]  \\
+&amp; = \mathbf{E}_{S,z}[\mathbf{E}_R[\ell(A_{(S,R)},\mathbf{z})]] - \mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S,R)},\mathbf{z}_j)]]\\
+&amp; = \mathbf{E}_{S,z}[\mathbf{E}_R[\ell(A_{(S,R)},\mathbf{z})]]- \mathbf{E}_{S,z}[\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]] + \mathbf{E}_{S,z}[\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]] - \\
+&amp; \hspace{3em} \mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]]+\mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]] - \mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S,R)},\mathbf{z}_j)]]\\
+&amp; = \mathbf{E}_{S,z}[\mathbf{E}_R[\ell(A_{(S,R)},\mathbf{z})] -  \mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]] + \mathbf{E}_{S,z}[\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]] -\\
+&amp; \hspace{3em} \mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]] + \mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]-\mathbf{E}_R[\ell(A_{(S,R)},\mathbf{z}_j)]]\\
+&amp; \leq 2\beta + \mathbf{E}_{S,z}[\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]] - \mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]]\\
+&amp; \leq 2\beta + \mathbf{E}_{S,z_j}[\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]] - \mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]]\\
+&amp; \leq 2\beta + \mathbf{E}_{S}[\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]] - \mathbf{E}_{S} [\mathbf{E}_R[\ell(A_{(S^{\backslash i},R)},\mathbf{z}_j)]]\\
+&amp; = 2\beta \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;!---
+
+$$\begin{equation}
+\begin{split}
+\underset{S}{\sup} \Big|\mathbf{E}_R[K_{(S,R)}]-\mathbf{E}_R[K_{(S^{i},R)}]\Big|&amp;=\underset{S}{\sup}\Big| \mathbf{E}_R[K_{(S,R)}]-\mathbf{E}_R[K_{(S^{\backslash i},R)}] + \\
+&amp; \hspace{2em} \mathbf{E}_R[K_{(S^{\backslash i},R)}] -\mathbf{E}_R[K_{(S^{i},R)}]  \Big|  \\
+\end{split}
+\end{equation}$$
+
+$$\begin{equation}
+\begin{split}
+&amp; = \underset{S}{\sup}\Big|  \Big|\\
+\end{split}
+\end{equation}$$
+
+
+---&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{equation}
+\begin{split}
+|\mathbf{E}_R[K_{(S,R)}]-\mathbf{E}_R[K_{(S^{i},R)}]|&amp;=\Big| \mathbf{E}_R[\big(R(A_{(S,R)})-R_{emp}(A_{(S,R)}) \big)] - \mathbf{E}_R[\big( R(A_{(S^{i},R)}) - R_{emp}(A_{(S^{i},R)})\big)] \Big|\\
+&amp; \leq \Big| \mathbf{E}_R[R(A_{(S,R)})]-\mathbf{E}_R[R(A_{(S^{i},R)})] \Big| +\Big| \mathbf{E}_R[R_{emp}(A_{(S,R)})]-\mathbf{E}_R[R_{emp}(A_{(S^{i},R)})] \Big|\\
+&amp; \leq 2\beta+(2\beta+\frac{M}{m}) \\
+&amp; \leq 4\beta+\frac{M}{m} \\
+\end{split}
+\end{equation} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Applying McDiarmid’s inequality, we get (Event 2),&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P \Bigg(  \mathbf{E}_R[K_{(S,R)}]-\mathbf{E}_S[\mathbf{E}_R[K_{(S,R)}]] \geq \epsilon   \Bigg) \leq \underbrace{e^{-\frac{2\epsilon^2}{m(4\beta+\frac{M}{m})^2}}}_{\delta}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P \Bigg(  \mathbf{E}_R[K_{(S,R)}] \leq  2\beta +  (4m\beta+M)\sqrt{\frac{\log \frac{1}{\delta}}{2m}} \Bigg) \geq 1-\delta&lt;/script&gt;
+
+&lt;p&gt;Now, probability of holding both the events simultaneously is &lt;script type=&quot;math/tex&quot;&gt;1-2\delta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbf{P}\Bigg( R(A_{(S,R)})-R_{emp}(A_{(S,R)})  \leq  2\beta +  (4m\beta+M)\sqrt{\frac{\log \frac{1}{\delta}}{2m}} +  \rho\sqrt{2T} \sqrt{\log \big(\frac{1}{\delta} \big)} \Bigg) \geq 1-2\delta&lt;/script&gt;
+
+&lt;p&gt;Replacing &lt;script type=&quot;math/tex&quot;&gt;\delta&lt;/script&gt; by &lt;script type=&quot;math/tex&quot;&gt;\frac{\delta}{2}&lt;/script&gt;, we get,&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbf{P}\Bigg( \ R(A_{(S,R)})-R_{emp}(A_{(S,R)})  \leq  2\beta +  \Big( \frac{4m\beta+M}{\sqrt{2m}} +  \rho\sqrt{2T} \Big) \sqrt{\log \big(\frac{2}{\delta} \big) }   \Bigg) \geq 1-\delta&lt;/script&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Tue, 17 Jan 2017 18:01:30 -0600</pubDate>
+        <link>http://localhost:4000/tutorials/2017/01/17/Stability-Machine-Learning-Part2.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorials/2017/01/17/Stability-Machine-Learning-Part2.html</guid>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
     
       <item>
         <title> Blog: Stability of Learning Algorithms.</title>
@@ -40,19 +234,19 @@
 &lt;p&gt;&lt;strong&gt;Generalization Bounds based on Stability of Learning Algorithms&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Let’s assume that our algorithm &lt;script type=&quot;math/tex&quot;&gt;A_S&lt;/script&gt; has uniform stability &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;, if   it satisfies &lt;script type=&quot;math/tex&quot;&gt;\forall i\in\{1,m\}&lt;/script&gt;,&lt;/p&gt;
+  &lt;p&gt;Let’s assume that our algorithm &lt;script type=&quot;math/tex&quot;&gt;A_S&lt;/script&gt; has uniform stability &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;, i.e.  it satisfies &lt;script type=&quot;math/tex&quot;&gt;\forall i\in\{1,m\}&lt;/script&gt;,&lt;/p&gt;
 
   &lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,z}{\sup}|\ell(A_S,\mathbf{z}) -\ell(A_{S^{\backslash i}},\mathbf{z})| \leq \beta&lt;/script&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;To derive generalization bounds for uniform stable algorithms, we are going to mainly use McDiarmid’s inequality. Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; be some set and &lt;script type=&quot;math/tex&quot;&gt;f:\mathbf{X}^{m} \rightarrow R&lt;/script&gt;, then inequality is given as (more detail &lt;a href=&quot;http://web.eecs.umich.edu/~cscott/past_courses/eecs598w14/notes/09_bounded_difference.pdf&quot;&gt;here&lt;/a&gt;),&lt;/p&gt;
+&lt;p&gt;To derive generalization bounds for uniform stable algorithms, we are going to only use McDiarmid’s inequality. Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X}&lt;/script&gt; be some set and &lt;script type=&quot;math/tex&quot;&gt;f:\mathbf{X}^{m} \rightarrow R&lt;/script&gt;, then inequality is given as (more detail &lt;a href=&quot;http://web.eecs.umich.edu/~cscott/past_courses/eecs598w14/notes/09_bounded_difference.pdf&quot;&gt;here&lt;/a&gt;),&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;script type=&quot;math/tex; mode=display&quot;&gt;if \underset{x_1,..,x_i,..,x_m,x_i^{'}}{\sup}|f(x_1,..,x_i,..,x_m)-f(x_1,..,x_i^{'},..,x_m)| \leq c_i&lt;/script&gt;
 
   &lt;script type=&quot;math/tex; mode=display&quot;&gt;=\underset{x_1,..,x_i,..,x_m,x_i^{'}}{\sup}|f_S-f_{S^{i}}| \leq c_i \hspace{1em},\forall i&lt;/script&gt;
 
-  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies P\Big( f(S)-\mathbf{E}_S[f(S^{i})] \geq \epsilon \Big) \leq e^{-\frac{2 \epsilon^2}{\sum_{i=1}^{m}c_i^2}}&lt;/script&gt;
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\implies P\Big( f(S)-\mathbf{E}_S[f(S)] \geq \epsilon \Big) \leq e^{-\frac{2 \epsilon^2}{\sum_{i=1}^{m}c_i^2}}&lt;/script&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Strategy is to bound &lt;script type=&quot;math/tex&quot;&gt;\vert f_S-f_{S^{i}} \vert&lt;/script&gt; using &lt;script type=&quot;math/tex&quot;&gt;\vert f_S-f_{S^{\backslash i}} \vert&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\vert f_{S^{i}}-f_{S^{\backslash i}} \vert&lt;/script&gt;.  We will derive some lemmas that would be helpful to compute variables needed for applying McDiarmid’s inequality.&lt;/p&gt;
@@ -159,8 +353,9 @@ $$\begin{equation}
   &lt;p&gt;Applying McDiarmid’s inequality to derive generalization bounds for uniform stable algorithms:&lt;/p&gt;
 
   &lt;center&gt;$$ \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big)  - 2\beta \geq   \epsilon \Bigg)  \leq \underbrace{e^{-\frac{2\epsilon^2}{m(4\beta+\frac{M}{m})^2}}}_{\delta} $$
-$$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (4m\beta+M)\sqrt{\frac{\log \frac{1}{\delta}}{m}} \Bigg) \geq 1-\delta $$&lt;/center&gt;
+$$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (4m\beta+M)\sqrt{\frac{\log \frac{1}{\delta}}{2m}} \Bigg) \geq 1-\delta $$&lt;/center&gt;
 &lt;/blockquote&gt;
+
 </description>
         <pubDate>Tue, 17 Jan 2017 18:01:00 -0600</pubDate>
         <link>http://localhost:4000/tutorials/2017/01/17/Stability-Machine-Learning.html</link>
