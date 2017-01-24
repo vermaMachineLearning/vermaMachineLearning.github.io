@@ -1,5 +1,5 @@
 ---
-title:  " Blog: Stability of Learning Algorithms."
+title:  " Blog: Stability of Learning Algorithms Part 1."
 date:   2017-01-18 00:01:00
 categories: Tutorials
 ---

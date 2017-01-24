@@ -5,8 +5,8 @@
     <description>Blog: Machine Learning Equations by Saurabh Verma</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 24 Jan 2017 11:04:16 -0600</pubDate>
-    <lastBuildDate>Tue, 24 Jan 2017 11:04:16 -0600</lastBuildDate>
+    <pubDate>Tue, 24 Jan 2017 11:06:17 -0600</pubDate>
+    <lastBuildDate>Tue, 24 Jan 2017 11:06:17 -0600</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -204,7 +204,7 @@ $$\begin{equation}
       </item>
     
       <item>
-        <title> Blog: Stability of Learning Algorithms.</title>
+        <title> Blog: Stability of Learning Algorithms Part 1.</title>
         <description>&lt;p&gt;This is walk-through on how  to derive generalization bounds based on the stability of algorithms. Understanding the proof helps  to extend or modify the results according to your needs. For instance, I had a loss function which was unbounded, and since to apply generalization results your loss function must be bounded, I was stuck. So, this my effort  to state the proof as clear as possible along with the assumptions needed.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Setup&lt;/strong&gt;: Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{X} \in \mathbb{R}^d, \mathbf{Y} \in \mathbb{R}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; be a training set &lt;script type=&quot;math/tex&quot;&gt;S=\{\mathbf{z}_1=(\mathbf{x}_1,y_1),\mathbf{z}_2=(\mathbf{x}_2,y_2),...,\mathbf{z}_m=(\mathbf{x}_m,y_m)\}&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;A_S&lt;/script&gt; be a symmetric learning algorithm i.e.  does not depend on the order of the data points in the training set. We define the following two more notations as follows:&lt;/p&gt;
