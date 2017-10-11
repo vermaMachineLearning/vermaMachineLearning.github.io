@@ -40,6 +40,9 @@
     
     
     
+	
+    
+	
     <article>
       <header>
         <h2><a href="/tutorials/2017/01/17/Stability-Machine-Learning-Part3.html"> Blog: Stability of Learning Algorithms Part 3.</a></h2>
@@ -54,7 +57,9 @@
         <p><a href="/tutorials/2017/01/17/Stability-Machine-Learning-Part3.html">read more &raquo;</a></p>
       </footer>
     </article>
+	
     
+	
     <article>
       <header>
         <h2><a href="/tutorials/2017/01/17/Stability-Machine-Learning-Part2.html"> Blog: Stability of Learning Algorithms Part 2.</a></h2>
@@ -65,17 +70,15 @@
 
 <p>Let <script type="math/tex">R</script> be  a set of random parameters.</p>
 
-<blockquote>
-  <p>Let’s assume that our algorithm <script type="math/tex">A_{(S,R)}</script> has uniform stability <script type="math/tex">(\beta,\rho)</script>, if  it satisfies,</p>
+<p>Let’s assume that our algorithm <script type="math/tex">A_{(S,R)}</script> has uniform stability <script type="math/tex">(\beta,\rho)</script>, if  it satisfies,</p>
 
-  <script type="math/tex; mode=display">\underset{S,z}{\sup}|\mathbf{E}_{R}[\ell(A_{(S,R)},\mathbf{z})] -\mathbf{E}_{R}[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]| \leq \beta \hspace{3em} \forall i\in\{1,m\}</script>
+<script type="math/tex; mode=display">\underset{S,z}{\sup}|\mathbf{E}_{R}[\ell(A_{(S,R)},\mathbf{z})] -\mathbf{E}_{R}[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]| \leq \beta \hspace{3em} \forall i\in\{1,m\}</script>
 
-  <script type="math/tex; mode=display">\underset{S,R,r_i^{'},z}{\sup}| \ell(A_{(S,R)},\mathbf{z}) -\ell(A_{(S,R^{i})},\mathbf{z})| \leq \rho \hspace{3em} \forall i\in\{1,T\}</script>
-</blockquote>
+<script type="math/tex; mode=display">\underset{S,R,r_i^{'},z}{\sup}| \ell(A_{(S,R)},\mathbf{z}) -\ell(A_{(S,R^{i})},\mathbf{z})| \leq \rho \hspace{3em} \forall i\in\{1,T\}</script>
 
 <!---
 >$$\underset{r_1,...,r_T,r_i^{'},z}{\sup}| \ell(A_{S,(r_1,...,r_T)},\mathbf{z}) -\ell(A_{S,(r_1,..,r_{i-1},r_i^{'},r_{i+1},..,r_T)},\mathbf{z})| \leq \rho $$
---->
+-->
 
 
       </div>
@@ -83,7 +86,9 @@
         <p><a href="/tutorials/2017/01/17/Stability-Machine-Learning-Part2.html">read more &raquo;</a></p>
       </footer>
     </article>
+	
     
+	
     <article>
       <header>
         <h2><a href="/tutorials/2017/01/17/Stability-Machine-Learning.html"> Blog: Stability of Learning Algorithms Part 1.</a></h2>
@@ -98,7 +103,9 @@
         <p><a href="/tutorials/2017/01/17/Stability-Machine-Learning.html">read more &raquo;</a></p>
       </footer>
     </article>
+	
     
+	
     <article>
       <header>
         <h2><a href="/tutorials/2016/06/03/dirichlet-distribution.html"> Blog: Dirichlet Distributions.</a></h2>
@@ -145,7 +152,9 @@ p(\{x_i\}|\boldsymbol\alpha)&=\int \frac{n_i!}{\prod\limits_{j=1}^{k}n_{ij}!} \p
         <p><a href="/tutorials/2016/06/03/dirichlet-distribution.html">read more &raquo;</a></p>
       </footer>
     </article>
+	
     
+	
     <article>
       <header>
         <h2><a href="/tutorials/2016/06/01/bayesians-sets.html"> Blog: Bayesian Sets.</a></h2>
@@ -155,7 +164,7 @@ p(\{x_i\}|\boldsymbol\alpha)&=\int \frac{n_i!}{\prod\limits_{j=1}^{k}n_{ij}!} \p
 <p><strong>Bayesian Sets Graphical Model:</strong></p>
 <div style="text-align:center"><img src="/images/bayesian-sets.svg" style="width: 35%; height: 35%" /></div>
 
-<p>Bayesian sets are simple graphical models used to expand a set. For instance, suppose you are given a set of few words (or items) <script type="math/tex">S=\{cat, dog, lion, ...\}</script> which we refer as “seeds” and we wish to expand this set to include all similiar words from the given text corpus. Then, we can employ Bayesian sets which rank each item based on its importance of belonging to seed set.</p>
+<p>Bayesian sets are simple graphical models used to expand a set. For instance, suppose you are given a set of few words (or items) <script type="math/tex">S=\{cat, dog, lion, ...\}</script> which we refer as “seeds” and we wish to expand this set to include all similar words from the given text corpus. Then, we can employ Bayesian sets which rank each item based on its importance of belonging to seed set.</p>
 
 <p>Let <script type="math/tex">D</script> be a data set of items, and <script type="math/tex">\mathbf{x} \in D</script> be an item from this set. Assume the user provides a query set <script type="math/tex">D_c</script> which is a small subset of <script type="math/tex">D</script>, bayesian sets rank each item   by <script type="math/tex">score(\mathbf{x})</script>. This probability ratio  can be interpreted as the ratio of the joint probability of observing <script type="math/tex">x</script> and <script type="math/tex">D_c</script> to the probability of independently observing <script type="math/tex">x</script> and <script type="math/tex">D_c</script>.</p>
 
@@ -194,7 +203,9 @@ p(D_c \vert \boldsymbol\alpha, \boldsymbol\beta)&=\int p(D_c, \theta) d\theta=\i
         <p><a href="/tutorials/2016/06/01/bayesians-sets.html">read more &raquo;</a></p>
       </footer>
     </article>
+	
     
+	
     <article>
       <header>
         <h2><a href="/paperlist/2016/05/31/why-autoencoder-sparse.html"> Blog: Why Regularized Auto-Encoders learn Sparse Representation?</a></h2>
@@ -239,7 +250,9 @@ J_{AE} &=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
         <p><a href="/paperlist/2016/05/31/why-autoencoder-sparse.html">read more &raquo;</a></p>
       </footer>
     </article>
+	
     
+	
     <article>
       <header>
         <h2><a href="/paperlist/2016/05/29/convgraph.html">Blog: Learning Convolutional Networks for Graphs</a></h2>
@@ -254,7 +267,9 @@ J_{AE} &=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
         <p><a href="/paperlist/2016/05/29/convgraph.html">read more &raquo;</a></p>
       </footer>
     </article>
+	
     
+	
     <article>
       <header>
         <h2><a href="/paperlist/2016/05/28/ReadingListICML16.html">Reading List: ICML Papers 2016 </a></h2>
@@ -289,6 +304,7 @@ J_{AE} &=\mathbb{E_x}[(\mathbf{x-W^Th})^2] \\
         <p><a href="/paperlist/2016/05/28/ReadingListICML16.html">read more &raquo;</a></p>
       </footer>
     </article>
+	
     
     
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>

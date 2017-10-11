@@ -2,21 +2,22 @@
 title:  " Blog: Stability of Learning Algorithms Part 2."
 date:   2017-01-18 00:01:30
 categories: Tutorials
+visible: 1
 ---
 
 **Extending to Randomized Algorithms**
 
 Let $$R$$ be  a set of random parameters.
 
->Let's assume that our algorithm $$A_{(S,R)}$$ has uniform stability $$(\beta,\rho)$$, if  it satisfies,
->
->$$ \underset{S,z}{\sup}|\mathbf{E}_{R}[\ell(A_{(S,R)},\mathbf{z})] -\mathbf{E}_{R}[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]| \leq \beta \hspace{3em} \forall i\in\{1,m\}$$
->
->$$\underset{S,R,r_i^{'},z}{\sup}| \ell(A_{(S,R)},\mathbf{z}) -\ell(A_{(S,R^{i})},\mathbf{z})| \leq \rho \hspace{3em} \forall i\in\{1,T\}$$
+Let's assume that our algorithm $$A_{(S,R)}$$ has uniform stability $$(\beta,\rho)$$, if  it satisfies,
+
+$$ \underset{S,z}{\sup}|\mathbf{E}_{R}[\ell(A_{(S,R)},\mathbf{z})] -\mathbf{E}_{R}[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]| \leq \beta \hspace{3em} \forall i\in\{1,m\}$$
+
+$$\underset{S,R,r_i^{'},z}{\sup}| \ell(A_{(S,R)},\mathbf{z}) -\ell(A_{(S,R^{i})},\mathbf{z})| \leq \rho \hspace{3em} \forall i\in\{1,T\}$$
 
 <!---
 >$$\underset{r_1,...,r_T,r_i^{'},z}{\sup}| \ell(A_{S,(r_1,...,r_T)},\mathbf{z}) -\ell(A_{S,(r_1,..,r_{i-1},r_i^{'},r_{i+1},..,r_T)},\mathbf{z})| \leq \rho $$
---->
+-->
 
 
 $$K_{(S,R)}=R(A_{(S,R)})-R_{emp}(A_{(S,R)})$$

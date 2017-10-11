@@ -2,6 +2,7 @@
 title:  " Blog: Dirichlet Distributions."
 date:   2016-06-04 00:01:00
 categories: Tutorials
+visible: 1
 ---
 
 Dirichlet Distribution is *a distribution over distributions*. More specifically, it is a distribution over *pmfs (probability mass functions)*. You can imagine, as if there is a bag of $$L$$ dices, and each dice has a corresponding pmf (related to six possible outcomes). Now picking a dice is like sampling a particular pmf from a distribution. The probability of picking a dice, which results in a pmf, comes from the Dirichlet distribution $$Dir(\boldsymbol\alpha)$$.

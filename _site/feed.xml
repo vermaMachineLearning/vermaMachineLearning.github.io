@@ -5,9 +5,22 @@
     <description>Blog: Machine Learning Equations by Saurabh Verma</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 24 Jan 2017 11:06:17 -0600</pubDate>
-    <lastBuildDate>Tue, 24 Jan 2017 11:06:17 -0600</lastBuildDate>
-    <generator>Jekyll v3.3.1</generator>
+    <pubDate>Mon, 09 Oct 2017 18:24:12 -0500</pubDate>
+    <lastBuildDate>Mon, 09 Oct 2017 18:24:12 -0500</lastBuildDate>
+    <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title> Blog: Graph Convolutional Networks.</title>
+        <description>
+</description>
+        <pubDate>Fri, 08 Sep 2017 19:01:30 -0500</pubDate>
+        <link>http://localhost:4000/tutorials/2017/09/08/hide.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorials/2017/09/08/hide.html</guid>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
     
       <item>
         <title> Blog: Stability of Learning Algorithms Part 3.</title>
@@ -102,17 +115,15 @@ $$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (m
 
 &lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;R&lt;/script&gt; be  a set of random parameters.&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Let’s assume that our algorithm &lt;script type=&quot;math/tex&quot;&gt;A_{(S,R)}&lt;/script&gt; has uniform stability &lt;script type=&quot;math/tex&quot;&gt;(\beta,\rho)&lt;/script&gt;, if  it satisfies,&lt;/p&gt;
+&lt;p&gt;Let’s assume that our algorithm &lt;script type=&quot;math/tex&quot;&gt;A_{(S,R)}&lt;/script&gt; has uniform stability &lt;script type=&quot;math/tex&quot;&gt;(\beta,\rho)&lt;/script&gt;, if  it satisfies,&lt;/p&gt;
 
-  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,z}{\sup}|\mathbf{E}_{R}[\ell(A_{(S,R)},\mathbf{z})] -\mathbf{E}_{R}[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]| \leq \beta \hspace{3em} \forall i\in\{1,m\}&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,z}{\sup}|\mathbf{E}_{R}[\ell(A_{(S,R)},\mathbf{z})] -\mathbf{E}_{R}[\ell(A_{(S^{\backslash i},R)},\mathbf{z})]| \leq \beta \hspace{3em} \forall i\in\{1,m\}&lt;/script&gt;
 
-  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,R,r_i^{'},z}{\sup}| \ell(A_{(S,R)},\mathbf{z}) -\ell(A_{(S,R^{i})},\mathbf{z})| \leq \rho \hspace{3em} \forall i\in\{1,T\}&lt;/script&gt;
-&lt;/blockquote&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\underset{S,R,r_i^{'},z}{\sup}| \ell(A_{(S,R)},\mathbf{z}) -\ell(A_{(S,R^{i})},\mathbf{z})| \leq \rho \hspace{3em} \forall i\in\{1,T\}&lt;/script&gt;
 
 &lt;!---
 &gt;$$\underset{r_1,...,r_T,r_i^{'},z}{\sup}| \ell(A_{S,(r_1,...,r_T)},\mathbf{z}) -\ell(A_{S,(r_1,..,r_{i-1},r_i^{'},r_{i+1},..,r_T)},\mathbf{z})| \leq \rho $$
----&gt;
+--&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;K_{(S,R)}=R(A_{(S,R)})-R_{emp}(A_{(S,R)})&lt;/script&gt;
 
@@ -425,7 +436,7 @@ Processes”. &lt;a href=&quot;http://mayagupta.org/publications/FrigyikKapilaGu
         <description>&lt;p&gt;&lt;strong&gt;Bayesian Sets Graphical Model:&lt;/strong&gt;&lt;/p&gt;
 &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/bayesian-sets.svg&quot; style=&quot;width: 35%; height: 35%&quot; /&gt;&lt;/div&gt;
 
-&lt;p&gt;Bayesian sets are simple graphical models used to expand a set. For instance, suppose you are given a set of few words (or items) &lt;script type=&quot;math/tex&quot;&gt;S=\{cat, dog, lion, ...\}&lt;/script&gt; which we refer as “seeds” and we wish to expand this set to include all similiar words from the given text corpus. Then, we can employ Bayesian sets which rank each item based on its importance of belonging to seed set.&lt;/p&gt;
+&lt;p&gt;Bayesian sets are simple graphical models used to expand a set. For instance, suppose you are given a set of few words (or items) &lt;script type=&quot;math/tex&quot;&gt;S=\{cat, dog, lion, ...\}&lt;/script&gt; which we refer as “seeds” and we wish to expand this set to include all similar words from the given text corpus. Then, we can employ Bayesian sets which rank each item based on its importance of belonging to seed set.&lt;/p&gt;
 
 &lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; be a data set of items, and &lt;script type=&quot;math/tex&quot;&gt;\mathbf{x} \in D&lt;/script&gt; be an item from this set. Assume the user provides a query set &lt;script type=&quot;math/tex&quot;&gt;D_c&lt;/script&gt; which is a small subset of &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt;, bayesian sets rank each item   by &lt;script type=&quot;math/tex&quot;&gt;score(\mathbf{x})&lt;/script&gt;. This probability ratio  can be interpreted as the ratio of the joint probability of observing &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;D_c&lt;/script&gt; to the probability of independently observing &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;D_c&lt;/script&gt;.&lt;/p&gt;
 

@@ -2,6 +2,7 @@
 title:  " Blog: Why Regularized Auto-Encoders learn Sparse Representation?"
 date:   2016-05-31 22:37:00
 categories: PaperList
+visible: 1
 ---
 
 This paper has some great insights to offer in design of autoencoders. As title suggests, it addresses "whether regularized helps in learning sparse representation of the data theoretically?"

@@ -2,6 +2,7 @@
 title:  "Blog: Learning Convolutional Networks for Graphs"
 date:   2016-05-29 22:37:00
 categories: PaperList
+visible: 1
 ---
 For past couple of months, I have been wondering about how convolutional networks can be applied to  graphs. As we know, convolutional networks have became the state of the art in image classification and also in natural language processing. It is easy to see how convolutional networks  exploits the locality and translation invariance properties in an image. People have now also realized on how to exploit those properties in NLP using convolutional networks efficiently. It is time to look at other, more general, domains such as  *graphs* where notion of locality or receptive field needs to be defined. At this point, we can start thinking about graph neighborhood concepts as it is going to play a major role in connecting with receptive fields of convolutional networks.
 

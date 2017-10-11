@@ -3,7 +3,7 @@ title: "Archive"
 ---
 <ul>
   {% for post in site.posts %}
-
+	{% if post.visible== 1  %}
     {% unless post.next %}
       <h3>{{ post.date | date: '%Y' }}</h3>
     {% else %}
@@ -15,5 +15,6 @@ title: "Archive"
     {% endunless %}
 
     <li>{{ post.date | date:"%B" }}: <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+  {% endif  %}
   {% endfor %}
 </ul>

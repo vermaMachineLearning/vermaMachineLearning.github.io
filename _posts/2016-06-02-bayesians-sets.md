@@ -2,17 +2,18 @@
 title:  " Blog: Bayesian Sets."
 date:   2016-06-02 00:01:00
 categories: Tutorials
+visible: 1
 ---
 
 
 
- 
+
 **Bayesian Sets Graphical Model:**
 <div style="text-align:center" ><img src ="{{ site.baseurl }}/images/bayesian-sets.svg"  style="width: 35%; height: 35%"/></div>
 
-Bayesian sets are simple graphical models used to expand a set. For instance, suppose you are given a set of few words (or items) $$S=\{cat, dog, lion, ...\}$$ which we refer as "seeds" and we wish to expand this set to include all similiar words from the given text corpus. Then, we can employ Bayesian sets which rank each item based on its importance of belonging to seed set. 
+Bayesian sets are simple graphical models used to expand a set. For instance, suppose you are given a set of few words (or items) $$S=\{cat, dog, lion, ...\}$$ which we refer as "seeds" and we wish to expand this set to include all similar words from the given text corpus. Then, we can employ Bayesian sets which rank each item based on its importance of belonging to seed set.
 
-Let $$D$$ be a data set of items, and $$\mathbf{x} \in D$$ be an item from this set. Assume the user provides a query set $$D_c$$ which is a small subset of $$D$$, bayesian sets rank each item   by $$score(\mathbf{x})$$. This probability ratio  can be interpreted as the ratio of the joint probability of observing $$x$$ and $$D_c$$ to the probability of independently observing $$x$$ and $$D_c$$. 
+Let $$D$$ be a data set of items, and $$\mathbf{x} \in D$$ be an item from this set. Assume the user provides a query set $$D_c$$ which is a small subset of $$D$$, bayesian sets rank each item   by $$score(\mathbf{x})$$. This probability ratio  can be interpreted as the ratio of the joint probability of observing $$x$$ and $$D_c$$ to the probability of independently observing $$x$$ and $$D_c$$.
 
 >$$score(\mathbf{x})=\frac{p(\mathbf{x}\vert D_c)}{p(\mathbf{x})}= \frac{p(\mathbf{x}, D_c)}{p(\mathbf{x})p(D_c)}=\frac{\int p(\mathbf{x},\theta \vert D_c ) d\theta}{\int p(\mathbf{x},\theta) d\theta}=\frac{\int p(\mathbf{x} \vert \theta, D_c ) p(\theta \vert D_c) d\theta}{\int p(\mathbf{x} \vert \theta) p(\theta )d\theta}$$
 
@@ -65,7 +66,7 @@ The log of the score is linear in features of $$\mathbf{x}$$:
 
 > $$\log score(\mathbf{x})=c+\sum_j q_j x{.j}$$
 
-Thus, bayesian sets essentially performs **feature selection**.  
+Thus, bayesian sets essentially performs **feature selection**.
 
 For models where $$\mathbf{x}$$ is parametrized using exponential families, we have a similar expression but may or may not be linear in features of $$\mathbf{x}$$.
 

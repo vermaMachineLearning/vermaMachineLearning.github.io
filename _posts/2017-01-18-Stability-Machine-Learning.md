@@ -2,6 +2,7 @@
 title:  " Blog: Stability of Learning Algorithms Part 1."
 date:   2017-01-18 00:01:00
 categories: Tutorials
+visible: 1
 ---
 
 This is walk-through on how  to derive generalization bounds based on the stability of algorithms. Understanding the proof helps  to extend or modify the results according to your needs. For instance, I had a loss function which was unbounded, and since to apply generalization results your loss function must be bounded, I was stuck. So, this my effort  to state the proof as clear as possible along with the assumptions needed.

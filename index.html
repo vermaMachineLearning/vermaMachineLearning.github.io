@@ -2,6 +2,7 @@
 layout: blank
 ---
     {% for page in paginator.posts %}
+	{% if page.visible== 1  %}
     <article>
       <header>
         <h2><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
@@ -14,6 +15,7 @@ layout: blank
         <p><a href="{{ page.url | prepend: site.baseurl }}">{{ site.more }} &raquo;</a></p>
       </footer>
     </article>
+	{% endif  %}
     {% endfor %}
     {% if paginator.total_pages > 1 %}
     <footer id="paginate">
