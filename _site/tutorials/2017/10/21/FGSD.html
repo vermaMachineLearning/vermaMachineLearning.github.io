@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Saurabh Verma 2016 UMN <https://github.com/vermaMachineLearning> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Blog: Machine Learning Equations by Saurabh Verma">
+    <title>  Blog: Hunt For The Unique, Stable, Sparse And Fast Feature Learning On Graphs (NIPS 2017). › Blog: Machine Learning Equations by Saurabh Verma</title>
+    <link rel="canonical" href="http://localhost:4000/tutorials/2017/10/21/FGSD.html">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Blog: Machine Learning Equations by Saurabh Verma" />
+    <script src="//saurabhML.disqus.com/embed.js" async></script>
+    
+	
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-78615814-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Blog: Machine Learning Equations by Saurabh Verma</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li><li><a href="/about.html">About</a></li><li><a href="/archive.html">Archive</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    
+    <article>
+      <header>
+        <h2><a href="/tutorials/2017/10/21/FGSD.html"> Blog: Hunt For The Unique, Stable, Sparse And Fast Feature Learning On Graphs (NIPS 2017).</a></h2>
+        <p><time datetime="2017-10-21T19:01:00-05:00">Oct 21, 2017</time> • Tutorials</p>
+      </header>
+      <div>
+<div style="text-align:center"><img src="/images/motivation.png" style="width: 50%; height: 50%" /></div>
+<div style="text-align:center">How can we convert a <span style="color:#D35400">graph</span> into a <span style="color:#006C31">Feature Vector</span>?</div>
+
+<p>Graph is a fundamental but complicated structure to work with from machine learning point of view. Think about it, a machine learning model usually require inputs in some form of mathematical objects like vectors, matrices, real number sequences and then produces the desired outputs. So, the question is how we can convert a graph into a mathematical object that is suitable for performing machine learning tasks such as classification or regression on graphs.</p>
+
+<p>For past one year, I have been working on developing machine learning models for graph(s) in order to solve two specific problems:</p>
+
+<blockquote>
+  <p>1) <strong>Graph Classification</strong>: Given a collection of graphs <script type="math/tex">\{G_i\}_{i=1}^{M}</script> and associated graph labels <script type="math/tex">\{y_i\}_{i=1}^{M}</script> where <script type="math/tex">y_i\in \mathbf{R^{c}}</script> (<script type="math/tex">c</script> is the number of classes), we need to come up with a learning model or function <script type="math/tex">F:G \rightarrow Y</script> that can classify or predict the label associated with a graph.  <br />
+<br />
+2) <strong>Node Classification</strong>: Given a graph <script type="math/tex">G=(V,E,W)</script>, where <script type="math/tex">V</script> is vertex set, <script type="math/tex">E</script> is edge set &amp; <script type="math/tex">W</script> is adjacency matrix and labels <script type="math/tex">\{y_i\}_{i=1}^{M}</script> where <script type="math/tex">y_i\in \mathbf{R^{c}}</script> associated with each node, our task is to classify or predict the labels on each node. That is, come up a learning function <script type="math/tex">F:V\rightarrow Y</script>.</p>
+  <div style="text-align:center"><img src="/images/graph_problems.png" style="width: 50%; height: 50%" /></div>
+</blockquote>
+
+<p>In this blog, I’ll mainly focus on graph classification problem but also show how we can leverage this work to perform node label classification as well. The fundamental problem in graph classification is comparing two graph structures. The main hurdle in comparing two graph structures is that we don’t know which node in the first graph corresponds to which node in other graph. This problem is universally known as graph isomorphism problem and so far we know it can only be solved in quasi-polynomial time and that too theoretically. Hence people came up with approximate but polynomial alternatives.</p>
+
+<blockquote>
+  <p>Previous studies on graph classification can be grouped into three main categories. <br />
+1) <strong>Graph Spectrum</strong> 2) <strong>Graph Kernels</strong> 3) <strong>Graph Convolutional Networks</strong>.</p>
+</blockquote>
+
+<p><strong>Graph Spectrum</strong>: Our majority work falls under first category and similar to graph kernels in certain aspects. But without going too much into <script type="math/tex">-</script> what is graph kernel and graph convolutional network <script type="math/tex">-</script> I’ll lay out the ideas behind graph spectrum.</p>
+
+<blockquote>
+  <p><strong>First let’s discuss what spectrum mean</strong>? Spectrum is a collection of atomic elements  (say in form of a set or vector or other mathematical object) to represent objects belonging to the same class (here class of objects could be an electrical signal, an audio signal or a chemical compound). For example, time series signal has a frequency spectrum. The importance of frequency spectrum is that one can recover the whole original signal from its frequency spectrum. Secondly from learning point of view, spectrum gives us a <span style="color:#900C3F">convenient and rich</span> way to compare the <span style="color:#900C3F">similarity</span> between two signals.</p>
+</blockquote>
+
+<blockquote>
+  <p><span style="color:#900C3F"><strong>Now, the question is does graph has a spectrum? And if so, what are its atomic elements?</strong></span></p>
+</blockquote>
+
+<p>The most common graph spectrum you may heard of is <span style="color:#D35400">graph Laplacian eigenvalue spectrum</span>, where atomic elements are eigenvalues of graph Laplacian matrix. There are two more powerful graph spectrums based on group theory: <span style="color:#24A0AF">Skew Spectrum</span> and <span style="color:#6AB234">Graphlet Spectrum</span>. The best thing about graph spectrum is that it atomic elements are solely depends upon the structure of the graph and thus invariant to permutation of graph vertex labels – a very important property desired from learning point of view.</p>
+
+<blockquote>
+  <p>We propose a new graph spectrum which is conceptually simple to understand but at the same time powerful enough as I’ll try to convince. <strong>Our Idea</strong>: <span style="color:#900C3F"><em>Graph atomic structure (or spectrum) is encoded in the multiset of all nodes pairwise distances.</em></span></p>
+  <div style="text-align:center"><img src="/images/graph_spectrum_example.png" style="width: 50%; height: 50%" /></div>
+</blockquote>
+
+<blockquote>
+  <div style="text-align:center"><span style="color:#24A0AF"><b>But <span style="color:#EC7063">what distance</span> one should consider on a <span style="color:#D4AC0D">Graph</span>?</b></span></div>
+</blockquote>
+
+<blockquote>
+  <div style="text-align:center"><span style="color:#900C3F"><b>Welcome to The Family of Graph Spectral Distances (FGSD)</b></span></div>
+  <p>FGSD is based on graph Laplacian <script type="math/tex">(L=D-W)</script> spectral properties. Here <script type="math/tex">\phi_{k}</script> &amp; <script type="math/tex">\lambda_k</script> is <script type="math/tex">k^{th}</script> Laplacian eigenvector and eigenvalue respectively.</p>
+  <div style="text-align:center"><img src="/images/fgsd_equation.png" style="width: 50%; height: 50%" /></div>
+  <div style="text-align:center"><img src="/images/fgsd_equation_fig.png" style="width: 50%; height: 50%" /></div>
+</blockquote>
+
+<p>So what’s  special about this family of distance? Depending upon <script type="math/tex">f(\lambda)</script>, FGSD can capture different type of information about graph sub-structures.</p>
+
+<blockquote>
+  <p><strong>FGSD Elements Encode Local Structure Information</strong>: For  <script type="math/tex">f(\lambda)=\lambda^p</script>  (<script type="math/tex">p\geq 1</script>), one can show that <script type="math/tex">\mathcal{S}_f(x,y)</script> takes only <script type="math/tex">p</script>-hop local neighborhood information. <br />
+<strong>FGSD Elements Encode Global Structure Information</strong>: For  <script type="math/tex">f(\lambda)=\frac{1}{\lambda^p}</script>  (<script type="math/tex">p\geq 1</script>), one can show that <script type="math/tex">\mathcal{S}_f(x,y)</script> captures global structure information.</p>
+</blockquote>
+
+<p>Some Known Graph Distances Can Be Derived From FGSD.</p>
+
+<blockquote>
+  <ul>
+    <li>Setting <script type="math/tex">f(\lambda)=\frac{1}{\lambda}</script>  yields is harmonic or effective resistance distance.</li>
+    <li>Setting <script type="math/tex">f(\lambda)=\frac{1}{\lambda^2}</script>  yields biharmonic distance.</li>
+    <li>Setting <script type="math/tex">f(\lambda)=e^{-2 \lambda}</script>  yields heat diffusion distance.</li>
+  </ul>
+</blockquote>
+
+<div style="text-align:center"><b> Hunt for the best $$f(\lambda)$$ function that can exhibit ideal graph spectrum properties! </b></div>
+
+<blockquote>
+  <p><strong>Theorem 1 (Uniqueness of FGSD)</strong>: The <script type="math/tex">f</script>-spectral distance matrix <script type="math/tex">\mathcal{S}_f=[ \mathcal{S}_f(x,y)]</script>  uniquely determines the underlying graph (up to graph isomorphism), and each graph  has a unique <script type="math/tex">\mathcal{S}_f</script> (up to permutation).  More precisely,  two undirected, weighted (and connected) graphs  <script type="math/tex">G_1</script> and <script type="math/tex">G_2</script>  have the same FGSD based  distance matrix up to permutation,   i.e., <script type="math/tex">\mathcal{S}_{G_1}=P\mathcal{S}_{G_2}P^{T}</script> for some permutation matrix <script type="math/tex">P</script>,  if and only if  the two graphs are isomorphic.</p>
+
+  <p><strong>Implications</strong>:  One of the consequence of Theorem <script type="math/tex">1</script> is that the <script type="math/tex">\mathcal{R}</script> based on multiset of FGSD is invariant under the
+permutation of graph vertex labels. Unfortunately, it is possible that the multiset of
+some FGSD members can be same for non-isomorphic graphs (otherwise, we would have a <script type="math/tex">\mathcal{O}(N^2)</script> polynomial time algorithm for solving graph isomorphism problem!). However, there is lot of <strong>HOPE</strong>. It is known that all non-isomorphic graphs with less than nine vertices have unique multisets of harmonic distance. While, for nine &amp; ten vertex (simple) graphs, we have exactly <script type="math/tex">11</script> &amp; <script type="math/tex">49</script> pairs of non-isomorphic
+graphs (out of total <script type="math/tex">274,668</script> &amp; <script type="math/tex">12,005,168</script> graphs) with the same harmonic spectra. These examples
+show that there are significantly very low numbers of non-unique harmonic spectrums. Moreover, we
+empirically found that the biharmonic distance has all unique multisets for at-least upto ten vertices
+(<script type="math/tex">~11</script> million graphs) and we couldn’t find any non-isomorphic graphs with the same biharmonic
+multisets. Further, we have the following theorem regarding the uniqueness of <script type="math/tex">\mathcal{R}</script>.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Theorem 2 (Uniqueness of  Graph Harmonic Spectrum)</strong>:  Let <script type="math/tex">G=(V,E,W)</script> be a graph of size <script type="math/tex">\vert V\vert</script> with an unweighted adjacency matrix <script type="math/tex">W</script>. Then, if two graphs <script type="math/tex">G_1</script> and <script type="math/tex">G_2</script> have the same number of nodes but different number of edges, i.e, <script type="math/tex">\vert V_1 \vert =\vert V_2 \vert</script> but <script type="math/tex">\vert E_1 \vert \neq  \vert E_2 \vert</script>, then with respect to the harmonic distance multiset, <script type="math/tex">\mathcal{R}(G_1) \neq \mathcal{R}(G_2)</script>.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Theorem 3 (Eigenfunction Stability of FGSD)</strong>: Let <script type="math/tex">\Delta \mathcal{S}_{xy}</script> be the change in <script type="math/tex">\mathcal{S}_f(x,y)</script> distance with respect to <script type="math/tex">\Delta w</script> change  in  weight of  any  single edge on the graph. Then,   <script type="math/tex">\Delta  \mathcal{S}_{xy}</script> for any vertex pair <script type="math/tex">(x,y)</script> is bounded with respect  to the function of eigenvalue as follows,
+<script type="math/tex">% <![CDATA[
+\begin{equation*}  
+\begin{split}
+\Delta  \mathcal{S}_{xy} & \leq 2   \big(|f(\lambda_{N-1}+2\triangle w ) -f(\lambda_{1})| \\
+\end{split}
+\end{equation*} %]]></script></p>
+
+  <p><strong>Implications</strong>: Decreasing function of <script type="math/tex">f(\lambda)</script> (such as <script type="math/tex">\frac{1}{\lambda^p}</script>) are more stable.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Conjecture (Sparsity of FGSD Graph Spectrum)</strong>:  For any graph <script type="math/tex">G</script>, let <script type="math/tex">\big|\mathcal{R}(f(\lambda))\big|_{G}</script> represents the number of unique elements present in the multiset of <script type="math/tex">\mathcal{R}</script>,  computed on an unweighted graph <script type="math/tex">G</script> based on some monotonic decreasing <script type="math/tex">f(\lambda)</script>  function. Then, the following holds,
+<script type="math/tex">\begin{equation*}
+ \Big|\mathcal{R}(f(\lambda))\Big|_{G} \geq \Big|\mathcal{R}\Big(\frac{1}{\lambda}\Big)\Big|_{G}+2 
+\end{equation*}</script></p>
+
+  <p><strong>Implications</strong>: Harmonic Spectrum <script type="math/tex">(f(\frac{1}{\lambda}))</script> produce the most sparse features.</p>
+</blockquote>
+
+<blockquote>
+  <div style="text-align:center"><span style="color:#24A0AF"><b>Feature Space of Harmonic and Biharmonic Spectrum</b></span></div>
+
+  <div style="text-align:center"><img src="/images/feature_space.png" style="width: 80%; height: 50%" /></div>
+</blockquote>
+
+<blockquote>
+  <p>Lastly, one can show that the worst case complexity of computing FGSD is <script type="math/tex">\mathcal{O}(N^2)</script>.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>In the end, we take the histogram of FGSD spectrum to construct the graph feature vector</strong>. Overall our hunt leads to the harmonic distance as an ideal member of FGSD family for extracting graph features.</p>
+</blockquote>
+
+<p><strong>References</strong>:</p>
+
+<ol>
+  <li>Saurabh Verma, Zhi-Li Zhang. Hunt For The Unique, Stable, Sparse And Fast Feature Learning On Graphs. In 31st Conference on Neural Information Processing Systems (NIPS 2017). <a href="http://www-users.cs.umn.edu/~verma/NIPS17-FGSD-verma.pdf">[PDF]</a></li>
+</ol>
+
+      </div>
+      
+      
+      <div id="disqus_thread"></div>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    </article>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <footer>
+      <span><a href="http://localhost:4000">Saurabh Verma</a></span>
+      <span><a href="https://github.com/vermaMachineLearning/"><i class="fa fa-github-square"></i></a><a href="https://www.linkedin.com/in/saurabh-verma-10076544"><i class="fa fa-linkedin-square"></i></a><a href="https://www.facebook.com/saurabh.verma.355"><i class="fa fa-facebook-square"></i></a></span>
+      <span>&copy; 2017</span>
+    </footer>
+  </body>
+</html>

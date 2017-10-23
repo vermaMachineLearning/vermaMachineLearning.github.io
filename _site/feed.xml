@@ -5,9 +5,146 @@
     <description>Blog: Machine Learning Equations by Saurabh Verma</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Oct 2017 18:24:12 -0500</pubDate>
-    <lastBuildDate>Mon, 09 Oct 2017 18:24:12 -0500</lastBuildDate>
+    <pubDate>Sun, 22 Oct 2017 19:10:45 -0500</pubDate>
+    <lastBuildDate>Sun, 22 Oct 2017 19:10:45 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
+    
+      <item>
+        <title> Blog: Hunt For The Unique, Stable, Sparse And Fast Feature Learning On Graphs (NIPS 2017).</title>
+        <description>&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/motivation.png&quot; style=&quot;width: 50%; height: 50%&quot; /&gt;&lt;/div&gt;
+&lt;div style=&quot;text-align:center&quot;&gt;How can we convert a &lt;span style=&quot;color:#D35400&quot;&gt;graph&lt;/span&gt; into a &lt;span style=&quot;color:#006C31&quot;&gt;Feature Vector&lt;/span&gt;?&lt;/div&gt;
+
+&lt;p&gt;Graph is a fundamental but complicated structure to work with from machine learning point of view. Think about it, a machine learning model usually require inputs in some form of mathematical objects like vectors, matrices, real number sequences and then produces the desired outputs. So, the question is how we can convert a graph into a mathematical object that is suitable for performing machine learning tasks such as classification or regression on graphs.&lt;/p&gt;
+
+&lt;p&gt;For past one year, I have been working on developing machine learning models for graph(s) in order to solve two specific problems:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1) &lt;strong&gt;Graph Classification&lt;/strong&gt;: Given a collection of graphs &lt;script type=&quot;math/tex&quot;&gt;\{G_i\}_{i=1}^{M}&lt;/script&gt; and associated graph labels &lt;script type=&quot;math/tex&quot;&gt;\{y_i\}_{i=1}^{M}&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;y_i\in \mathbf{R^{c}}&lt;/script&gt; (&lt;script type=&quot;math/tex&quot;&gt;c&lt;/script&gt; is the number of classes), we need to come up with a learning model or function &lt;script type=&quot;math/tex&quot;&gt;F:G \rightarrow Y&lt;/script&gt; that can classify or predict the label associated with a graph.  &lt;br /&gt;
+&lt;br /&gt;
+2) &lt;strong&gt;Node Classification&lt;/strong&gt;: Given a graph &lt;script type=&quot;math/tex&quot;&gt;G=(V,E,W)&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; is vertex set, &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; is edge set &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt; is adjacency matrix and labels &lt;script type=&quot;math/tex&quot;&gt;\{y_i\}_{i=1}^{M}&lt;/script&gt; where &lt;script type=&quot;math/tex&quot;&gt;y_i\in \mathbf{R^{c}}&lt;/script&gt; associated with each node, our task is to classify or predict the labels on each node. That is, come up a learning function &lt;script type=&quot;math/tex&quot;&gt;F:V\rightarrow Y&lt;/script&gt;.&lt;/p&gt;
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/graph_problems.png&quot; style=&quot;width: 50%; height: 50%&quot; /&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In this blog, I’ll mainly focus on graph classification problem but also show how we can leverage this work to perform node label classification as well. The fundamental problem in graph classification is comparing two graph structures. The main hurdle in comparing two graph structures is that we don’t know which node in the first graph corresponds to which node in other graph. This problem is universally known as graph isomorphism problem and so far we know it can only be solved in quasi-polynomial time and that too theoretically. Hence people came up with approximate but polynomial alternatives.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Previous studies on graph classification can be grouped into three main categories. &lt;br /&gt;
+1) &lt;strong&gt;Graph Spectrum&lt;/strong&gt; 2) &lt;strong&gt;Graph Kernels&lt;/strong&gt; 3) &lt;strong&gt;Graph Convolutional Networks&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Graph Spectrum&lt;/strong&gt;: Our majority work falls under first category and similar to graph kernels in certain aspects. But without going too much into &lt;script type=&quot;math/tex&quot;&gt;-&lt;/script&gt; what is graph kernel and graph convolutional network &lt;script type=&quot;math/tex&quot;&gt;-&lt;/script&gt; I’ll lay out the ideas behind graph spectrum.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;First let’s discuss what spectrum mean&lt;/strong&gt;? Spectrum is a collection of atomic elements  (say in form of a set or vector or other mathematical object) to represent objects belonging to the same class (here class of objects could be an electrical signal, an audio signal or a chemical compound). For example, time series signal has a frequency spectrum. The importance of frequency spectrum is that one can recover the whole original signal from its frequency spectrum. Secondly from learning point of view, spectrum gives us a &lt;span style=&quot;color:#900C3F&quot;&gt;convenient and rich&lt;/span&gt; way to compare the &lt;span style=&quot;color:#900C3F&quot;&gt;similarity&lt;/span&gt; between two signals.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;span style=&quot;color:#900C3F&quot;&gt;&lt;strong&gt;Now, the question is does graph has a spectrum? And if so, what are its atomic elements?&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The most common graph spectrum you may heard of is &lt;span style=&quot;color:#D35400&quot;&gt;graph Laplacian eigenvalue spectrum&lt;/span&gt;, where atomic elements are eigenvalues of graph Laplacian matrix. There are two more powerful graph spectrums based on group theory: &lt;span style=&quot;color:#24A0AF&quot;&gt;Skew Spectrum&lt;/span&gt; and &lt;span style=&quot;color:#6AB234&quot;&gt;Graphlet Spectrum&lt;/span&gt;. The best thing about graph spectrum is that it atomic elements are solely depends upon the structure of the graph and thus invariant to permutation of graph vertex labels – a very important property desired from learning point of view.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We propose a new graph spectrum which is conceptually simple to understand but at the same time powerful enough as I’ll try to convince. &lt;strong&gt;Our Idea&lt;/strong&gt;: &lt;span style=&quot;color:#900C3F&quot;&gt;&lt;em&gt;Graph atomic structure (or spectrum) is encoded in the multiset of all nodes pairwise distances.&lt;/em&gt;&lt;/span&gt;&lt;/p&gt;
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/graph_spectrum_example.png&quot; style=&quot;width: 50%; height: 50%&quot; /&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;span style=&quot;color:#24A0AF&quot;&gt;&lt;b&gt;But &lt;span style=&quot;color:#EC7063&quot;&gt;what distance&lt;/span&gt; one should consider on a &lt;span style=&quot;color:#D4AC0D&quot;&gt;Graph&lt;/span&gt;?&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;span style=&quot;color:#900C3F&quot;&gt;&lt;b&gt;Welcome to The Family of Graph Spectral Distances (FGSD)&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;p&gt;FGSD is based on graph Laplacian &lt;script type=&quot;math/tex&quot;&gt;(L=D-W)&lt;/script&gt; spectral properties. Here &lt;script type=&quot;math/tex&quot;&gt;\phi_{k}&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;\lambda_k&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;k^{th}&lt;/script&gt; Laplacian eigenvector and eigenvalue respectively.&lt;/p&gt;
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/fgsd_equation.png&quot; style=&quot;width: 50%; height: 50%&quot; /&gt;&lt;/div&gt;
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/fgsd_equation_fig.png&quot; style=&quot;width: 50%; height: 50%&quot; /&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So what’s  special about this family of distance? Depending upon &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)&lt;/script&gt;, FGSD can capture different type of information about graph sub-structures.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;FGSD Elements Encode Local Structure Information&lt;/strong&gt;: For  &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=\lambda^p&lt;/script&gt;  (&lt;script type=&quot;math/tex&quot;&gt;p\geq 1&lt;/script&gt;), one can show that &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; takes only &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-hop local neighborhood information. &lt;br /&gt;
+&lt;strong&gt;FGSD Elements Encode Global Structure Information&lt;/strong&gt;: For  &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=\frac{1}{\lambda^p}&lt;/script&gt;  (&lt;script type=&quot;math/tex&quot;&gt;p\geq 1&lt;/script&gt;), one can show that &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; captures global structure information.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Some Known Graph Distances Can Be Derived From FGSD.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Setting &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=\frac{1}{\lambda}&lt;/script&gt;  yields is harmonic or effective resistance distance.&lt;/li&gt;
+    &lt;li&gt;Setting &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=\frac{1}{\lambda^2}&lt;/script&gt;  yields biharmonic distance.&lt;/li&gt;
+    &lt;li&gt;Setting &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=e^{-2 \lambda}&lt;/script&gt;  yields heat diffusion distance.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt; Hunt for the best $$f(\lambda)$$ function that can exhibit ideal graph spectrum properties! &lt;/b&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Theorem 1 (Uniqueness of FGSD)&lt;/strong&gt;: The &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt;-spectral distance matrix &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f=[ \mathcal{S}_f(x,y)]&lt;/script&gt;  uniquely determines the underlying graph (up to graph isomorphism), and each graph  has a unique &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f&lt;/script&gt; (up to permutation).  More precisely,  two undirected, weighted (and connected) graphs  &lt;script type=&quot;math/tex&quot;&gt;G_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;G_2&lt;/script&gt;  have the same FGSD based  distance matrix up to permutation,   i.e., &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_{G_1}=P\mathcal{S}_{G_2}P^{T}&lt;/script&gt; for some permutation matrix &lt;script type=&quot;math/tex&quot;&gt;P&lt;/script&gt;,  if and only if  the two graphs are isomorphic.&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Implications&lt;/strong&gt;:  One of the consequence of Theorem &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; is that the &lt;script type=&quot;math/tex&quot;&gt;\mathcal{R}&lt;/script&gt; based on multiset of FGSD is invariant under the
+permutation of graph vertex labels. Unfortunately, it is possible that the multiset of
+some FGSD members can be same for non-isomorphic graphs (otherwise, we would have a &lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}(N^2)&lt;/script&gt; polynomial time algorithm for solving graph isomorphism problem!). However, there is lot of &lt;strong&gt;HOPE&lt;/strong&gt;. It is known that all non-isomorphic graphs with less than nine vertices have unique multisets of harmonic distance. While, for nine &amp;amp; ten vertex (simple) graphs, we have exactly &lt;script type=&quot;math/tex&quot;&gt;11&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;49&lt;/script&gt; pairs of non-isomorphic
+graphs (out of total &lt;script type=&quot;math/tex&quot;&gt;274,668&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;12,005,168&lt;/script&gt; graphs) with the same harmonic spectra. These examples
+show that there are significantly very low numbers of non-unique harmonic spectrums. Moreover, we
+empirically found that the biharmonic distance has all unique multisets for at-least upto ten vertices
+(&lt;script type=&quot;math/tex&quot;&gt;~11&lt;/script&gt; million graphs) and we couldn’t find any non-isomorphic graphs with the same biharmonic
+multisets. Further, we have the following theorem regarding the uniqueness of &lt;script type=&quot;math/tex&quot;&gt;\mathcal{R}&lt;/script&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Theorem 2 (Uniqueness of  Graph Harmonic Spectrum)&lt;/strong&gt;:  Let &lt;script type=&quot;math/tex&quot;&gt;G=(V,E,W)&lt;/script&gt; be a graph of size &lt;script type=&quot;math/tex&quot;&gt;\vert V\vert&lt;/script&gt; with an unweighted adjacency matrix &lt;script type=&quot;math/tex&quot;&gt;W&lt;/script&gt;. Then, if two graphs &lt;script type=&quot;math/tex&quot;&gt;G_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;G_2&lt;/script&gt; have the same number of nodes but different number of edges, i.e, &lt;script type=&quot;math/tex&quot;&gt;\vert V_1 \vert =\vert V_2 \vert&lt;/script&gt; but &lt;script type=&quot;math/tex&quot;&gt;\vert E_1 \vert \neq  \vert E_2 \vert&lt;/script&gt;, then with respect to the harmonic distance multiset, &lt;script type=&quot;math/tex&quot;&gt;\mathcal{R}(G_1) \neq \mathcal{R}(G_2)&lt;/script&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Theorem 3 (Eigenfunction Stability of FGSD)&lt;/strong&gt;: Let &lt;script type=&quot;math/tex&quot;&gt;\Delta \mathcal{S}_{xy}&lt;/script&gt; be the change in &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; distance with respect to &lt;script type=&quot;math/tex&quot;&gt;\Delta w&lt;/script&gt; change  in  weight of  any  single edge on the graph. Then,   &lt;script type=&quot;math/tex&quot;&gt;\Delta  \mathcal{S}_{xy}&lt;/script&gt; for any vertex pair &lt;script type=&quot;math/tex&quot;&gt;(x,y)&lt;/script&gt; is bounded with respect  to the function of eigenvalue as follows,
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\begin{equation*}  
+\begin{split}
+\Delta  \mathcal{S}_{xy} &amp; \leq 2   \big(|f(\lambda_{N-1}+2\triangle w ) -f(\lambda_{1})| \\
+\end{split}
+\end{equation*} %]]&gt;&lt;/script&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Implications&lt;/strong&gt;: Decreasing function of &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)&lt;/script&gt; (such as &lt;script type=&quot;math/tex&quot;&gt;\frac{1}{\lambda^p}&lt;/script&gt;) are more stable.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Conjecture (Sparsity of FGSD Graph Spectrum)&lt;/strong&gt;:  For any graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;, let &lt;script type=&quot;math/tex&quot;&gt;\big|\mathcal{R}(f(\lambda))\big|_{G}&lt;/script&gt; represents the number of unique elements present in the multiset of &lt;script type=&quot;math/tex&quot;&gt;\mathcal{R}&lt;/script&gt;,  computed on an unweighted graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; based on some monotonic decreasing &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)&lt;/script&gt;  function. Then, the following holds,
+&lt;script type=&quot;math/tex&quot;&gt;\begin{equation*}
+ \Big|\mathcal{R}(f(\lambda))\Big|_{G} \geq \Big|\mathcal{R}\Big(\frac{1}{\lambda}\Big)\Big|_{G}+2 
+\end{equation*}&lt;/script&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Implications&lt;/strong&gt;: Harmonic Spectrum &lt;script type=&quot;math/tex&quot;&gt;(f(\frac{1}{\lambda}))&lt;/script&gt; produce the most sparse features.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;span style=&quot;color:#24A0AF&quot;&gt;&lt;b&gt;Feature Space of Harmonic and Biharmonic Spectrum&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
+
+  &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/feature_space.png&quot; style=&quot;width: 80%; height: 50%&quot; /&gt;&lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Lastly, one can show that the worst case complexity of computing FGSD is &lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}(N^2)&lt;/script&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;In the end, we take the histogram of FGSD spectrum to construct the graph feature vector&lt;/strong&gt;. Overall our hunt leads to the harmonic distance as an ideal member of FGSD family for extracting graph features.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Saurabh Verma, Zhi-Li Zhang. Hunt For The Unique, Stable, Sparse And Fast Feature Learning On Graphs. In 31st Conference on Neural Information Processing Systems (NIPS 2017). &lt;a href=&quot;http://www-users.cs.umn.edu/~verma/NIPS17-FGSD-verma.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sat, 21 Oct 2017 19:01:00 -0500</pubDate>
+        <link>http://localhost:4000/tutorials/2017/10/21/FGSD.html</link>
+        <guid isPermaLink="true">http://localhost:4000/tutorials/2017/10/21/FGSD.html</guid>
+        
+        
+        <category>Tutorials</category>
+        
+      </item>
     
       <item>
         <title> Blog: Graph Convolutional Networks.</title>
