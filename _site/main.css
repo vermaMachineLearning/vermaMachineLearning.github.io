@@ -64,7 +64,8 @@ article {
   article header {
     text-align: center; }
   article > div {
-    margin-bottom: 2em; }
+    margin-bottom: 2em;
+    margin: 1.5em 10px; }
   article footer a {
     border: 1px solid;
     border-radius: 3px;
