@@ -2,7 +2,7 @@
 body {
   display: flex;
   min-height: 100%;
-  font-family: "Source Sans Pro", "Calibri", "Helvetica", sans-serif;
+  font-family: "CMS", "Droid Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 1.4em;
   font-size: calc(.6vw + .8em);
@@ -267,3 +267,28 @@ article {
   border-radius: 3px;
   box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
   background-color: #555; }
+
+@font-face {
+  font-family: "CMS";
+  src: url("fonts/cmunrm.eot");
+  src: url("fonts/cmunrm.eot?#iefix") format("embedded-opentype"), url("fonts/cmunrm.woff") format("woff"), url("fonts/cmunrm.ttf") format("truetype"), url("fonts/cmunrm.svg#CMS") format("svg");
+  font-style: normal;
+  font-weight: normal; }
+@font-face {
+  font-family: "CMS";
+  src: url("fonts/cmunbx.eot");
+  src: url("fonts/cmunbx.eot?#iefix") format("embedded-opentype"), url("fonts/cmunbx.woff") format("woff"), url("fonts/cmunbx.ttf") format("truetype"), url("fonts/cmunbx.svg#CMS") format("svg");
+  font-style: normal;
+  font-weight: bold; }
+@font-face {
+  font-family: "CMS";
+  src: url("fonts/cmunti.eot");
+  src: url("fonts/cmunti.eot?#iefix") format("embedded-opentype"), url("fonts/cmunti.woff") format("woff"), url("fonts/cmunti.ttf") format("truetype"), url("fonts/cmunti.svg#CMS") format("svg");
+  font-style: italic;
+  font-weight: normal; }
+@font-face {
+  font-family: "CMS";
+  src: url("fonts/cmunbi.eot");
+  src: url("fonts/cmunbi.eot?#iefix") format("embedded-opentype"), url("fonts/cmunbi.woff") format("woff"), url("fonts/cmunbi.ttf") format("truetype"), url("fonts/cmunbi.svg#CMS") format("svg");
+  font-style: italic;
+  font-weight: bold; }

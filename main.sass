@@ -64,3 +64,9 @@ article:nth-of-type(odd)
     color: reduce($odd, 100%)
 
 @import vendor
+
+@import 'fontface'
+@include fontFace('CMS','fonts/cmunrm')
+@include fontFace('CMS','fonts/cmunbx',normal,bold)
+@include fontFace('CMS','fonts/cmunti',italic,normal)
+@include fontFace('CMS','fonts/cmunbi',italic,bold)
