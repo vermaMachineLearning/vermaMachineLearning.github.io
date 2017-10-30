@@ -12,6 +12,7 @@ Let $$\mathbf{q}=[q_1,q_2,...,q_k]$$ be a pmf (or a point in simplex $$\in$$ $$\
 $$f(q,\boldsymbol\alpha)=p(q|\boldsymbol\alpha)=\frac{\Gamma(\alpha_0)}{\prod\limits_{j=1}^{k}\Gamma(\alpha_j)}\prod\limits_{j=1}^{k}q_j^{\alpha_j-1}$$
 
 **Graphical Model:**
+<div style="text-align:center" ><img src ="{{ site.baseurl }}/images/dirchelet.png"  style="width: 50%; height: 50%"/></div>
 
 Suppose $$\{x_i\}$$ is a set of samples drawn from $$i^{th}$$ pmf where $$i\in[1,L]$$. For eg. $$\{x_i\}$$ could be a sequence of outputs of a dice $$\{1,2,1,3,4,3,6,..\}$$. Let $$\mathbf{q}_1,\mathbf{q}_2,...,\mathbf{q}_L$$ are $$L$$ pmfs. Then:
 

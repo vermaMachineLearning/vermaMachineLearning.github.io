@@ -5,8 +5,8 @@
     <description>Blog: Machine Learning Equations by Saurabh Verma</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 29 Oct 2017 15:15:52 -0500</pubDate>
-    <lastBuildDate>Sun, 29 Oct 2017 15:15:52 -0500</lastBuildDate>
+    <pubDate>Sun, 29 Oct 2017 22:44:53 -0500</pubDate>
+    <lastBuildDate>Sun, 29 Oct 2017 22:44:53 -0500</lastBuildDate>
     <generator>Jekyll v3.6.0</generator>
     
       <item>
@@ -54,20 +54,22 @@
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;div style=&quot;text-align:center&quot;&gt;&lt;span style=&quot;color:#900C3F&quot;&gt;&lt;b&gt;Welcome to The Family of Graph Spectral Distances (FGSD)&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;
-  &lt;p&gt;FGSD is based on graph Laplacian &lt;script type=&quot;math/tex&quot;&gt;(L=D-W)&lt;/script&gt; spectral properties. Here &lt;script type=&quot;math/tex&quot;&gt;\phi_{k}&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;\lambda_k&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;k^{th}&lt;/script&gt; Laplacian eigenvector and eigenvalue respectively.&lt;/p&gt;
+  &lt;script type=&quot;math/tex; mode=display&quot;&gt;\definecolor{color1}{RGB}{114,12,63}
+\color{color1} \text{Welcome to The Family of Graph Spectral Distances $({\rm F{\scriptsize GSD}})$ }&lt;/script&gt;
+
+  &lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; is based on graph Laplacian &lt;script type=&quot;math/tex&quot;&gt;(L=D-W)&lt;/script&gt; spectral properties. Here &lt;script type=&quot;math/tex&quot;&gt;\phi_{k}&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;\lambda_k&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;k^{th}&lt;/script&gt; Laplacian eigenvector and eigenvalue respectively.&lt;/p&gt;
   &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/fgsd_equation.png&quot; style=&quot;width: 50%; height: 50%&quot; /&gt;&lt;/div&gt;
   &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/fgsd_equation_fig.png&quot; style=&quot;width: 50%; height: 50%&quot; /&gt;&lt;/div&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;So what’s  special about this family of distance? Depending upon &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)&lt;/script&gt;, FGSD can capture different type of information about graph sub-structures.&lt;/p&gt;
+&lt;p&gt;So what’s  special about this family of distance? Depending upon &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; can capture different type of information about graph sub-structures.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;FGSD Elements Encode Local Structure Information&lt;/strong&gt;: For  &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=\lambda^p&lt;/script&gt;  (&lt;script type=&quot;math/tex&quot;&gt;p\geq 1&lt;/script&gt;), one can show that &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; takes only &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-hop local neighborhood information. &lt;br /&gt;
-&lt;strong&gt;FGSD Elements Encode Global Structure Information&lt;/strong&gt;: For  &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=\frac{1}{\lambda^p}&lt;/script&gt;  (&lt;script type=&quot;math/tex&quot;&gt;p\geq 1&lt;/script&gt;), one can show that &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; captures global structure information.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;&lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; Elements Encode Local Structure Information&lt;/strong&gt;: For  &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=\lambda^p&lt;/script&gt;  (&lt;script type=&quot;math/tex&quot;&gt;p\geq 1&lt;/script&gt;), one can show that &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; takes only &lt;script type=&quot;math/tex&quot;&gt;p&lt;/script&gt;-hop local neighborhood information. &lt;br /&gt;
+&lt;strong&gt;&lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; Elements Encode Global Structure Information&lt;/strong&gt;: For  &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)=\frac{1}{\lambda^p}&lt;/script&gt;  (&lt;script type=&quot;math/tex&quot;&gt;p\geq 1&lt;/script&gt;), one can show that &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; captures global structure information.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Some Known Graph Distances Can Be Derived From FGSD.&lt;/p&gt;
+&lt;p&gt;Some Known Graph Distances Can Be Derived From &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;ul&gt;
@@ -80,11 +82,11 @@
 &lt;div style=&quot;text-align:center&quot;&gt;&lt;b&gt; Hunt for the best $$f(\lambda)$$ function that can exhibit ideal graph spectrum properties! &lt;/b&gt;&lt;/div&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Theorem 1 (Uniqueness of FGSD)&lt;/strong&gt;: The &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt;-spectral distance matrix &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f=[ \mathcal{S}_f(x,y)]&lt;/script&gt;  uniquely determines the underlying graph (up to graph isomorphism), and each graph  has a unique &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f&lt;/script&gt; (up to permutation).  More precisely,  two undirected, weighted (and connected) graphs  &lt;script type=&quot;math/tex&quot;&gt;G_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;G_2&lt;/script&gt;  have the same FGSD based  distance matrix up to permutation,   i.e., &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_{G_1}=P\mathcal{S}_{G_2}P^{T}&lt;/script&gt; for some permutation matrix &lt;script type=&quot;math/tex&quot;&gt;P&lt;/script&gt;,  if and only if  the two graphs are isomorphic.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Theorem 1 (Uniqueness of &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt;)&lt;/strong&gt;: The &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt;-spectral distance matrix &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f=[ \mathcal{S}_f(x,y)]&lt;/script&gt;  uniquely determines the underlying graph (up to graph isomorphism), and each graph  has a unique &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f&lt;/script&gt; (up to permutation).  More precisely,  two undirected, weighted (and connected) graphs  &lt;script type=&quot;math/tex&quot;&gt;G_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;G_2&lt;/script&gt;  have the same &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; based  distance matrix up to permutation,   i.e., &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_{G_1}=P\mathcal{S}_{G_2}P^{T}&lt;/script&gt; for some permutation matrix &lt;script type=&quot;math/tex&quot;&gt;P&lt;/script&gt;,  if and only if  the two graphs are isomorphic.&lt;/p&gt;
 
-  &lt;p&gt;&lt;strong&gt;Implications&lt;/strong&gt;:  One of the consequence of Theorem &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; is that the &lt;script type=&quot;math/tex&quot;&gt;\mathcal{R}&lt;/script&gt; based on multiset of FGSD is invariant under the
+  &lt;p&gt;&lt;strong&gt;Implications&lt;/strong&gt;:  One of the consequence of Theorem &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; is that the &lt;script type=&quot;math/tex&quot;&gt;\mathcal{R}&lt;/script&gt; based on multiset of &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; is invariant under the
 permutation of graph vertex labels. Unfortunately, it is possible that the multiset of
-some FGSD members can be same for non-isomorphic graphs (otherwise, we would have a &lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}(N^2)&lt;/script&gt; polynomial time algorithm for solving graph isomorphism problem!). However, there is lot of &lt;strong&gt;HOPE&lt;/strong&gt;. It is known that all non-isomorphic graphs with less than nine vertices have unique multisets of harmonic distance. While, for nine &amp;amp; ten vertex (simple) graphs, we have exactly &lt;script type=&quot;math/tex&quot;&gt;11&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;49&lt;/script&gt; pairs of non-isomorphic
+some &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; members can be same for non-isomorphic graphs (otherwise, we would have a &lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}(N^2)&lt;/script&gt; polynomial time algorithm for solving graph isomorphism problem!). However, there is lot of &lt;strong&gt;HOPE&lt;/strong&gt;. It is known that all non-isomorphic graphs with less than nine vertices have unique multisets of harmonic distance. While, for nine &amp;amp; ten vertex (simple) graphs, we have exactly &lt;script type=&quot;math/tex&quot;&gt;11&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;49&lt;/script&gt; pairs of non-isomorphic
 graphs (out of total &lt;script type=&quot;math/tex&quot;&gt;274,668&lt;/script&gt; &amp;amp; &lt;script type=&quot;math/tex&quot;&gt;12,005,168&lt;/script&gt; graphs) with the same harmonic spectra. These examples
 show that there are significantly very low numbers of non-unique harmonic spectrums. Moreover, we
 empirically found that the biharmonic distance has all unique multisets for at-least upto ten vertices
@@ -97,7 +99,7 @@ multisets. Further, we have the following theorem regarding the uniqueness of &l
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Theorem 3 (Eigenfunction Stability of FGSD)&lt;/strong&gt;: Let &lt;script type=&quot;math/tex&quot;&gt;\Delta \mathcal{S}_{xy}&lt;/script&gt; be the change in &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; distance with respect to &lt;script type=&quot;math/tex&quot;&gt;\Delta w&lt;/script&gt; change  in  weight of  any  single edge on the graph. Then,   &lt;script type=&quot;math/tex&quot;&gt;\Delta  \mathcal{S}_{xy}&lt;/script&gt; for any vertex pair &lt;script type=&quot;math/tex&quot;&gt;(x,y)&lt;/script&gt; is bounded with respect  to the function of eigenvalue as follows,
+  &lt;p&gt;&lt;strong&gt;Theorem 3 (Eigenfunction Stability of &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt;)&lt;/strong&gt;: Let &lt;script type=&quot;math/tex&quot;&gt;\Delta \mathcal{S}_{xy}&lt;/script&gt; be the change in &lt;script type=&quot;math/tex&quot;&gt;\mathcal{S}_f(x,y)&lt;/script&gt; distance with respect to &lt;script type=&quot;math/tex&quot;&gt;\Delta w&lt;/script&gt; change  in  weight of  any  single edge on the graph. Then,   &lt;script type=&quot;math/tex&quot;&gt;\Delta  \mathcal{S}_{xy}&lt;/script&gt; for any vertex pair &lt;script type=&quot;math/tex&quot;&gt;(x,y)&lt;/script&gt; is bounded with respect  to the function of eigenvalue as follows,
 &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
 \begin{equation*}  
 \begin{split}
@@ -109,7 +111,7 @@ multisets. Further, we have the following theorem regarding the uniqueness of &l
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Conjecture (Sparsity of FGSD Graph Spectrum)&lt;/strong&gt;:  For any graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;, let &lt;script type=&quot;math/tex&quot;&gt;\big|\mathcal{R}(f(\lambda))\big|_{G}&lt;/script&gt; represents the number of unique elements present in the multiset of &lt;script type=&quot;math/tex&quot;&gt;\mathcal{R}&lt;/script&gt;,  computed on an unweighted graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; based on some monotonic decreasing &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)&lt;/script&gt;  function. Then, the following holds,
+  &lt;p&gt;&lt;strong&gt;Conjecture (Sparsity of &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; Graph Spectrum)&lt;/strong&gt;:  For any graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt;, let &lt;script type=&quot;math/tex&quot;&gt;\big|\mathcal{R}(f(\lambda))\big|_{G}&lt;/script&gt; represents the number of unique elements present in the multiset of &lt;script type=&quot;math/tex&quot;&gt;\mathcal{R}&lt;/script&gt;,  computed on an unweighted graph &lt;script type=&quot;math/tex&quot;&gt;G&lt;/script&gt; based on some monotonic decreasing &lt;script type=&quot;math/tex&quot;&gt;f(\lambda)&lt;/script&gt;  function. Then, the following holds,
 &lt;script type=&quot;math/tex&quot;&gt;\begin{equation*}
  \Big|\mathcal{R}(f(\lambda))\Big|_{G} \geq \Big|\mathcal{R}\Big(\frac{1}{\lambda}\Big)\Big|_{G}+2 
 \end{equation*}&lt;/script&gt;&lt;/p&gt;
@@ -124,11 +126,11 @@ multisets. Further, we have the following theorem regarding the uniqueness of &l
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Lastly, one can show that the worst case complexity of computing FGSD is &lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}(N^2)&lt;/script&gt;.&lt;/p&gt;
+  &lt;p&gt;Lastly, one can show that the worst case complexity of computing &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;\mathcal{O}(N^2)&lt;/script&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;In the end, we take the histogram of FGSD spectrum to construct the graph feature vector&lt;/strong&gt;. Overall our hunt leads to the harmonic distance as an ideal member of FGSD family for extracting graph features.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;In the end, we take the histogram of &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; spectrum to construct the graph feature vector&lt;/strong&gt;. Overall our hunt leads to the harmonic distance as an ideal member of &lt;script type=&quot;math/tex&quot;&gt;{\rm F{\scriptsize GSD}}&lt;/script&gt; family for extracting graph features.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;:&lt;/p&gt;
@@ -136,6 +138,7 @@ multisets. Further, we have the following theorem regarding the uniqueness of &l
 &lt;ol&gt;
   &lt;li&gt;Saurabh Verma, Zhi-Li Zhang. Hunt For The Unique, Stable, Sparse And Fast Feature Learning On Graphs. In 31st Conference on Neural Information Processing Systems (NIPS 2017). &lt;a href=&quot;http://www-users.cs.umn.edu/~verma/NIPS17-FGSD-verma.pdf&quot;&gt;[PDF]&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
+
 </description>
         <pubDate>Sat, 21 Oct 2017 19:01:00 -0500</pubDate>
         <link>http://localhost:4000/tutorials/2017/10/21/FGSD.html</link>
@@ -523,6 +526,7 @@ $$ \implies    \mathbf{P}\Bigg( \Big(R(A_S)-R_{emp}(A_S)\Big) \leq  2\beta +  (4
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;f(q,\boldsymbol\alpha)=p(q|\boldsymbol\alpha)=\frac{\Gamma(\alpha_0)}{\prod\limits_{j=1}^{k}\Gamma(\alpha_j)}\prod\limits_{j=1}^{k}q_j^{\alpha_j-1}&lt;/script&gt;
 
 &lt;p&gt;&lt;strong&gt;Graphical Model:&lt;/strong&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;/images/dirchelet.png&quot; style=&quot;width: 50%; height: 50%&quot; /&gt;&lt;/div&gt;
 
 &lt;p&gt;Suppose &lt;script type=&quot;math/tex&quot;&gt;\{x_i\}&lt;/script&gt; is a set of samples drawn from &lt;script type=&quot;math/tex&quot;&gt;i^{th}&lt;/script&gt; pmf where &lt;script type=&quot;math/tex&quot;&gt;i\in[1,L]&lt;/script&gt;. For eg. &lt;script type=&quot;math/tex&quot;&gt;\{x_i\}&lt;/script&gt; could be a sequence of outputs of a dice &lt;script type=&quot;math/tex&quot;&gt;\{1,2,1,3,4,3,6,..\}&lt;/script&gt;. Let &lt;script type=&quot;math/tex&quot;&gt;\mathbf{q}_1,\mathbf{q}_2,...,\mathbf{q}_L&lt;/script&gt; are &lt;script type=&quot;math/tex&quot;&gt;L&lt;/script&gt; pmfs. Then:&lt;/p&gt;
 

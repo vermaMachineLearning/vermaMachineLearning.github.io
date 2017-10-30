@@ -88,20 +88,22 @@
 </blockquote>
 
 <blockquote>
-  <div style="text-align:center"><span style="color:#900C3F"><b>Welcome to The Family of Graph Spectral Distances (FGSD)</b></span></div>
-  <p>FGSD is based on graph Laplacian <script type="math/tex">(L=D-W)</script> spectral properties. Here <script type="math/tex">\phi_{k}</script> &amp; <script type="math/tex">\lambda_k</script> is <script type="math/tex">k^{th}</script> Laplacian eigenvector and eigenvalue respectively.</p>
+  <script type="math/tex; mode=display">\definecolor{color1}{RGB}{114,12,63}
+\color{color1} \text{Welcome to The Family of Graph Spectral Distances $({\rm F{\scriptsize GSD}})$ }</script>
+
+  <p><script type="math/tex">{\rm F{\scriptsize GSD}}</script> is based on graph Laplacian <script type="math/tex">(L=D-W)</script> spectral properties. Here <script type="math/tex">\phi_{k}</script> &amp; <script type="math/tex">\lambda_k</script> is <script type="math/tex">k^{th}</script> Laplacian eigenvector and eigenvalue respectively.</p>
   <div style="text-align:center"><img src="/images/fgsd_equation.png" style="width: 50%; height: 50%" /></div>
   <div style="text-align:center"><img src="/images/fgsd_equation_fig.png" style="width: 50%; height: 50%" /></div>
 </blockquote>
 
-<p>So what’s  special about this family of distance? Depending upon <script type="math/tex">f(\lambda)</script>, FGSD can capture different type of information about graph sub-structures.</p>
+<p>So what’s  special about this family of distance? Depending upon <script type="math/tex">f(\lambda)</script>, <script type="math/tex">{\rm F{\scriptsize GSD}}</script> can capture different type of information about graph sub-structures.</p>
 
 <blockquote>
-  <p><strong>FGSD Elements Encode Local Structure Information</strong>: For  <script type="math/tex">f(\lambda)=\lambda^p</script>  (<script type="math/tex">p\geq 1</script>), one can show that <script type="math/tex">\mathcal{S}_f(x,y)</script> takes only <script type="math/tex">p</script>-hop local neighborhood information. <br />
-<strong>FGSD Elements Encode Global Structure Information</strong>: For  <script type="math/tex">f(\lambda)=\frac{1}{\lambda^p}</script>  (<script type="math/tex">p\geq 1</script>), one can show that <script type="math/tex">\mathcal{S}_f(x,y)</script> captures global structure information.</p>
+  <p><strong><script type="math/tex">{\rm F{\scriptsize GSD}}</script> Elements Encode Local Structure Information</strong>: For  <script type="math/tex">f(\lambda)=\lambda^p</script>  (<script type="math/tex">p\geq 1</script>), one can show that <script type="math/tex">\mathcal{S}_f(x,y)</script> takes only <script type="math/tex">p</script>-hop local neighborhood information. <br />
+<strong><script type="math/tex">{\rm F{\scriptsize GSD}}</script> Elements Encode Global Structure Information</strong>: For  <script type="math/tex">f(\lambda)=\frac{1}{\lambda^p}</script>  (<script type="math/tex">p\geq 1</script>), one can show that <script type="math/tex">\mathcal{S}_f(x,y)</script> captures global structure information.</p>
 </blockquote>
 
-<p>Some Known Graph Distances Can Be Derived From FGSD.</p>
+<p>Some Known Graph Distances Can Be Derived From <script type="math/tex">{\rm F{\scriptsize GSD}}</script>.</p>
 
 <blockquote>
   <ul>
@@ -114,11 +116,11 @@
 <div style="text-align:center"><b> Hunt for the best $$f(\lambda)$$ function that can exhibit ideal graph spectrum properties! </b></div>
 
 <blockquote>
-  <p><strong>Theorem 1 (Uniqueness of FGSD)</strong>: The <script type="math/tex">f</script>-spectral distance matrix <script type="math/tex">\mathcal{S}_f=[ \mathcal{S}_f(x,y)]</script>  uniquely determines the underlying graph (up to graph isomorphism), and each graph  has a unique <script type="math/tex">\mathcal{S}_f</script> (up to permutation).  More precisely,  two undirected, weighted (and connected) graphs  <script type="math/tex">G_1</script> and <script type="math/tex">G_2</script>  have the same FGSD based  distance matrix up to permutation,   i.e., <script type="math/tex">\mathcal{S}_{G_1}=P\mathcal{S}_{G_2}P^{T}</script> for some permutation matrix <script type="math/tex">P</script>,  if and only if  the two graphs are isomorphic.</p>
+  <p><strong>Theorem 1 (Uniqueness of <script type="math/tex">{\rm F{\scriptsize GSD}}</script>)</strong>: The <script type="math/tex">f</script>-spectral distance matrix <script type="math/tex">\mathcal{S}_f=[ \mathcal{S}_f(x,y)]</script>  uniquely determines the underlying graph (up to graph isomorphism), and each graph  has a unique <script type="math/tex">\mathcal{S}_f</script> (up to permutation).  More precisely,  two undirected, weighted (and connected) graphs  <script type="math/tex">G_1</script> and <script type="math/tex">G_2</script>  have the same <script type="math/tex">{\rm F{\scriptsize GSD}}</script> based  distance matrix up to permutation,   i.e., <script type="math/tex">\mathcal{S}_{G_1}=P\mathcal{S}_{G_2}P^{T}</script> for some permutation matrix <script type="math/tex">P</script>,  if and only if  the two graphs are isomorphic.</p>
 
-  <p><strong>Implications</strong>:  One of the consequence of Theorem <script type="math/tex">1</script> is that the <script type="math/tex">\mathcal{R}</script> based on multiset of FGSD is invariant under the
+  <p><strong>Implications</strong>:  One of the consequence of Theorem <script type="math/tex">1</script> is that the <script type="math/tex">\mathcal{R}</script> based on multiset of <script type="math/tex">{\rm F{\scriptsize GSD}}</script> is invariant under the
 permutation of graph vertex labels. Unfortunately, it is possible that the multiset of
-some FGSD members can be same for non-isomorphic graphs (otherwise, we would have a <script type="math/tex">\mathcal{O}(N^2)</script> polynomial time algorithm for solving graph isomorphism problem!). However, there is lot of <strong>HOPE</strong>. It is known that all non-isomorphic graphs with less than nine vertices have unique multisets of harmonic distance. While, for nine &amp; ten vertex (simple) graphs, we have exactly <script type="math/tex">11</script> &amp; <script type="math/tex">49</script> pairs of non-isomorphic
+some <script type="math/tex">{\rm F{\scriptsize GSD}}</script> members can be same for non-isomorphic graphs (otherwise, we would have a <script type="math/tex">\mathcal{O}(N^2)</script> polynomial time algorithm for solving graph isomorphism problem!). However, there is lot of <strong>HOPE</strong>. It is known that all non-isomorphic graphs with less than nine vertices have unique multisets of harmonic distance. While, for nine &amp; ten vertex (simple) graphs, we have exactly <script type="math/tex">11</script> &amp; <script type="math/tex">49</script> pairs of non-isomorphic
 graphs (out of total <script type="math/tex">274,668</script> &amp; <script type="math/tex">12,005,168</script> graphs) with the same harmonic spectra. These examples
 show that there are significantly very low numbers of non-unique harmonic spectrums. Moreover, we
 empirically found that the biharmonic distance has all unique multisets for at-least upto ten vertices
@@ -131,7 +133,7 @@ multisets. Further, we have the following theorem regarding the uniqueness of <s
 </blockquote>
 
 <blockquote>
-  <p><strong>Theorem 3 (Eigenfunction Stability of FGSD)</strong>: Let <script type="math/tex">\Delta \mathcal{S}_{xy}</script> be the change in <script type="math/tex">\mathcal{S}_f(x,y)</script> distance with respect to <script type="math/tex">\Delta w</script> change  in  weight of  any  single edge on the graph. Then,   <script type="math/tex">\Delta  \mathcal{S}_{xy}</script> for any vertex pair <script type="math/tex">(x,y)</script> is bounded with respect  to the function of eigenvalue as follows,
+  <p><strong>Theorem 3 (Eigenfunction Stability of <script type="math/tex">{\rm F{\scriptsize GSD}}</script>)</strong>: Let <script type="math/tex">\Delta \mathcal{S}_{xy}</script> be the change in <script type="math/tex">\mathcal{S}_f(x,y)</script> distance with respect to <script type="math/tex">\Delta w</script> change  in  weight of  any  single edge on the graph. Then,   <script type="math/tex">\Delta  \mathcal{S}_{xy}</script> for any vertex pair <script type="math/tex">(x,y)</script> is bounded with respect  to the function of eigenvalue as follows,
 <script type="math/tex">% <![CDATA[
 \begin{equation*}  
 \begin{split}
@@ -143,7 +145,7 @@ multisets. Further, we have the following theorem regarding the uniqueness of <s
 </blockquote>
 
 <blockquote>
-  <p><strong>Conjecture (Sparsity of FGSD Graph Spectrum)</strong>:  For any graph <script type="math/tex">G</script>, let <script type="math/tex">\big|\mathcal{R}(f(\lambda))\big|_{G}</script> represents the number of unique elements present in the multiset of <script type="math/tex">\mathcal{R}</script>,  computed on an unweighted graph <script type="math/tex">G</script> based on some monotonic decreasing <script type="math/tex">f(\lambda)</script>  function. Then, the following holds,
+  <p><strong>Conjecture (Sparsity of <script type="math/tex">{\rm F{\scriptsize GSD}}</script> Graph Spectrum)</strong>:  For any graph <script type="math/tex">G</script>, let <script type="math/tex">\big|\mathcal{R}(f(\lambda))\big|_{G}</script> represents the number of unique elements present in the multiset of <script type="math/tex">\mathcal{R}</script>,  computed on an unweighted graph <script type="math/tex">G</script> based on some monotonic decreasing <script type="math/tex">f(\lambda)</script>  function. Then, the following holds,
 <script type="math/tex">\begin{equation*}
  \Big|\mathcal{R}(f(\lambda))\Big|_{G} \geq \Big|\mathcal{R}\Big(\frac{1}{\lambda}\Big)\Big|_{G}+2 
 \end{equation*}</script></p>
@@ -158,11 +160,11 @@ multisets. Further, we have the following theorem regarding the uniqueness of <s
 </blockquote>
 
 <blockquote>
-  <p>Lastly, one can show that the worst case complexity of computing FGSD is <script type="math/tex">\mathcal{O}(N^2)</script>.</p>
+  <p>Lastly, one can show that the worst case complexity of computing <script type="math/tex">{\rm F{\scriptsize GSD}}</script> is <script type="math/tex">\mathcal{O}(N^2)</script>.</p>
 </blockquote>
 
 <blockquote>
-  <p><strong>In the end, we take the histogram of FGSD spectrum to construct the graph feature vector</strong>. Overall our hunt leads to the harmonic distance as an ideal member of FGSD family for extracting graph features.</p>
+  <p><strong>In the end, we take the histogram of <script type="math/tex">{\rm F{\scriptsize GSD}}</script> spectrum to construct the graph feature vector</strong>. Overall our hunt leads to the harmonic distance as an ideal member of <script type="math/tex">{\rm F{\scriptsize GSD}}</script> family for extracting graph features.</p>
 </blockquote>
 
 <p><strong>References</strong>:</p>
@@ -170,6 +172,7 @@ multisets. Further, we have the following theorem regarding the uniqueness of <s
 <ol>
   <li>Saurabh Verma, Zhi-Li Zhang. Hunt For The Unique, Stable, Sparse And Fast Feature Learning On Graphs. In 31st Conference on Neural Information Processing Systems (NIPS 2017). <a href="http://www-users.cs.umn.edu/~verma/NIPS17-FGSD-verma.pdf">[PDF]</a></li>
 </ol>
+
 
       </div>
       
@@ -179,7 +182,9 @@ multisets. Further, we have the following theorem regarding the uniqueness of <s
       
     </article>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { extensions: ["color.js"] }});
+</script>
     <footer>
       <span><a href="http://localhost:4000">Saurabh Verma</a></span>
       <span><a href="https://github.com/vermaMachineLearning/"><i class="fa fa-github-square"></i></a><a href="https://www.linkedin.com/in/saurabh-verma-10076544"><i class="fa fa-linkedin-square"></i></a><a href="https://www.facebook.com/saurabh.verma.355"><i class="fa fa-facebook-square"></i></a></span>
